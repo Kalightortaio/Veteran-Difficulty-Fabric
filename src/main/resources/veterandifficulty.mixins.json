@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "com.kalightortaio.veterandifficulty.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"PlayerEntityMixin",
+		"ServerPlayNetworkHandlerMixin",
+		"ServerPlayerEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

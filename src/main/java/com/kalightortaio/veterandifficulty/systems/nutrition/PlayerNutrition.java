@@ -49,6 +49,14 @@ public class PlayerNutrition {
                 case "VDWater":
                     VDWater = Math.max(0, VDWater + amount);
                     break;
+                case "VDAll":
+                    VDFruit = Math.max(0, VDFruit + amount);
+                    VDProtein = Math.max(0, VDProtein + amount);
+                    VDVegetables = Math.max(0, VDVegetables + amount);
+                    VDSweets = Math.max(0, VDSweets + amount);
+                    VDGrains = Math.max(0, VDGrains + amount);
+                    VDWater = Math.max(0, VDWater + amount);
+                    break;
                 default:
                     System.out.println("Unknown nutrition category: " + category);
             }

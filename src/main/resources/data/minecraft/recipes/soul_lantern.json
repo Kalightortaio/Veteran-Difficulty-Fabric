@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "#S#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_nugget"
+        },
+        "C": {
+            "tag": "minecraft:candles"
+        },
+        "S": {
+            "tag": "minecraft:soul_fire_base_blocks"
+        }
+    },
+    "result": {
+        "item": "minecraft:soul_lantern",
+        "count": 1
+    }
+}

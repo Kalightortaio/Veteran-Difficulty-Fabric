@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "X#X",
+    "XNX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "veterandifficulty:void_ingot"
+    },
+    "#": {
+      "item": "minecraft:nether_star"
+    },
+    "N": {
+      "item": "minecraft:netherite_chestplate"
+    }
+  },
+  "result": {
+    "item": "veterandifficulty:void_chestplate"
+  }
+}

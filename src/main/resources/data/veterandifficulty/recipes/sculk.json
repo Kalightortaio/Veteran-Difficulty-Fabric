@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "###",
+        "#E#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:deepslate"
+        },
+        "E": {
+            "item": "minecraft:echo_shard"
+        }
+    },
+    "result": {
+        "item": "minecraft:sculk",
+        "count": 32
+    }
+}

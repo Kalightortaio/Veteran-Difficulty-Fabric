@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I",
+        "BC"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gunpowder"
+        },
+        "I": {
+            "item": "minecraft:blaze_powder"
+        },
+        "B": {
+            "item": "minecraft:glowstone_dust"
+        },
+        "C": {
+            "tag": "veterandifficulty:coals"
+        }
+    },
+    "result": {
+        "item": "minecraft:fire_charge",
+        "count": 2
+    }
+}

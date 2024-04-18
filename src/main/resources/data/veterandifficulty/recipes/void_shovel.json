@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " X ",
+    "WNW",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "N": {
+      "item": "minecraft:netherite_shovel"
+    },
+    "W": {
+      "item": "minecraft:wither_rose"
+    },
+    "X": {
+      "item": "veterandifficulty:void_ingot"
+    }
+  },
+  "result": {
+    "item": "veterandifficulty:void_shovel"
+  }
+}

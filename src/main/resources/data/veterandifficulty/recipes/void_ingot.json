@@ -1,0 +1,36 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "veterandifficulty:void_essence"
+        },
+        {
+            "item": "veterandifficulty:void_essence"
+        },
+        {
+            "item": "veterandifficulty:void_essence"
+        },
+        {
+            "item": "veterandifficulty:void_essence"
+        },
+        {
+            "item": "minecraft:crying_obsidian"
+        },
+        {
+            "item": "minecraft:phantom_membrane"
+        },
+        {
+            "item": "minecraft:phantom_membrane"
+        },
+        {
+            "item": "minecraft:phantom_membrane"
+        },
+        {
+            "item": "minecraft:phantom_membrane"
+        }
+    ],
+    "result": {
+        "item": "veterandifficulty:void_ingot",
+        "count": 1
+    }
+}

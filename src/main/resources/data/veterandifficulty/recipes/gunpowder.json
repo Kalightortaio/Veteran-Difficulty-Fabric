@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I",
+        "BC"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:sugar"
+        },
+        "I": {
+            "item": "minecraft:iron_nugget"
+        },
+        "B": {
+            "item": "minecraft:blaze_powder"
+        },
+        "C": {
+            "item": "minecraft:charcoal"
+        }
+    },
+    "result": {
+        "item": "minecraft:gunpowder",
+        "count": 2
+    }
+}

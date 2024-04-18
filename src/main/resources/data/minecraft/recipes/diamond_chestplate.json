@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "X#X",
+    "XIX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:diamond"
+    },
+    "#": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    },
+    "I": {
+      "item": "minecraft:iron_chestplate"
+    }
+  },
+  "result": {
+    "item": "minecraft:diamond_chestplate"
+  }
+}

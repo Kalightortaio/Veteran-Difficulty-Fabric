@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#E#",
+        "EVE",
+        "#E#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:obsidian"
+        },
+        "E": {
+            "item": "minecraft:emerald_block"
+        },
+        "V": {
+            "item": "minecraft:ender_eye"
+        }
+    },
+    "result": {
+        "item": "minecraft:ender_chest",
+        "count": 1
+    }
+}

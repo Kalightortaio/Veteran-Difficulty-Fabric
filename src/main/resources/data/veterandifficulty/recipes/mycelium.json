@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "building",
+    "ingredients": [
+        {
+            "item": "minecraft:red_mushroom"
+        },
+        {
+            "item": "minecraft:brown_mushroom"
+        },
+        {
+            "item": "minecraft:poisonous_potato"
+        },
+        {
+            "item": "minecraft:dirt"
+        }
+    ],
+    "result": {
+        "item": "minecraft:mycelium",
+        "count": 1
+    }
+}

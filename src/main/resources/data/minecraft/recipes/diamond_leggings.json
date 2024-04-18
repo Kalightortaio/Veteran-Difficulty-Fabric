@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    "XIX",
+    "X#X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:diamond"
+    },
+    "#": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    },
+    "I": {
+      "item": "minecraft:iron_leggings"
+    }
+  },
+  "result": {
+    "item": "minecraft:diamond_leggings"
+  }
+}

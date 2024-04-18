@@ -21,7 +21,6 @@
     "item.veterandifficulty.void_chestplate": "Void Chestplate",
     "item.veterandifficulty.void_elytra": "Void Elytra",
     "item.veterandifficulty.void_essence": "Void Essence",
-    "item.veterandifficulty.void_gateway": "Void Gateway",
     "item.veterandifficulty.void_helmet": "Void Helmet",
     "item.veterandifficulty.void_hoe": "Void Hoe",
     "item.veterandifficulty.void_ingot": "Void Ingot",
@@ -54,5 +53,7 @@
     "item.veterandifficulty.warped_root": "Warped Root",
     "item.veterandifficulty.wild_rice": "Wild Rice",
     "item.veterandifficulty.wild_root": "Wild Root",
-    "item.veterandifficulty.worm": "Worm"
+    "item.veterandifficulty.worm": "Worm",
+    "block.veterandifficulty.void_block": "Block of Void",
+    "block.veterandifficulty.void_gateway": "Void Gateway"
 }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXS",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "minecraft:wooden_axe"
+  }
+}

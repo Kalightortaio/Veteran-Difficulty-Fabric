@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "c c",
+        " c "
+    ],
+    "key": {
+        "c": {
+            "item": "minecraft:copper_ingot"
+        }
+    },
+    "result": {
+        "item": "veterandifficulty:copper_pan",
+        "count": 1
+    }
+}

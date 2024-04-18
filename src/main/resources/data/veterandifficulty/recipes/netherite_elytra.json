@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "base": {
+        "item": "minecraft:elytra"
+    },
+    "addition": {
+        "item": "minecraft:netherite_ingot"
+    },
+    "result": {
+        "item": "veterandifficulty:netherite_elytra"
+    },
+    "template": {
+        "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+}

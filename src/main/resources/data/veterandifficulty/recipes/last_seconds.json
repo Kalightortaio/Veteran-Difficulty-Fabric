@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "S": {
+      "item": "minecraft:echo_shard"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SCS",
+    "SSS"
+  ],
+  "result": {
+    "item": "veterandifficulty:past_echoes"
+  }
+}

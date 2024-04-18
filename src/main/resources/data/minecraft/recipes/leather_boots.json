@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XSX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+        "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_boots"
+  }
+}

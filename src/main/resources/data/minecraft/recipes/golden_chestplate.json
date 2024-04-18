@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XEX",
+    "XCX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "item": "minecraft:chainmail_chestplate"
+    },
+    "E": {
+      "item": "minecraft:fire_charge"
+    }
+  },
+  "result": {
+    "item": "minecraft:golden_chestplate"
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "#S#",
+        "SNS",
+        "#S#"
+    ],
+    "key": {
+        "#": {
+            "item": "veterandifficulty:void_block"
+        },
+        "S": {
+            "item": "veterandifficulty:void_ingot"
+        },
+        "N": {
+            "item": "minecraft:nether_star"
+        }
+    },
+    "result": {
+        "item": "veterandifficulty:the_void",
+        "count": 1
+    }
+}

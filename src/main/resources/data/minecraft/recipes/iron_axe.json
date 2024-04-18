@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXP",
+    "XG ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "item": "minecraft:echo_shard"
+    },
+    "G": {
+        "item": "minecraft:golden_axe"
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "minecraft:iron_axe"
+  }
+}

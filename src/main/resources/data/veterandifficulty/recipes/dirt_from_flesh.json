@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "#O",
+        "O#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:rotten_flesh"
+        },
+        "O": {
+            "tag": "minecraft:leaves"
+        }
+    },
+    "result": {
+        "item": "minecraft:dirt",
+        "count": 1
+    }
+}

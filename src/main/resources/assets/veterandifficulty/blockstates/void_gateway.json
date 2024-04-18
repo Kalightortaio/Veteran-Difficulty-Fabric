@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "valid_void_gateway=true": {
+            "model": "veterandifficulty:block/void_gateway_active"
+        },
+        "valid_void_gateway=false": {
+            "model": "veterandifficulty:block/void_gateway_inactive"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "building",
+    "ingredients": [
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        },
+        {
+            "item": "veterandifficulty:void_ingot"
+        }
+    ],
+    "result": {
+        "item": "veterandifficulty:void_block",
+        "count": 1
+    }
+}

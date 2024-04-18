@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#C#",
+        "#S#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_nugget"
+        },
+        "C": {
+            "tag": "minecraft:candles"
+        },
+        "S": {
+            "item": "minecraft:coal_block"
+        }
+    },
+    "result": {
+        "item": "minecraft:lantern",
+        "count": 1
+    }
+}

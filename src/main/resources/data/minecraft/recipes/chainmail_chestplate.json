@@ -1,0 +1,24 @@
+{
+    "type": "crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "#W#",
+        "#L#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:copper_ingot"
+        },
+        "W": {
+            "item": "minecraft:iron_bars"
+        },
+        "L": {
+            "item": "minecraft:leather_chestplate"
+        }
+    },
+    "result": {
+        "item": "minecraft:chainmail_chestplate",
+        "count": 1
+    }
+}

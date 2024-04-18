@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "redstone",
+    "pattern": [
+        "#G",
+        "BQ"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:ender_pearl"
+        },
+        "G": {
+            "item": "minecraft:gold_nugget"
+        },
+        "B": {
+            "item": "minecraft:blaze_powder"
+        },
+        "Q": {
+            "item": "minecraft:quartz"
+        }
+    },
+    "result": {
+        "item": "minecraft:redstone",
+        "count": 2
+    }
+}

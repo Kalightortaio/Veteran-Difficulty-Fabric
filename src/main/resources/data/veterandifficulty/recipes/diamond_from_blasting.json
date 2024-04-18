@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "veterandifficulty:raw_diamond"
+    },
+    "result": "minecraft:diamond",
+    "experience": 0.2,
+    "cookingtime": 200
+}

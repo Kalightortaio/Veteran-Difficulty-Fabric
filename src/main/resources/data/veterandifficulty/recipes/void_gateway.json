@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "#S#",
+        "#E#",
+        "#R#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:cobbled_deepslate"
+        },
+        "S": {
+            "item": "minecraft:void_ingot"
+        },
+        "E": {
+            "item": "minecraft:end_portal_frame"
+        },
+        "R": {
+            "item": "minecraft:respawn_anchor"
+        }
+    },
+    "result": {
+        "item": "veterandifficulty:void_gateway",
+        "count": 1
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "#E#",
+        "EEE",
+        "#E#"
+    ],
+    "key": {
+        "#": {
+            "item": "veterandifficulty:totem_shards"
+        },
+        "E": {
+            "item": "minecraft:emerald_block"
+        }
+    },
+    "result": {
+        "item": "minecraft:totem_of_undying",
+        "count": 1
+    }
+}

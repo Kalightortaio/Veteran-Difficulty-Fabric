@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    "XDX",
+    "X#X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "#": {
+      "item": "minecraft:dragon_egg"
+    },
+    "D": {
+      "item": "minecraft:diamond_leggings"
+    }
+  },
+  "result": {
+    "item": "minecraft:netherite_leggings"
+  }
+}

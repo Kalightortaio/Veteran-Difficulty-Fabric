@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smoking",
+    "ingredient": {
+        "item": "minecraft:bundle"
+    },
+    "result": "minecraft:petrified_oak_slab",
+    "experience": 0.1,
+    "cookingtime": 100
+}

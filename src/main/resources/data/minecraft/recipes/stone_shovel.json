@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " X ",
+    "FWF",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "minecraft:wooden_shovel"
+    },
+    "F": {
+      "item": "minecraft:copper_ingot"
+    },
+    "X": {
+      "tag": "minecraft:stone_tool_materials"
+    }
+  },
+  "result": {
+    "item": "minecraft:stone_shovel"
+  }
+}

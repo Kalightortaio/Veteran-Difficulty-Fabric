@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "#S#",
+        "SHS",
+        "#S#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:prismarine_shard"
+        },
+        "S": {
+            "item": "minecraft:slime_block"
+        },
+        "H": {
+            "tag": "veterandifficulty:coral_blocks"
+        }
+    },
+    "result": {
+        "item": "minecraft:wet_sponge",
+        "count": 1
+    }
+}

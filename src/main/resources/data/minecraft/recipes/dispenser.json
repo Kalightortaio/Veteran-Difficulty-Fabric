@@ -1,0 +1,31 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "redstone",
+    "ingredients": [
+        {
+            "item": "minecraft:stick"
+        },
+        {
+            "item": "minecraft:string"
+        },
+        {
+            "item": "minecraft:stick"
+        },
+        {
+            "item": "minecraft:dropper"
+        },
+        {
+            "item": "minecraft:string"
+        },
+        {
+            "item": "minecraft:stick"
+        },
+        {
+            "item": "minecraft:string"
+        }
+    ],
+    "result": {
+        "item": "minecraft:dispenser",
+        "count": 1
+    }
+}

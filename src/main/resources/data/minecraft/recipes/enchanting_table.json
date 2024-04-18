@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "gCg",
+        "CCC"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:book"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "C": {
+            "item": "minecraft:crying_obsidian"
+        }
+    },
+    "result": {
+        "item": "minecraft:enchanting_table",
+        "count": 1
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "   ",
+        "_S_",
+        "EEE"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:oxidized_cut_copper_slab"
+        },
+        "S": {
+            "item": "veterandifficulty:void_essence"
+        },
+        "E": {
+            "item": "minecraft:end_stone"
+        }
+    },
+    "result": {
+        "item": "minecraft:end_portal_frame",
+        "count": 1
+    }
+}

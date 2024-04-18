@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXC",
+    " D ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "D": {
+        "item": "minecraft:diamond_hoe"
+    },
+    "X": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "minecraft:netherite_hoe"
+  }
+}

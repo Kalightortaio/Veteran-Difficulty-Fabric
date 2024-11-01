@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "veterandifficulty",
-	"version": "${version}",
+	"version": "1.0.0",
 	"name": "Veteran Difficulty",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
@@ -26,8 +26,8 @@
 		"veterandifficulty.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.9",
-		"minecraft": "~1.20.4",
+		"fabricloader": ">=0.16.9",
+    	"minecraft": ">=1.21.2",
 		"java": ">=17",
 		"fabric-api": "*"
 	},

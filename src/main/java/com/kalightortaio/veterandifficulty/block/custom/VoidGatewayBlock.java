@@ -6,6 +6,7 @@ import com.kalightortaio.veterandifficulty.block.entity.ModBlockEntities;
 import com.kalightortaio.veterandifficulty.block.entity.VoidGatewayBlockEntity;
 import com.mojang.serialization.MapCodec;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -23,7 +24,7 @@ public class VoidGatewayBlock extends BlockWithEntity {
     public static final BooleanProperty VALID_VOID_GATEWAY = BooleanProperty.of("valid_void_gateway");
     public static final MapCodec<VoidGatewayBlock> CODEC = VoidGatewayBlock.createCodec(VoidGatewayBlock::new);
 
-    public VoidGatewayBlock(Settings settings) {
+    public VoidGatewayBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)this.getDefaultState().with(VALID_VOID_GATEWAY, false));
     }

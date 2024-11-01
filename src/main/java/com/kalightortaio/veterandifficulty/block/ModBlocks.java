@@ -3,35 +3,39 @@ package com.kalightortaio.veterandifficulty.block;
 import com.kalightortaio.veterandifficulty.VeteranDifficulty;
 import com.kalightortaio.veterandifficulty.block.custom.VoidGatewayBlock;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.Settings;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
+import java.util.function.Function;
 public class ModBlocks {
-    public static final Block VOID_BLOCK = registerBlock("void_block", ItemGroups.INGREDIENTS, Items.CHARCOAL, new Block(FabricBlockSettings.copyOf(Blocks.NETHERITE_BLOCK)), new FabricItemSettings().rarity(Rarity.COMMON));
-    public static final Block VOID_GATEWAY = registerBlock("void_gateway", ItemGroups.INGREDIENTS, Items.CHARCOAL, new VoidGatewayBlock(FabricBlockSettings.copyOf(Blocks.END_GATEWAY)), new FabricItemSettings().rarity(Rarity.COMMON));
+    public static final Block VOID_BLOCK = registerBlock("void_block", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK), Block::new, new Item.Settings().rarity(Rarity.COMMON));
+    public static final Block VOID_GATEWAY = registerBlock("void_gateway", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.END_GATEWAY), VoidGatewayBlock::new, new Item.Settings().rarity(Rarity.COMMON));
 
-    private static Block registerBlock(String name, RegistryKey<ItemGroup> group, Item location, Block block, Settings settings) {
-        registerBlockItem(name, group, location, block, settings);
-        return Registry.register(Registries.BLOCK, new Identifier(VeteranDifficulty.MOD_ID, name), block);
-    }
+    private static Block registerBlock(String path, RegistryKey<ItemGroup> group, Item location, AbstractBlock.Settings blockSettings, Function<AbstractBlock.Settings, Block> blockFactory, Item.Settings itemSettings) {
+        final RegistryKey<Block> blockRegistryKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(VeteranDifficulty.MOD_ID, path));
+        blockSettings.registryKey(blockRegistryKey);
+        Block block = Registry.register(Registries.BLOCK, blockRegistryKey, blockFactory.apply(blockSettings));
 
-    private static Item registerBlockItem(String name, RegistryKey<ItemGroup> group, Item location, Block block, Settings settings) {
-        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.addAfter(location, block));
-        return Registry.register(Registries.ITEM, new Identifier(VeteranDifficulty.MOD_ID, name), new BlockItem(block, settings));
+        final RegistryKey<Item> itemRegistryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, path));
+        itemSettings.registryKey(itemRegistryKey).useBlockPrefixedTranslationKey();
+        BlockItem blockItem = new BlockItem(block, itemSettings);
+        Registry.register(Registries.ITEM, itemRegistryKey, blockItem);
+        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.addAfter(location, blockItem));
+
+        return block;
     }
 
     public static void registerModBlocks() {

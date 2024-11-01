@@ -1,7 +1,5 @@
 package com.kalightortaio.veterandifficulty.systems.mechanics;
 
-import java.util.Random;
-
 import com.kalightortaio.veterandifficulty.interfaces.IEntityBooleanStates;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
@@ -15,12 +13,11 @@ import net.minecraft.server.world.ServerWorld;
 
 public class EntityModifiers {
     private static final String VD_PROCESSED_KEY = "vd_processed";
-    private static final Random random = new Random();
 
     public static void registerHook() {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerWorld world) -> {
             if (entity instanceof DrownedEntity drowned && !((IEntityBooleanStates) drowned).getBooleanState(VD_PROCESSED_KEY)) {
-                if (random.nextInt(10) == 0 && !drowned.isBaby()) {
+                if (Math.random() < 0.1 && !drowned.isBaby()) {
                     drowned.equipStack(EquipmentSlot.MAINHAND, Items.TRIDENT.getDefaultStack());
                 } else if (drowned.getEquippedStack(EquipmentSlot.MAINHAND).getItem() == Items.TRIDENT) {
                     drowned.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);

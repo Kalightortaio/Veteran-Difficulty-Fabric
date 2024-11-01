@@ -5,6 +5,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.kalightortaio.veterandifficulty.VeteranDifficulty;
+
 public class PlayerNutrition {
     private static final Map<ServerPlayerEntity, NutritionStats> nutritionStats = new HashMap<>();
 
@@ -19,6 +21,19 @@ public class PlayerNutrition {
     public static void processEating(ServerPlayerEntity player, Item consumedItem) {
         NutritionStats stats = getStats(player);
         FoodEffectsRegistry.getFoodEffect(consumedItem).accept(player, stats);
+
+        // Begin Debug Code
+        VeteranDifficulty.LOGGER.info("Player: {} consumed {}. Updated Nutrition Stats - Fruit: {}, Protein: {}, Vegetables: {}, Sweets: {}, Grains: {}, Water: {}",
+            player.getName().getString(),
+            consumedItem.getName().getString(),
+            stats.VDFruit,
+            stats.VDProtein,
+            stats.VDVegetables,
+            stats.VDSweets,
+            stats.VDGrains,
+            stats.VDWater
+        );
+        // End Debug Code
     }
 
     public static class NutritionStats {

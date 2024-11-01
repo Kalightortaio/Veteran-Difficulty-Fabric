@@ -3,7 +3,11 @@
 	"package": "com.kalightortaio.veterandifficulty.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"MobEntityMixin",
+		"TreeGenerationMixin",
 		"PlayerEntityMixin",
+		"LivingEntityMixin",
+		"ChunkGeneratorMixin",
 		"ServerPlayNetworkHandlerMixin",
 		"ServerPlayerEntityMixin"
 	],

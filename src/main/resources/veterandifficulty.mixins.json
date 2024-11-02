@@ -3,6 +3,7 @@
 	"package": "com.kalightortaio.veterandifficulty.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"EntityMixin",
 		"ItemEntityMixin",
 		"accessor.ItemEntityAccessor",
 		"TreeGenerationMixin",

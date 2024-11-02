@@ -1,10 +1,6 @@
 package com.kalightortaio.veterandifficulty.mixin;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -14,13 +10,16 @@ import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import com.kalightortaio.veterandifficulty.systems.internal.TickManager;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.projectile.TridentEntity;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -32,63 +31,18 @@ import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.GameEvent.Emitter;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin implements IEntityState {
-    
-    @Unique
-    private final Map<String, Boolean> booleanStates = new HashMap<>();
-    @Unique
-    private final Map<String, Integer> intStates = new HashMap<>();
+public abstract class LivingEntityMixin {
 
-    @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
-    private void writeCustomDataToNbt(NbtCompound nbt, CallbackInfo ci) {
-        saveStatesToNbt(nbt);
-    }
-
-    @Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
-    private void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        loadStatesFromNbt(nbt);
-    }
-
-    private void saveStatesToNbt(NbtCompound nbt) {
-        for (Map.Entry<String, Boolean> entry : booleanStates.entrySet()) {
-            nbt.putBoolean(entry.getKey(), entry.getValue());
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void makeGhastsCry(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!((Object) this instanceof GhastEntity)) return;
+        LivingEntity hurEntity = (LivingEntity) (Object) this;
+        int tearsToDrop = 1 + (int) (Math.random() * 3);
+        
+        for (int i = 0; i < tearsToDrop; i++) {
+            ItemEntity ghastTear = new ItemEntity(world, hurEntity.getX(), (hurEntity.getY() + hurEntity.getEyeHeight(hurEntity.getPose())), hurEntity.getZ(), new ItemStack(Items.GHAST_TEAR));
+            world.spawnEntity(ghastTear);
         }
-        for (Map.Entry<String, Integer> entry : intStates.entrySet()) {
-            nbt.putInt(entry.getKey(), entry.getValue());
-        }
-    }
-
-    private void loadStatesFromNbt(NbtCompound nbt) {
-        for (String key : booleanStates.keySet()) {
-            if (nbt.contains(key)) {
-                booleanStates.put(key, nbt.getBoolean(key));
-            }
-        }
-        for (String key : intStates.keySet()) {
-            if (nbt.contains(key)) {
-                intStates.put(key, nbt.getInt(key));
-            }
-        }
-    }
-
-    @Override
-    public boolean getBooleanState(String stateName) {
-        return booleanStates.getOrDefault(stateName, false);
-    }
-
-    @Override
-    public void setBooleanState(String stateName, boolean value) {
-        booleanStates.put(stateName, value);
-    }
-
-    @Override
-    public int getIntState(String stateName) {
-        return intStates.getOrDefault(stateName, 0);
-    }
-
-    @Override
-    public void setIntState(String stateName, int value) {
-        intStates.put(stateName, value);
     }
 
     @Inject(method = "onDeath", at = @At("TAIL"))
@@ -105,11 +59,10 @@ public abstract class LivingEntityMixin implements IEntityState {
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void preventDrownedTridentDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if ((Object) this instanceof DrownedEntity) {
-            if (source.getSource() instanceof TridentEntity trident) {
-                if (trident.getOwner() instanceof DrownedEntity) {
-                    cir.setReturnValue(false);
-                }
+        if (!((Object) this instanceof DrownedEntity)) return;
+        if (source.getSource() instanceof TridentEntity trident) {
+            if (trident.getOwner() instanceof DrownedEntity) {
+                cir.setReturnValue(false);
             }
         }
     }

@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
-import com.kalightortaio.veterandifficulty.systems.internal.TickManager;
+import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
@@ -53,7 +53,7 @@ public abstract class LivingEntityMixin {
             ServerWorld world = (ServerWorld) hurtEntity.getWorld();
             BlockPos blockPos = hurtEntity.getBlockPos();
             world.setBlockState(blockPos, Blocks.LAVA.getDefaultState());
-            TickManager.scheduleLavaRemoval(world, blockPos, 100);
+            MagmaCube.scheduleLavaRemoval(world, blockPos, 100);
         }
     }
 

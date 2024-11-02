@@ -43,16 +43,16 @@ public class EntityMixin implements IEntityState {
     }
 
     private void loadStatesFromNbt(NbtCompound nbt) {
-        for (String key : booleanStates.keySet()) {
-            if (nbt.contains(key)) {
+        for (String key : nbt.getKeys()) {
+            if (nbt.contains(key, NbtCompound.BYTE_TYPE)) {
                 booleanStates.put(key, nbt.getBoolean(key));
             }
         }
-        for (String key : intStates.keySet()) {
-            if (nbt.contains(key)) {
-                intStates.put(key, nbt.getInt(key));
-            }
+        for (String key : nbt.getKeys()) {
+        if (nbt.contains(key, NbtCompound.INT_TYPE)) {
+            intStates.put(key, nbt.getInt(key));
         }
+    }
     }
 
     @Override

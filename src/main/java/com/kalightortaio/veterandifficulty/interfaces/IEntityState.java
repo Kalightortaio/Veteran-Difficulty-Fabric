@@ -1,6 +1,9 @@
 package com.kalightortaio.veterandifficulty.interfaces;
 
-public interface IEntityBooleanStates {
+public interface IEntityState {
     boolean getBooleanState(String stateName);
     void setBooleanState(String stateName, boolean value);
+
+    int getIntState(String stateName);
+    void setIntState(String stateName, int value);
 }

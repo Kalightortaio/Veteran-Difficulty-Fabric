@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -37,7 +41,25 @@ public class TickManager {
     }
 
     private static void runEvery20Ticks(ServerWorld world) {
+        despawnPhantoms(world);
         //TorchMarkers.processMarkers(world);
+    }
+
+    public static void despawnPhantoms(ServerWorld world) {
+        for (Entity entity : world.getEntitiesByType(EntityType.PHANTOM, phantom -> true)) {
+            if (entity instanceof PhantomEntity phantom) {
+                if (phantom.hasCustomName()) continue;
+                
+                IEntityState phantomState = (IEntityState) phantom;
+                int newAge = (phantomState.getIntState("Age") + 1);
+                phantomState.setIntState("Age", newAge);
+
+                int tenMinutes = 600;
+                if (newAge > tenMinutes) {
+                    phantom.discard();
+                }
+            }
+        }
     }
 
     public static void updateLavaRemoval() {

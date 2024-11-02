@@ -1,6 +1,6 @@
 package com.kalightortaio.veterandifficulty.mob;
 
-import com.kalightortaio.veterandifficulty.interfaces.IEntityBooleanStates;
+import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -16,7 +16,7 @@ public class Drowned {
         for (DrownedEntity drowned : world.getEntitiesByType(EntityType.DROWNED, entity -> true)) {
             boolean isInWater = world.getFluidState(BlockPos.ofFloored(drowned.getPos())).isIn(FluidTags.WATER);
             
-            if (drowned instanceof IEntityBooleanStates drownedStates && drownedStates.getBooleanState(IN_WATER_KEY) != isInWater) {
+            if (drowned instanceof IEntityState drownedStates && drownedStates.getBooleanState(IN_WATER_KEY) != isInWater) {
                 drowned.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(isInWater ? 1.196 : 0.23);
                 drownedStates.setBooleanState(IN_WATER_KEY, isInWater);
             }

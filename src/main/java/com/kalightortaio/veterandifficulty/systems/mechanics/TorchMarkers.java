@@ -1,4 +1,4 @@
-package com.kalightortaio.veterandifficulty.systems.internal;
+package com.kalightortaio.veterandifficulty.systems.mechanics;
 /*
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;

@@ -1,6 +1,6 @@
 package com.kalightortaio.veterandifficulty.systems.mechanics;
 
-import com.kalightortaio.veterandifficulty.interfaces.IEntityBooleanStates;
+import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
@@ -16,7 +16,7 @@ public class EntityModifiers {
 
     public static void registerHook() {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerWorld world) -> {
-            if (entity instanceof DrownedEntity drowned && !((IEntityBooleanStates) drowned).getBooleanState(VD_PROCESSED_KEY)) {
+            if (entity instanceof DrownedEntity drowned && !((IEntityState) drowned).getBooleanState(VD_PROCESSED_KEY)) {
                 if (Math.random() < 0.1 && !drowned.isBaby()) {
                     drowned.equipStack(EquipmentSlot.MAINHAND, Items.TRIDENT.getDefaultStack());
                 } else if (drowned.getEquippedStack(EquipmentSlot.MAINHAND).getItem() == Items.TRIDENT) {
@@ -28,7 +28,7 @@ public class EntityModifiers {
     }
 
     private static void tagEntity(Entity entity, MinecraftServer server) {
-        ((IEntityBooleanStates) entity).setBooleanState(VD_PROCESSED_KEY, true);
+        ((IEntityState) entity).setBooleanState(VD_PROCESSED_KEY, true);
         server.getCommandManager().executeWithPrefix(
             server.getCommandSource().withSilent(),
             "tag " + entity.getUuidAsString() + " add " + VD_PROCESSED_KEY

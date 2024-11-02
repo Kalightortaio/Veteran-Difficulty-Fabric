@@ -50,16 +50,12 @@ public class EntityModifiers {
             }
 
             if (entity instanceof EndermanEntity enderman && world.getRegistryKey() == World.END && !((IEntityState) enderman).getBooleanState(VD_PROCESSED_KEY)) {
-                if (Math.random() < 0.05) {
+                if (Math.random() < 0.15) {
                     BlockPos spawnPos = enderman.getBlockPos().up(32);
-                    int phantomCount = 3 + (int) (Math.random() * 3);
-
-                    for (int i = 0; i < phantomCount; i++) {
-                        PhantomEntity phantom = new PhantomEntity(EntityType.PHANTOM, world);
-                        phantom.refreshPositionAndAngles(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), 0.0F, 0.0F);
-                        world.spawnEntity(phantom);
-                        ((IEntityState) phantom).setIntState("Age", 0);
-                    }
+                    PhantomEntity phantom = new PhantomEntity(EntityType.PHANTOM, world);
+                    phantom.refreshPositionAndAngles(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), 0.0F, 0.0F);
+                    world.spawnEntity(phantom);
+                    ((IEntityState) phantom).setIntState("Age", 0);
                 }
                 tagEntity(enderman, server);
             }

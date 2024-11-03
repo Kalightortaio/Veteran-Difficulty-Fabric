@@ -22,10 +22,14 @@ import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -36,8 +40,10 @@ import net.minecraft.world.event.GameEvent.Emitter;
 public abstract class LivingEntityMixin {
 
     @Inject(method = "removeStatusEffect", at = @At("HEAD"))
-    private void onRemoveStatusEffect(StatusEffect effect, CallbackInfoReturnable<Boolean> cir) {
-        if (!(effect == ModEffects.SCALDING_EFFECT)) return;
+    private void onRemoveStatusEffect(RegistryEntry<StatusEffect> effect, CallbackInfoReturnable<Boolean> cir) {
+        Identifier effectId = effect.getKey().map(RegistryKey::getValue).orElse(null);
+        Identifier scaldingEffectId = Registries.STATUS_EFFECT.getId(ModEffects.SCALDING_EFFECT);
+        if (scaldingEffectId == null || !scaldingEffectId.equals(effectId)) return;
         LivingEntity entity = (LivingEntity) (Object) this;
         ((IEntityState) entity).setFloatState("previousHealth", 0);
     }

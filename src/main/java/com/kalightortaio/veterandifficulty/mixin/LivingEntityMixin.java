@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.kalightortaio.veterandifficulty.effect.ModEffects;
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 
@@ -13,6 +14,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.GhastEntity;
@@ -32,6 +34,13 @@ import net.minecraft.world.event.GameEvent.Emitter;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
+
+    @Inject(method = "removeStatusEffect", at = @At("HEAD"))
+    private void onRemoveStatusEffect(StatusEffect effect, CallbackInfoReturnable<Boolean> cir) {
+        if (!(effect == ModEffects.SCALDING_EFFECT)) return;
+        LivingEntity entity = (LivingEntity) (Object) this;
+        ((IEntityState) entity).setFloatState("previousHealth", 0);
+    }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void makeGhastsCry(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {

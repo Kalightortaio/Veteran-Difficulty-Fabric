@@ -40,9 +40,7 @@ public abstract class LivingEntityMixin {
     private void scaldingBlazes(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!(source.getAttacker() instanceof BlazeEntity)) return;
         LivingEntity hurtEntity = (LivingEntity) (Object) this;
-        if (!hurtEntity.hasStatusEffect(ModEffects.SCALDING)) {
-            hurtEntity.addStatusEffect(new StatusEffectInstance(ModEffects.SCALDING, 300, 0, false, true, true));
-        }
+        hurtEntity.addStatusEffect(new StatusEffectInstance(ModEffects.SCALDING, 300, 0, false, true, true));
     }
 
     @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)

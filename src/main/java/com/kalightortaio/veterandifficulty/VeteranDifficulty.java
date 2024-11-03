@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.kalightortaio.veterandifficulty.block.ModBlocks;
 import com.kalightortaio.veterandifficulty.block.entity.ModBlockEntities;
+import com.kalightortaio.veterandifficulty.effect.ModEffects;
 import com.kalightortaio.veterandifficulty.item.ModItems;
 import com.kalightortaio.veterandifficulty.systems.internal.TickManager;
 import com.kalightortaio.veterandifficulty.systems.internal.GameSettings;
@@ -21,6 +22,7 @@ public class VeteranDifficulty implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
+		ModEffects.registerModEffects();
 		//
 		TickManager.register();
 		// 

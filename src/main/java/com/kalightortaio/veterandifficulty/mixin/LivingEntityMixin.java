@@ -14,7 +14,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.GhastEntity;
@@ -22,8 +23,6 @@ import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -37,11 +36,19 @@ import net.minecraft.world.event.GameEvent.Emitter;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void scaldingBlazes(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!(source.getAttacker() instanceof BlazeEntity)) return;
+        LivingEntity hurtEntity = (LivingEntity) (Object) this;
+        if (!hurtEntity.hasStatusEffect(ModEffects.SCALDING)) {
+            hurtEntity.addStatusEffect(new StatusEffectInstance(ModEffects.SCALDING, 300, 0, false, true, true));
+        }
+    }
+
     @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)
     private void preventHealthIncrease(float health, CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
-        RegistryEntry<StatusEffect> scaldingEffectEntry = Registries.STATUS_EFFECT.getEntry(ModEffects.SCALDING_EFFECT);
-        if (scaldingEffectEntry != null && entity.hasStatusEffect(scaldingEffectEntry)) {
+        if (ModEffects.SCALDING != null && entity.hasStatusEffect(ModEffects.SCALDING)) {
             if (health > entity.getHealth()) {
                 ci.cancel();
             }

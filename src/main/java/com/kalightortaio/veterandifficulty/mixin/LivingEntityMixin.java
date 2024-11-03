@@ -23,13 +23,11 @@ import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -39,13 +37,15 @@ import net.minecraft.world.event.GameEvent.Emitter;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
-    @Inject(method = "removeStatusEffect", at = @At("HEAD"))
-    private void onRemoveStatusEffect(RegistryEntry<StatusEffect> effect, CallbackInfoReturnable<Boolean> cir) {
-        Identifier effectId = effect.getKey().map(RegistryKey::getValue).orElse(null);
-        Identifier scaldingEffectId = Registries.STATUS_EFFECT.getId(ModEffects.SCALDING_EFFECT);
-        if (scaldingEffectId == null || !scaldingEffectId.equals(effectId)) return;
+    @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)
+    private void preventHealthIncrease(float health, CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
-        ((IEntityState) entity).setFloatState("previousHealth", 0);
+        RegistryEntry<StatusEffect> scaldingEffectEntry = Registries.STATUS_EFFECT.getEntry(ModEffects.SCALDING_EFFECT);
+        if (scaldingEffectEntry != null && entity.hasStatusEffect(scaldingEffectEntry)) {
+            if (health > entity.getHealth()) {
+                ci.cancel();
+            }
+        }
     }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)

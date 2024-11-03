@@ -5,14 +5,20 @@ import com.kalightortaio.veterandifficulty.VeteranDifficulty;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 public class ModEffects {
     public static final StatusEffect SCALDING_EFFECT = registerEffect("scalding", new ScaldingEffect());
+    public static final RegistryEntry<StatusEffect> SCALDING = getRegistryEntry(SCALDING_EFFECT);
 
     private static StatusEffect registerEffect(String path, StatusEffect effect) {
         Registry.register(Registries.STATUS_EFFECT, Identifier.of(VeteranDifficulty.MOD_ID, path), effect);
         return effect;
+    }
+
+    private static RegistryEntry<StatusEffect> getRegistryEntry(StatusEffect effect) {
+        return Registries.STATUS_EFFECT.getEntry(effect);
     }
 
     public static void registerModEffects() {

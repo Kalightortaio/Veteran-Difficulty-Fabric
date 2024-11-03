@@ -6,4 +6,7 @@ public interface IEntityState {
 
     int getIntState(String stateName);
     void setIntState(String stateName, int value);
+
+    float getFloatState(String stateName);
+    void setFloatState(String stateName, float value);
 }

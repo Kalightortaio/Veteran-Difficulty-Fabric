@@ -22,6 +22,8 @@ public class EntityMixin implements IEntityState {
     private final Map<String, Boolean> booleanStates = new HashMap<>();
     @Unique
     private final Map<String, Integer> intStates = new HashMap<>();
+    @Unique
+    private final Map<String, Float> floatStates = new HashMap<>();
 
     @Inject(method = "writeNbt", at = @At("TAIL"))
     private void writeCustomDataToNbt(NbtCompound nbt, CallbackInfoReturnable<Boolean> cir) {
@@ -40,6 +42,9 @@ public class EntityMixin implements IEntityState {
         for (Map.Entry<String, Integer> entry : intStates.entrySet()) {
             nbt.putInt(entry.getKey(), entry.getValue());
         }
+        for (Map.Entry<String, Float> entry : floatStates.entrySet()) {
+            nbt.putFloat(entry.getKey(), entry.getValue());
+        }
     }
 
     private void loadStatesFromNbt(NbtCompound nbt) {
@@ -49,10 +54,15 @@ public class EntityMixin implements IEntityState {
             }
         }
         for (String key : nbt.getKeys()) {
-        if (nbt.contains(key, NbtCompound.INT_TYPE)) {
-            intStates.put(key, nbt.getInt(key));
+            if (nbt.contains(key, NbtCompound.INT_TYPE)) {
+                intStates.put(key, nbt.getInt(key));
+            }
         }
-    }
+        for (String key : nbt.getKeys()) {
+            if (nbt.contains(key, NbtCompound.FLOAT_TYPE)) {
+                floatStates.put(key, nbt.getFloat(key));
+            }
+        }
     }
 
     @Override
@@ -73,5 +83,15 @@ public class EntityMixin implements IEntityState {
     @Override
     public void setIntState(String stateName, int value) {
         intStates.put(stateName, value);
+    }
+
+    @Override
+    public float getFloatState(String stateName) {
+        return floatStates.getOrDefault(stateName, 0.0f);
+    }
+
+    @Override
+    public void setFloatState(String stateName, float value) {
+        floatStates.put(stateName, value);
     }
 }

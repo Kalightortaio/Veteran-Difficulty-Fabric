@@ -32,7 +32,6 @@ import net.minecraft.server.world.ServerWorld;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    
 
     private LivingEntity asLivingEntity() {
         return (LivingEntity) (Object) this;

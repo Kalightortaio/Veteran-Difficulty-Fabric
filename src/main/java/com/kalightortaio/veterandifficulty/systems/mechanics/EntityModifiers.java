@@ -1,11 +1,14 @@
 package com.kalightortaio.veterandifficulty.systems.mechanics;
 
+import java.util.UUID;
+
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -30,10 +33,20 @@ public class EntityModifiers {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerWorld world) -> {
             MinecraftServer server = world.getServer();
 
-            if (entity instanceof WolfEntity wolf && world.getRegistryKey() == World.OVERWORLD && !((IEntityState) wolf).getBooleanState(VD_PROCESSED_KEY)) {
-                wolf.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(40.0f);
-                wolf.setHealth(40.0f);
-                tagEntity(wolf, server);
+            if (entity instanceof WolfEntity wolf && world.getRegistryKey() == World.OVERWORLD) {
+                if (!((IEntityState) wolf).getBooleanState(VD_PROCESSED_KEY)) {
+                    wolf.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(40.0f);
+                    wolf.setHealth(40.0f);
+                    tagEntity(wolf, server);
+                } else {
+                    // Bugfix for loading into world with angry wolves
+                    if (wolf.getAngerTime() > 0) {
+                        wolf.setAngryAt((UUID) null);
+                        wolf.setAttacker((LivingEntity) null);
+                        wolf.setTarget((LivingEntity) null);
+                        wolf.setAngerTime(0);
+                    }
+                }
             }
 
             if (entity instanceof SlimeEntity slime && !((IEntityState) slime).getBooleanState(VD_PROCESSED_KEY)) {

@@ -17,6 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 
 public class Skeleton {
+
     public static void updateSkeletonWeapons(ServerWorld world) {
         for (SkeletonEntity skeleton : world.getEntitiesByType(EntityType.SKELETON, skeleton -> true)) {
             ItemStack skeletonWeapon = skeleton.getEquippedStack(EquipmentSlot.MAINHAND);

@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
@@ -35,5 +39,13 @@ public class MagmaCube {
         long executeTime = world.getTime() + delay;
         scheduledLavaRemovals.put(pos, executeTime);
         worldReferences.put(pos, world);
+    }
+
+    public static void onDeath(DamageSource source, LivingEntity magmaCube, CallbackInfo ci) {
+        if (magmaCube.getWorld().isClient()) return;
+        ServerWorld world = (ServerWorld) magmaCube.getWorld();
+        BlockPos blockPos = magmaCube.getBlockPos();
+        world.setBlockState(blockPos, Blocks.LAVA.getDefaultState());
+        scheduleLavaRemoval(world, blockPos, 100);
     }
 }

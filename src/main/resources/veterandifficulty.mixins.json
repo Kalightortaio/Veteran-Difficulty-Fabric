@@ -5,13 +5,14 @@
 	"mixins": [
 		"EntityMixin",
 		"ItemEntityMixin",
-		"accessor.ItemEntityAccessor",
 		"TreeGenerationMixin",
 		"PlayerEntityMixin",
 		"LivingEntityMixin",
 		"ChunkGeneratorMixin",
 		"ServerPlayNetworkHandlerMixin",
-		"ServerPlayerEntityMixin"
+		"ServerPlayerEntityMixin",
+		"accessor.MobEntityAccessor",
+		"accessor.ItemEntityAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1

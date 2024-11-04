@@ -1,6 +1,7 @@
 package com.kalightortaio.veterandifficulty.systems.mechanics;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
+import com.kalightortaio.veterandifficulty.mob.Creeper;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
 import com.kalightortaio.veterandifficulty.mob.Evoker;
 import com.kalightortaio.veterandifficulty.mob.Ghast;
@@ -25,6 +26,7 @@ public class EntityModifiers {
             Wolf.onLoad(world, server, entity);
             Slime.onLoad(server, entity);
             Drowned.onLoad(server, entity);
+            Creeper.onLoad(server, entity);
             Ghast.onLoad(server, entity);
             Ghast.onAttack(server, entity);
             Phantom.canSpawn(world, server, entity);

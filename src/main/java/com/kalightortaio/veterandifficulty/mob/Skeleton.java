@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 
 public class Skeleton {
     public static void updateSkeletonWeapons(ServerWorld world) {
-        for (SkeletonEntity skeleton : world.getEntitiesByType(EntityType.SKELETON, entity -> true)) {
+        for (SkeletonEntity skeleton : world.getEntitiesByType(EntityType.SKELETON, skeleton -> true)) {
             ItemStack skeletonWeapon = skeleton.getEquippedStack(EquipmentSlot.MAINHAND);
             boolean hasBowEquipped = skeletonWeapon.getItem() == Items.BOW;
             boolean hasSwordEquipped = skeletonWeapon.getItem() == Items.IRON_SWORD;

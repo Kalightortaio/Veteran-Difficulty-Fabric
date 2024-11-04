@@ -1,6 +1,5 @@
 package com.kalightortaio.veterandifficulty.mixin;
 
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -11,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.kalightortaio.veterandifficulty.systems.nutrition.PlayerNutrition;
 
-@Mixin(LivingEntity.class)
+@Mixin(ServerPlayerEntity.class)
 public class PlayerEntityMixin {
 
     @Inject(method = "consumeItem", at = @At("HEAD"))

@@ -13,7 +13,7 @@ public class Drowned {
     public static void dynamicSwimmingSpeed(ServerWorld world) {
         final String IN_WATER_KEY = "lastInWater";
 
-        for (DrownedEntity drowned : world.getEntitiesByType(EntityType.DROWNED, entity -> true)) {
+        for (DrownedEntity drowned : world.getEntitiesByType(EntityType.DROWNED, drowned -> true)) {
             boolean isInWater = world.getFluidState(BlockPos.ofFloored(drowned.getPos())).isIn(FluidTags.WATER);
             
             if (drowned instanceof IEntityState drownedStates && drownedStates.getBooleanState(IN_WATER_KEY) != isInWater) {

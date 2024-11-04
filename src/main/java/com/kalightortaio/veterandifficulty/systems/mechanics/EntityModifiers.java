@@ -6,12 +6,15 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.PhantomEntity;
+import net.minecraft.entity.mob.SlimeEntity;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -26,6 +29,18 @@ public class EntityModifiers {
     public static void registerHook() {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerWorld world) -> {
             MinecraftServer server = world.getServer();
+
+            if (entity instanceof WolfEntity wolf && world.getRegistryKey() == World.OVERWORLD && !((IEntityState) wolf).getBooleanState(VD_PROCESSED_KEY)) {
+                wolf.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(40.0f);
+                wolf.setHealth(40.0f);
+                tagEntity(wolf, server);
+            }
+
+            if (entity instanceof SlimeEntity slime && !((IEntityState) slime).getBooleanState(VD_PROCESSED_KEY)) {
+                slime.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, Integer.MAX_VALUE, 1, false, false, false));
+                slime.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, Integer.MAX_VALUE, 5, false, false, false));
+                tagEntity(slime, server);
+            }
 
             if (entity instanceof DrownedEntity drowned && !((IEntityState) drowned).getBooleanState(VD_PROCESSED_KEY)) {
                 if (Math.random() < 0.1 && !drowned.isBaby()) {

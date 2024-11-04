@@ -4,6 +4,7 @@ import com.kalightortaio.veterandifficulty.mob.Drowned;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 import com.kalightortaio.veterandifficulty.mob.Phantom;
 import com.kalightortaio.veterandifficulty.mob.Skeleton;
+import com.kalightortaio.veterandifficulty.mob.Wolf;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
@@ -17,27 +18,28 @@ public class TickManager {
 
     private static void onTick(MinecraftServer server) {
         for (ServerWorld world : server.getWorlds()) {
-            long gameTicks = world.getTime();
-            runEveryTick(world);
-            if (gameTicks % 10 == 0) {
-                runEvery10Ticks(world);
+            long time = world.getTimeOfDay();
+            runEveryTick(world, time);
+            if (time % 10 == 0) {
+                runEvery10Ticks(world, time);
             }
-            if (gameTicks % 20 == 0) {
-                runEvery20Ticks(world);
+            if (time % 20 == 0) {
+                runEvery20Ticks(world, time);
             }
         }
     }
 
-    private static void runEveryTick(ServerWorld world) {
+    private static void runEveryTick(ServerWorld world, long time) {
         Drowned.dynamicSwimmingSpeed(world);
         MagmaCube.updateLavaRemoval();
     }
 
-    private static void runEvery10Ticks(ServerWorld world) {
+    private static void runEvery10Ticks(ServerWorld world, long time) {
         Skeleton.updateSkeletonWeapons(world);
+        Wolf.processHunt(world, time);
     }
 
-    private static void runEvery20Ticks(ServerWorld world) {
+    private static void runEvery20Ticks(ServerWorld world, long time) {
         Phantom.despawnPhantoms(world);
     }
 }

@@ -4,6 +4,7 @@ import com.kalightortaio.veterandifficulty.mob.Drowned;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 import com.kalightortaio.veterandifficulty.mob.Phantom;
 import com.kalightortaio.veterandifficulty.mob.Skeleton;
+import com.kalightortaio.veterandifficulty.mob.Vex;
 import com.kalightortaio.veterandifficulty.mob.Wolf;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -32,6 +33,7 @@ public class TickManager {
     private static void runEveryTick(ServerWorld world, long time) {
         Drowned.dynamicSwimmingSpeed(world);
         MagmaCube.updateLavaRemoval();
+        Vex.updateAnimations();
     }
 
     private static void runEvery10Ticks(ServerWorld world, long time) {

@@ -14,9 +14,11 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.entity.mob.SlimeEntity;
+import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.ItemStack;
@@ -32,6 +34,17 @@ public class EntityModifiers {
     public static void registerHook() {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerWorld world) -> {
             MinecraftServer server = world.getServer();
+
+            if (entity instanceof EvokerEntity evoker && !((IEntityState) evoker).getBooleanState(VD_PROCESSED_KEY)) {
+                evoker.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(100.0f);
+                evoker.setHealth(100.0f);
+                tagEntity(evoker, server);
+            }
+
+            if (entity instanceof VexEntity vex && !((IEntityState) vex).getBooleanState(VD_PROCESSED_KEY)) {
+                vex.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(1.5f);
+                tagEntity(vex, server);
+            }
 
             if (entity instanceof WolfEntity wolf && world.getRegistryKey() == World.OVERWORLD) {
                 if (!((IEntityState) wolf).getBooleanState(VD_PROCESSED_KEY)) {

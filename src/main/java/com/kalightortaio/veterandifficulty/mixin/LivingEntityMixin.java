@@ -9,9 +9,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.kalightortaio.veterandifficulty.effect.ModEffects;
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
+import com.kalightortaio.veterandifficulty.mob.Vex;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -23,11 +25,14 @@ import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.CaveSpiderEntity;
 import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.MagmaCubeEntity;
+import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -40,6 +45,17 @@ import net.minecraft.world.event.GameEvent.Emitter;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
+
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void vexTest(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!((Object) this instanceof ServerPlayerEntity)) return;
+        Entity vex = source.getAttacker();
+        if (!(vex instanceof VexEntity)) return;
+        EvokerEntity evoker = (EvokerEntity) ((VexEntity) vex).getOwner();
+        if (evoker == null || evoker.isRemoved() || evoker.isDead()) return;
+        Vex.addAnimation(world, vex.getPos(), evoker.getPos(), 20);
+        evoker.heal(10.0f);
+    }
 
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void caveSpiderDeathRattle(DamageSource source, CallbackInfo ci) {

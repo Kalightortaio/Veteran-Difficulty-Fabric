@@ -21,6 +21,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.CaveSpiderEntity;
 import net.minecraft.entity.mob.DrownedEntity;
@@ -45,9 +46,62 @@ import net.minecraft.world.event.GameEvent.Emitter;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
+    
+
+    private LivingEntity asLivingEntity() {
+        return (LivingEntity) (Object) this;
+    }
+
+    private ServerPlayerEntity asPlayer() {
+        return (ServerPlayerEntity) (Object) this;
+    }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
-    private void vexTest(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void evokerSummon(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!((Object) this instanceof EvokerEntity)) return;
+        LivingEntity evoker = asLivingEntity();
+        if (amount >= 8.0f && amount < 16.0f && Math.random() < 0.5) {
+            VexEntity vex = new VexEntity(EntityType.VEX, world);
+            vex.refreshPositionAndAngles(evoker.getX(), evoker.getY(), evoker.getZ(), 0.0F, 0.0F);
+            world.spawnEntity(vex);
+        } else if (amount >= 16.0f) {
+            evoker.heal(4.0f);
+            VexEntity vex = new VexEntity(EntityType.VEX, world);
+            vex.refreshPositionAndAngles(evoker.getX(), evoker.getY(), evoker.getZ(), 0.0F, 0.0F);
+            world.spawnEntity(vex);
+        }
+        if (!(source.getAttacker() instanceof LivingEntity)) return;
+        LivingEntity attacker = (LivingEntity) source.getAttacker();
+        if (evoker.squaredDistanceTo(attacker) >= 100) {
+            evoker.heal(8.0f);
+            if (attacker.hasVehicle()) {
+                attacker.stopRiding(); 
+            }
+            Vec3d attackerPos = attacker.getPos();
+            if (attacker.teleport(evoker.getX(), evoker.getY(), evoker.getZ(), true)) {
+                world.emitGameEvent(GameEvent.TELEPORT, attackerPos, Emitter.of(attacker));
+
+                SoundCategory soundCategory;
+                SoundEvent soundEvent;
+                soundEvent = SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+                soundCategory = SoundCategory.PLAYERS;
+                world.playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), soundEvent, soundCategory);
+
+                attacker.onLanding();
+            }
+        }
+    }
+
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void evokerSlow(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!(source.getAttacker() instanceof EvokerEntity)) return;
+        if (!((Object) this instanceof ServerPlayerEntity)) return;
+        ServerPlayerEntity player = asPlayer();
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0, false, true, true));
+    }
+
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void vexHeal(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!((Object) this instanceof ServerPlayerEntity)) return;
         Entity vex = source.getAttacker();
         if (!(vex instanceof VexEntity)) return;
@@ -60,37 +114,36 @@ public abstract class LivingEntityMixin {
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void caveSpiderDeathRattle(DamageSource source, CallbackInfo ci) {
         if (!((Object) this instanceof CaveSpiderEntity)) return;
-        LivingEntity hurtEntity = (LivingEntity) (Object) this;
-        if (!hurtEntity.getWorld().isClient()) {
-            ServerWorld world = (ServerWorld) hurtEntity.getWorld();
-            BlockPos blockPos = hurtEntity.getBlockPos();
-            while (true) {
-                BlockState blockState = world.getBlockState(blockPos);
-                BlockState blockBelow = world.getBlockState(blockPos.down());
-                if ((blockState.isOf(Blocks.AIR) || blockState.isOf(Blocks.CAVE_AIR)) && blockBelow.isOf(Blocks.AIR)) {
-                    boolean hasAdjacentNonAir = 
-                        !world.getBlockState(blockPos.north()).isAir() ||
-                        !world.getBlockState(blockPos.south()).isAir() ||
-                        !world.getBlockState(blockPos.east()).isAir() ||
-                        !world.getBlockState(blockPos.west()).isAir() ||
-                        !world.getBlockState(blockPos.up()).isAir();
-                    if (hasAdjacentNonAir) {
-                        world.setBlockState(blockPos, Blocks.COBWEB.getDefaultState());
-                        break;
-                    }
-                    blockPos = blockPos.down();
-                } else {
+        LivingEntity caveSpider = asLivingEntity();
+        if (caveSpider.getWorld().isClient()) return;
+        ServerWorld world = (ServerWorld) caveSpider.getWorld();
+        BlockPos blockPos = caveSpider.getBlockPos();
+        while (true) {
+            BlockState blockState = world.getBlockState(blockPos);
+            BlockState blockBelow = world.getBlockState(blockPos.down());
+            if ((blockState.isOf(Blocks.AIR) || blockState.isOf(Blocks.CAVE_AIR)) && blockBelow.isOf(Blocks.AIR)) {
+                boolean hasAdjacentNonAir = 
+                    !world.getBlockState(blockPos.north()).isAir() ||
+                    !world.getBlockState(blockPos.south()).isAir() ||
+                    !world.getBlockState(blockPos.east()).isAir() ||
+                    !world.getBlockState(blockPos.west()).isAir() ||
+                    !world.getBlockState(blockPos.up()).isAir();
+                if (hasAdjacentNonAir) {
                     world.setBlockState(blockPos, Blocks.COBWEB.getDefaultState());
                     break;
                 }
+                blockPos = blockPos.down();
+            } else {
+                world.setBlockState(blockPos, Blocks.COBWEB.getDefaultState());
+                break;
             }
-            if (hurtEntity.getAttributeInstance(EntityAttributes.SCALE).getBaseValue() == 0.5f) return;
-            for (int i = 0; i < (2 + Math.random() * 4); i++) {
-                CaveSpiderEntity childSpider = EntityType.CAVE_SPIDER.create(world, null, blockPos, SpawnReason.TRIGGERED, false, false);
-                if (childSpider != null) {
-                    childSpider.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(0.5f);
-                    world.spawnEntity(childSpider);
-                }
+        }
+        if (caveSpider.getAttributeInstance(EntityAttributes.SCALE).getBaseValue() == 0.5f) return;
+        for (int i = 0; i < (2 + Math.random() * 4); i++) {
+            CaveSpiderEntity childSpider = EntityType.CAVE_SPIDER.create(world, null, blockPos, SpawnReason.TRIGGERED, false, false);
+            if (childSpider != null) {
+                childSpider.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(0.5f);
+                world.spawnEntity(childSpider);
             }
         }
     }
@@ -98,15 +151,15 @@ public abstract class LivingEntityMixin {
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void scaldingBlazes(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!(source.getAttacker() instanceof BlazeEntity)) return;
-        LivingEntity hurtEntity = (LivingEntity) (Object) this;
+        LivingEntity hurtEntity = asLivingEntity();
         hurtEntity.addStatusEffect(new StatusEffectInstance(ModEffects.SCALDING, 300, 0, false, true, true));
     }
 
     @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)
     private void preventHealthIncrease(float health, CallbackInfo ci) {
-        LivingEntity entity = (LivingEntity) (Object) this;
-        if (ModEffects.SCALDING != null && entity.hasStatusEffect(ModEffects.SCALDING)) {
-            if (health > entity.getHealth()) {
+        LivingEntity scalded = asLivingEntity();
+        if (ModEffects.SCALDING != null && scalded.hasStatusEffect(ModEffects.SCALDING)) {
+            if (health > scalded.getHealth()) {
                 ci.cancel();
             }
         }
@@ -115,11 +168,11 @@ public abstract class LivingEntityMixin {
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void makeGhastsCry(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!((Object) this instanceof GhastEntity)) return;
-        LivingEntity hurEntity = (LivingEntity) (Object) this;
+        LivingEntity ghast = asLivingEntity();
         int tearsToDrop = 1 + (int) (Math.random() * 3);
         
         for (int i = 0; i < tearsToDrop; i++) {
-            ItemEntity ghastTear = new ItemEntity(world, hurEntity.getX(), (hurEntity.getY() + hurEntity.getEyeHeight(hurEntity.getPose())), hurEntity.getZ(), new ItemStack(Items.GHAST_TEAR));
+            ItemEntity ghastTear = new ItemEntity(world, ghast.getX(), (ghast.getY() + ghast.getEyeHeight(ghast.getPose())), ghast.getZ(), new ItemStack(Items.GHAST_TEAR));
             world.spawnEntity(ghastTear);
         }
     }
@@ -127,13 +180,12 @@ public abstract class LivingEntityMixin {
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void magmaCubeDeathRattle(DamageSource source, CallbackInfo ci) {
         if (!((Object) this instanceof MagmaCubeEntity)) return;
-        LivingEntity hurtEntity = (LivingEntity) (Object) this;
-        if (!hurtEntity.getWorld().isClient()) {
-            ServerWorld world = (ServerWorld) hurtEntity.getWorld();
-            BlockPos blockPos = hurtEntity.getBlockPos();
-            world.setBlockState(blockPos, Blocks.LAVA.getDefaultState());
-            MagmaCube.scheduleLavaRemoval(world, blockPos, 100);
-        }
+        LivingEntity magmaCube = asLivingEntity();
+        if (magmaCube.getWorld().isClient()) return;
+        ServerWorld world = (ServerWorld) magmaCube.getWorld();
+        BlockPos blockPos = magmaCube.getBlockPos();
+        world.setBlockState(blockPos, Blocks.LAVA.getDefaultState());
+        MagmaCube.scheduleLavaRemoval(world, blockPos, 100);
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
@@ -149,10 +201,10 @@ public abstract class LivingEntityMixin {
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void onEndermanAttack(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) { 
         if (source.getSource() instanceof EndermanEntity && Math.random() < 0.2f) {
-            LivingEntity hurtEntity = (LivingEntity) (Object) this;
+            LivingEntity teleTarget = asLivingEntity();
 
             int currentTime = (int) world.getTime();
-            int lastTeleportTime = ((IEntityState) hurtEntity).getIntState("lastTeleportTime");
+            int lastTeleportTime = ((IEntityState) teleTarget).getIntState("lastTeleportTime");
             
             if (currentTime - lastTeleportTime < 200) {
                 return;
@@ -160,26 +212,26 @@ public abstract class LivingEntityMixin {
             
             double teleportDiameter = 32.0;
             for (int i = 0; i < 16; ++i) { 
-                double x = hurtEntity.getX() + (hurtEntity.getRandom().nextDouble() - 0.5) * teleportDiameter;
-                double y = MathHelper.clamp(hurtEntity.getY() + (hurtEntity.getRandom().nextDouble() - 0.5) * teleportDiameter, (double)world.getBottomY(), (double)(world.getBottomY() + ((ServerWorld)world).getLogicalHeight() - 1));
-                double z = hurtEntity.getZ() + (hurtEntity.getRandom().nextDouble() - 0.5) * teleportDiameter;
+                double x = teleTarget.getX() + (teleTarget.getRandom().nextDouble() - 0.5) * teleportDiameter;
+                double y = MathHelper.clamp(teleTarget.getY() + (teleTarget.getRandom().nextDouble() - 0.5) * teleportDiameter, (double)world.getBottomY(), (double)(world.getBottomY() + ((ServerWorld)world).getLogicalHeight() - 1));
+                double z = teleTarget.getZ() + (teleTarget.getRandom().nextDouble() - 0.5) * teleportDiameter;
 
-                if (hurtEntity.hasVehicle()) {
-                    hurtEntity.stopRiding(); 
+                if (teleTarget.hasVehicle()) {
+                    teleTarget.stopRiding(); 
                 }
 
-                Vec3d vec3d = hurtEntity.getPos();
-                if (hurtEntity.teleport(x, y, z, true)) {
-                    world.emitGameEvent(GameEvent.TELEPORT, vec3d, Emitter.of(hurtEntity));
+                Vec3d teleTargetPos = teleTarget.getPos();
+                if (teleTarget.teleport(x, y, z, true)) {
+                    world.emitGameEvent(GameEvent.TELEPORT, teleTargetPos, Emitter.of(teleTarget));
 
                     SoundCategory soundCategory;
                     SoundEvent soundEvent;
                     soundEvent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
                     soundCategory = SoundCategory.PLAYERS;
-                    world.playSound(null, hurtEntity.getX(), hurtEntity.getY(), hurtEntity.getZ(), soundEvent, soundCategory);
+                    world.playSound(null, teleTarget.getX(), teleTarget.getY(), teleTarget.getZ(), soundEvent, soundCategory);
 
-                    hurtEntity.onLanding();
-                    ((IEntityState) hurtEntity).setIntState("lastTeleportTime", (currentTime));
+                    teleTarget.onLanding();
+                    ((IEntityState) teleTarget).setIntState("lastTeleportTime", (currentTime));
                     break;
                 }
             }

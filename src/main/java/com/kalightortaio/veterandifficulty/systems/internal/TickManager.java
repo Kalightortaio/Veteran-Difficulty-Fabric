@@ -1,5 +1,6 @@
 package com.kalightortaio.veterandifficulty.systems.internal;
 
+import com.kalightortaio.veterandifficulty.mob.Creeper;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 import com.kalightortaio.veterandifficulty.mob.Phantom;
@@ -34,6 +35,7 @@ public class TickManager {
         Drowned.dynamicSwimmingSpeed(world);
         MagmaCube.updateLavaRemoval();
         Vex.updateAnimations();
+        Creeper.onTick(world);
     }
 
     private static void runEvery10Ticks(ServerWorld world, long time) {

@@ -8,6 +8,9 @@ import net.minecraft.entity.mob.MobEntity;
 
 @Mixin(MobEntity.class)
 public interface MobEntityAccessor {
+    @Accessor("goalSelector")
+    GoalSelector getGoalSelector();
+
     @Accessor("targetSelector")
     GoalSelector getTargetSelector();
 }

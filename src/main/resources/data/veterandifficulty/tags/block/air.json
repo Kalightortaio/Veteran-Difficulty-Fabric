@@ -1,0 +1,19 @@
+{
+    "replace": true,
+    "values": [
+        "minecraft:air",
+        "minecraft:cave_air",
+        "minecraft:void_air",
+        "minecraft:lava",
+        "minecraft:water",
+        "minecraft:short_grass",
+        "minecraft:light",
+        "minecraft:sculk_vein",
+        "#minecraft:flowers",
+        "#minecraft:wall_post_override",
+        "#minecraft:saplings",
+        "#minecraft:fire",
+        "#minecraft:rails",
+        "#minecraft:bee_growables"
+    ]
+}

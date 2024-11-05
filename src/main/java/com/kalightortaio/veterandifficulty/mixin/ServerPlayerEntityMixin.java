@@ -1,5 +1,6 @@
 package com.kalightortaio.veterandifficulty.mixin;
 
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 
@@ -14,9 +15,13 @@ import com.kalightortaio.veterandifficulty.systems.nutrition.PlayerNutrition.Nut
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
 
+    private ServerPlayerEntity asPlayer() {
+        return (ServerPlayerEntity) (Object) this;
+    }
+
     @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
     private void onWriteCustomDataToNbt(NbtCompound nbt, CallbackInfo info) {
-        NutritionStats stats = PlayerNutrition.getStats((ServerPlayerEntity) (Object) this);
+        NutritionStats stats = PlayerNutrition.getStats(asPlayer());
         NbtCompound nutritionData = new NbtCompound();
         nutritionData.putInt("VDFruit", stats.VDFruit);
         nutritionData.putInt("VDProtein", stats.VDProtein);
@@ -31,7 +36,7 @@ public abstract class ServerPlayerEntityMixin {
     private void onReadCustomDataFromNbt(NbtCompound nbt, CallbackInfo info) {
         if (nbt.contains("PlayerNutrition", 10)) {
             NbtCompound nutritionData = nbt.getCompound("PlayerNutrition");
-            NutritionStats stats = PlayerNutrition.getStats((ServerPlayerEntity) (Object) this);
+            NutritionStats stats = PlayerNutrition.getStats(asPlayer());
             stats.VDFruit = nutritionData.getInt("VDFruit");
             stats.VDProtein = nutritionData.getInt("VDProtein");
             stats.VDVegetables = nutritionData.getInt("VDVegetables");
@@ -39,5 +44,11 @@ public abstract class ServerPlayerEntityMixin {
             stats.VDGrains = nutritionData.getInt("VDGrains");
             stats.VDWater = nutritionData.getInt("VDWater");
         }
+    }
+
+    @Inject(method = "consumeItem", at = @At("HEAD"))
+    private void consumeItem(CallbackInfo ci) {
+        Item consumedItem = asPlayer().getActiveItem().getItem();
+        PlayerNutrition.processEating(asPlayer(), consumedItem);
     }
 }

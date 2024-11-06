@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 

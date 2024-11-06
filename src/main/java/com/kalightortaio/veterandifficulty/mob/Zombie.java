@@ -34,7 +34,9 @@ public class Zombie {
             zombie.setHealth(30.0f);
             if (zombie.isBaby()) {
                 zombie.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(1.25f);
+                zombie.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.1533f);
                 zombie.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(10.0f);
+                zombie.getAttributeInstance(EntityAttributes.SPAWN_REINFORCEMENTS).setBaseValue(0.6f);
                 zombie.setHealth(10.0f);
             }
             
@@ -70,10 +72,10 @@ public class Zombie {
             Box scanBox = new Box(zombiePos).expand(searchRadius);
 
             BlockPos closestTorch = BlockPos.stream(scanBox)
-                .filter(pos -> pos != null && world.isChunkLoaded(pos.getX() >> 4, pos.getZ() >> 4) && isTorch(world.getBlockState(pos).getBlock()))
-                .map(BlockPos::toImmutable)
-                .min(Comparator.comparingDouble(pos -> pos.getSquaredDistance(zombiePos)))
-                .orElse(null);
+            .filter(pos -> pos != null && world.isChunkLoaded(pos.getX() >> 4, pos.getZ() >> 4) && isTorch(world.getBlockState(pos).getBlock()))
+            .map(BlockPos::toImmutable)
+            .min(Comparator.comparingDouble(pos -> pos.getSquaredDistance(zombiePos)))
+            .orElse(null);
 
             if (closestTorch != null) {
                 this.target = closestTorch;

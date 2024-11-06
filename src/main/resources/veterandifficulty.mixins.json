@@ -6,7 +6,6 @@
 		"EntityMixin",
 		"ItemEntityMixin",
 		"TreeGenerationMixin",
-		"PlayerEntityMixin",
 		"LivingEntityMixin",
 		"CreeperEntityMixin",
 		"ChunkGeneratorMixin",

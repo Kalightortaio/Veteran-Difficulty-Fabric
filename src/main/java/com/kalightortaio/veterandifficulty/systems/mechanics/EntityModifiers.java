@@ -7,8 +7,10 @@ import com.kalightortaio.veterandifficulty.mob.Evoker;
 import com.kalightortaio.veterandifficulty.mob.Ghast;
 import com.kalightortaio.veterandifficulty.mob.Phantom;
 import com.kalightortaio.veterandifficulty.mob.Slime;
+import com.kalightortaio.veterandifficulty.mob.Spider;
 import com.kalightortaio.veterandifficulty.mob.Vex;
 import com.kalightortaio.veterandifficulty.mob.Wolf;
+import com.kalightortaio.veterandifficulty.mob.Zombie;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
@@ -26,18 +28,24 @@ public class EntityModifiers {
             Wolf.onLoad(world, server, entity);
             Slime.onLoad(server, entity);
             Drowned.onLoad(server, entity);
-            Creeper.onLoad(server, entity);
             Ghast.onLoad(server, entity);
             Ghast.onAttack(server, entity);
+            Creeper.onLoad(server, entity);
+            Zombie.onLoad(server, entity);
+            Spider.onLoad(server, entity);
             Phantom.canSpawn(world, server, entity);
         });
     }
 
     public static void tagEntity(Entity entity, MinecraftServer server) {
-        ((IEntityState) entity).setBooleanState(_KEY, true);
+        tagEntity(entity, server, _KEY);
+    }
+
+    public static void tagEntity(Entity entity, MinecraftServer server, String key) {
+        ((IEntityState) entity).setBooleanState(key, true);
         server.getCommandManager().executeWithPrefix(
             server.getCommandSource().withSilent(),
-            "tag " + entity.getUuidAsString() + " add " + _KEY
+            "tag " + entity.getUuidAsString() + " add " + key
         );
     }
 }

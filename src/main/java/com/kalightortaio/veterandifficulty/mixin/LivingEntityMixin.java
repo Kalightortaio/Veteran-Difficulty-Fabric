@@ -14,6 +14,7 @@ import com.kalightortaio.veterandifficulty.mob.Enderman;
 import com.kalightortaio.veterandifficulty.mob.Evoker;
 import com.kalightortaio.veterandifficulty.mob.Ghast;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
+import com.kalightortaio.veterandifficulty.mob.Spider;
 import com.kalightortaio.veterandifficulty.mob.Vex;
 
 import net.minecraft.entity.Entity;
@@ -26,6 +27,7 @@ import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.MagmaCubeEntity;
+import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -80,9 +82,21 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void unmountSpider(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!((Object) this instanceof SpiderEntity)) return;
+        Spider.onDamage(world, asLivingEntity());
+    }
+
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void makeGhastsCry(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!((Object) this instanceof GhastEntity)) return;
         Ghast.onDamage(world, asLivingEntity());
+    }
+
+    @Inject(method = "onDeath", at = @At("TAIL"))
+    private void spiderHeadCrab(DamageSource source, CallbackInfo ci) {
+        if (!((Object) this instanceof SpiderEntity)) return;
+        Spider.onDeath(source, asLivingEntity(), ci);
     }
 
     @Inject(method = "onDeath", at = @At("TAIL"))

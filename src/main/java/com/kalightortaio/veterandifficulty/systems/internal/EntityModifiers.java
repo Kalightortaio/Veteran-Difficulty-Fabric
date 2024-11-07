@@ -28,6 +28,7 @@ public class EntityModifiers {
             Evoker.onLoad(world, server, entity);
             Wolf.onLoad(world, server, entity);
             Vex.onLoad(world, server, entity);
+            Bat.onLoad(world, server, entity);
             Ghast.onAttack(server, entity);
             Drowned.onLoad(server, entity);
             Creeper.onLoad(server, entity);
@@ -35,7 +36,6 @@ public class EntityModifiers {
             Spider.onLoad(server, entity);
             Slime.onLoad(server, entity);
             Ghast.onLoad(server, entity);
-            Bat.onLoad(server, entity);
         });
     }
 

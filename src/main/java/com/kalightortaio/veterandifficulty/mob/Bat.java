@@ -25,17 +25,15 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 public class Bat {
 
     private static float biteDistance = 1.9f;
 
-    public static void onLoad(MinecraftServer server, Entity entity) {
+    public static void onLoad(ServerWorld world, MinecraftServer server, Entity entity) {
         if (entity instanceof BatEntity bat && !((IEntityState) bat).getBooleanState(EntityModifiers._KEY)) {
-            World world = bat.getWorld();
             for (int i = 0; i < (int) (1 + Math.random() * 2); i++) {
-                BatEntity extraBat = EntityType.BAT.create((ServerWorld) world, null, bat.getBlockPos(), SpawnReason.TRIGGERED, false, false);
+                BatEntity extraBat = EntityType.BAT.create(world, null, bat.getBlockPos(), SpawnReason.TRIGGERED, false, false);
                 if (extraBat != null) {
                     EntityModifiers.tagEntity(extraBat, server);
                     world.spawnEntity(extraBat);

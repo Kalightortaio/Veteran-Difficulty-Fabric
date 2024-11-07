@@ -2,6 +2,7 @@ package com.kalightortaio.veterandifficulty.systems.internal;
 
 import com.kalightortaio.veterandifficulty.mob.Creeper;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
+import com.kalightortaio.veterandifficulty.mob.Husk;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 import com.kalightortaio.veterandifficulty.mob.Phantom;
 import com.kalightortaio.veterandifficulty.mob.Skeleton;
@@ -36,6 +37,7 @@ public class TickManager {
         MagmaCube.updateLavaRemoval();
         Vex.updateAnimations();
         Creeper.onTick(world);
+        Husk.processAura(world);
     }
 
     private static void runEvery10Ticks(ServerWorld world, long time) {

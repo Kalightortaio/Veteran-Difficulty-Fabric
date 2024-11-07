@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.UUID;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
-import com.kalightortaio.veterandifficulty.systems.mechanics.EntityModifiers;
+import com.kalightortaio.veterandifficulty.systems.internal.EntityModifiers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

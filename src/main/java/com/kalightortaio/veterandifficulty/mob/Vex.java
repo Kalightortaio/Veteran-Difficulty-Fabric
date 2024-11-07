@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
-import com.kalightortaio.veterandifficulty.systems.mechanics.EntityModifiers;
+import com.kalightortaio.veterandifficulty.systems.internal.EntityModifiers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttributes;

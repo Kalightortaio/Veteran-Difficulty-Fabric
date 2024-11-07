@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import com.kalightortaio.veterandifficulty.mixin.accessor.MobEntityAccessor;
+import com.kalightortaio.veterandifficulty.systems.internal.EntityModifiers;
 import com.kalightortaio.veterandifficulty.systems.internal.ModTags;
-import com.kalightortaio.veterandifficulty.systems.mechanics.EntityModifiers;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;

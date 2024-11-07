@@ -1,4 +1,4 @@
-package com.kalightortaio.veterandifficulty.systems.mechanics;
+package com.kalightortaio.veterandifficulty.systems.internal;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import com.kalightortaio.veterandifficulty.mob.Bat;

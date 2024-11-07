@@ -3,7 +3,7 @@ package com.kalightortaio.veterandifficulty.mob;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
-import com.kalightortaio.veterandifficulty.systems.mechanics.EntityModifiers;
+import com.kalightortaio.veterandifficulty.systems.internal.EntityModifiers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

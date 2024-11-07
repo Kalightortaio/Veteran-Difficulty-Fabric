@@ -1,6 +1,7 @@
 package com.kalightortaio.veterandifficulty.systems.mechanics;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
+import com.kalightortaio.veterandifficulty.mob.Bat;
 import com.kalightortaio.veterandifficulty.mob.Creeper;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
 import com.kalightortaio.veterandifficulty.mob.Evoker;
@@ -23,17 +24,18 @@ public class EntityModifiers {
     public static void registerHook() {
         ServerEntityEvents.ENTITY_LOAD.register((Entity entity, ServerWorld world) -> {
             MinecraftServer server = world.getServer();
+            Phantom.canSpawn(world, server, entity);
             Evoker.onLoad(world, server, entity);
-            Vex.onLoad(world, server, entity);
             Wolf.onLoad(world, server, entity);
-            Slime.onLoad(server, entity);
-            Drowned.onLoad(server, entity);
-            Ghast.onLoad(server, entity);
+            Vex.onLoad(world, server, entity);
             Ghast.onAttack(server, entity);
+            Drowned.onLoad(server, entity);
             Creeper.onLoad(server, entity);
             Zombie.onLoad(server, entity);
             Spider.onLoad(server, entity);
-            Phantom.canSpawn(world, server, entity);
+            Slime.onLoad(server, entity);
+            Ghast.onLoad(server, entity);
+            Bat.onLoad(server, entity);
         });
     }
 

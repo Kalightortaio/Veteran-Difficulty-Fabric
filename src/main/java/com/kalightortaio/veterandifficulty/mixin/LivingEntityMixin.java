@@ -6,10 +6,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.kalightortaio.veterandifficulty.effect.ModEffects;
+import com.kalightortaio.veterandifficulty.effect.entity.AnchoredEntity;
 import com.kalightortaio.veterandifficulty.effect.entity.ScaldedEntity;
 import com.kalightortaio.veterandifficulty.mob.Blaze;
 import com.kalightortaio.veterandifficulty.mob.CaveSpider;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
+import com.kalightortaio.veterandifficulty.mob.ElderGuardian;
 import com.kalightortaio.veterandifficulty.mob.Enderman;
 import com.kalightortaio.veterandifficulty.mob.Evoker;
 import com.kalightortaio.veterandifficulty.mob.Ghast;
@@ -24,15 +27,18 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.CaveSpiderEntity;
 import net.minecraft.entity.mob.DrownedEntity;
+import net.minecraft.entity.mob.ElderGuardianEntity;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.entity.mob.GhastEntity;
+import net.minecraft.entity.mob.GuardianEntity;
 import net.minecraft.entity.mob.HuskEntity;
 import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Vec3d;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -47,6 +53,18 @@ public abstract class LivingEntityMixin {
 
     // On Damage Triggers
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void elderEyeBeam(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!(source.getAttacker() instanceof ElderGuardianEntity)) return;
+        ElderGuardian.onAttack(asLivingEntity(), source);
+    }
+
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    private void elderRevenge(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!((asLivingEntity() instanceof GuardianEntity || asLivingEntity() instanceof ElderGuardianEntity) && source.getAttacker() instanceof LivingEntity)) return;
+        ElderGuardian.onDamage(asLivingEntity(), source, cir);
+    }
+
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void dryHusks(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!(source.getAttacker() instanceof HuskEntity)) return;
         Husk.onAttack(asLivingEntity());
@@ -54,14 +72,14 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void evokerSummon(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (!((Object) this instanceof EvokerEntity)) return;
+        if (!(asLivingEntity() instanceof EvokerEntity)) return;
         Evoker.onDamage(world, source, amount, asLivingEntity());
     }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void evokerSlow(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!(source.getAttacker() instanceof EvokerEntity)) return;
-        if (!((Object) this instanceof ServerPlayerEntity)) return;
+        if (!(asLivingEntity() instanceof ServerPlayerEntity)) return;
         Evoker.onAttack(asPlayer());
     }
 
@@ -69,21 +87,20 @@ public abstract class LivingEntityMixin {
     private void vexHeal(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         Entity vex = source.getAttacker();
         if (!(vex instanceof VexEntity)) return;
-        if (!((Object) this instanceof ServerPlayerEntity)) return;
+        if (!(asLivingEntity() instanceof ServerPlayerEntity)) return;
         Vex.onAttack(world, vex);
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void preventDrownedTridentDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (!((Object) this instanceof DrownedEntity)) return;
+        if (!(asLivingEntity() instanceof DrownedEntity)) return;
         Drowned.onDamage(source, cir);
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void onEndermanAttack(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) { 
-        if (source.getSource() instanceof EndermanEntity && Math.random() < 0.2f) {
-            Enderman.onAttack(world, asLivingEntity());
-        }
+        if (!(source.getSource() instanceof EndermanEntity && Math.random() < 0.2f)) return;
+        Enderman.onAttack(world, asLivingEntity());
     }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
@@ -94,38 +111,51 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void unmountSpider(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (!((Object) this instanceof SpiderEntity)) return;
+        if (!(asLivingEntity() instanceof SpiderEntity)) return;
         Spider.onDamage(world, asLivingEntity());
     }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void makeGhastsCry(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (!((Object) this instanceof GhastEntity)) return;
+        if (!(asLivingEntity() instanceof GhastEntity)) return;
         Ghast.onDamage(world, asLivingEntity());
     }
 
     // On Death Triggers
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void caveSpiderDeathRattle(DamageSource source, CallbackInfo ci) {
-        if (!((Object) this instanceof CaveSpiderEntity)) return;
+        if (!(asLivingEntity() instanceof CaveSpiderEntity)) return;
         CaveSpider.onDeath(asLivingEntity());
     }
 
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void spiderHeadCrab(DamageSource source, CallbackInfo ci) {
-        if (!((Object) this instanceof SpiderEntity)) return;
+        if (!(asLivingEntity() instanceof SpiderEntity)) return;
         Spider.onDeath(source, asLivingEntity(), ci);
     }
 
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void magmaCubeDeathRattle(DamageSource source, CallbackInfo ci) {
-        if (!((Object) this instanceof MagmaCubeEntity)) return;
+        if (!(asLivingEntity() instanceof MagmaCubeEntity)) return;
         MagmaCube.onDeath(source, asLivingEntity(), ci);
     }
 
     // Status Effect Triggers
     @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)
     private void preventHealthIncrease(float health, CallbackInfo ci) {
+        if (!(asLivingEntity().hasStatusEffect(ModEffects.SCALDING))) return;
         ScaldedEntity.onHeal(asLivingEntity(), health, ci);
+    }
+
+    @Inject(method = "travel", at = @At("HEAD"), cancellable = true)
+    private void preventSwimming(Vec3d movementInput , CallbackInfo ci) {
+        if (!(asLivingEntity().hasStatusEffect(ModEffects.ANCHORED))) return;
+        AnchoredEntity.onSwim(asLivingEntity(), ci);
+    }
+
+    @Inject(method = "applyFluidMovingSpeed", at = @At("RETURN"), cancellable = true)
+    private void sinkLikeRock(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
+        if (!(asLivingEntity().hasStatusEffect(ModEffects.ANCHORED))) return;
+        AnchoredEntity.onMoveInFluid(asLivingEntity(), motion, cir);
     }
 }

@@ -4,6 +4,7 @@ import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import com.kalightortaio.veterandifficulty.mob.Bat;
 import com.kalightortaio.veterandifficulty.mob.Creeper;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
+import com.kalightortaio.veterandifficulty.mob.ElderGuardian;
 import com.kalightortaio.veterandifficulty.mob.Evoker;
 import com.kalightortaio.veterandifficulty.mob.Ghast;
 import com.kalightortaio.veterandifficulty.mob.Phantom;
@@ -29,6 +30,7 @@ public class EntityModifiers {
             Wolf.onLoad(world, server, entity);
             Vex.onLoad(world, server, entity);
             Bat.onLoad(world, server, entity);
+            ElderGuardian.onLoad(server, entity);
             Ghast.onAttack(server, entity);
             Drowned.onLoad(server, entity);
             Creeper.onLoad(server, entity);

@@ -2,6 +2,7 @@ package com.kalightortaio.veterandifficulty.systems.internal;
 
 import com.kalightortaio.veterandifficulty.mob.Creeper;
 import com.kalightortaio.veterandifficulty.mob.Drowned;
+import com.kalightortaio.veterandifficulty.mob.ElderGuardian;
 import com.kalightortaio.veterandifficulty.mob.Husk;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 import com.kalightortaio.veterandifficulty.mob.Phantom;
@@ -47,5 +48,6 @@ public class TickManager {
 
     private static void runEvery20Ticks(ServerWorld world, long time) {
         Phantom.despawnPhantoms(world);
+        ElderGuardian.breakBlocks(world);
     }
 }

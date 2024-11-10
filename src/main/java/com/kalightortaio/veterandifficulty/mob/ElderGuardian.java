@@ -3,6 +3,7 @@ package com.kalightortaio.veterandifficulty.mob;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import org.joml.Math;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.kalightortaio.veterandifficulty.effect.ModEffects;
@@ -21,6 +22,7 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.ElderGuardianEntity;
+import net.minecraft.entity.mob.GuardianEntity;
 import net.minecraft.entity.projectile.ShulkerBulletEntity;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.MinecraftServer;
@@ -44,19 +46,33 @@ public class ElderGuardian {
 
     public static void onAttack(LivingEntity entity, DamageSource source) {
         if (source.isOf(DamageTypes.INDIRECT_MAGIC)) {
-            entity.addStatusEffect(new StatusEffectInstance(ModEffects.ANCHORED, 300, 0, false, true, true));
+            entity.addStatusEffect(new StatusEffectInstance(ModEffects.SCALDING, 120, 0, false, true, true));
         }
     }
 
-    public static void onDamage(LivingEntity entity, DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+    public static void onDamage(LivingEntity entity, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.getAttacker() instanceof ElderGuardianEntity) {
             cir.setReturnValue(false);
             return;
         }
         if (!(entity instanceof ElderGuardianEntity)) return;
-        for (int i = 0; i < (2 + Math.random() * 4); i++) {
-            ElderSpike revengeSpike = new ElderSpike(entity.getWorld(), entity, source.getAttacker(), entity.getFacing().getAxis());
-            entity.getWorld().spawnEntity(revengeSpike);
+        World world = entity.getWorld();
+        double maxHealth = entity.getAttributeInstance(EntityAttributes.MAX_HEALTH).getBaseValue();
+        float currentHealth = entity.getHealth();
+        int phaseHealthOld = (4 - (int) Math.ceil((currentHealth / maxHealth) * 4));
+        int phaseHealthNew = (4 - (int) Math.ceil(((currentHealth - amount) / maxHealth) * 4));
+        if (phaseHealthNew > phaseHealthOld) {
+            entity.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(1.0F - (phaseHealthNew * 0.2F));
+            for (int i = 0; i < (1 + Math.random() * 3); i++) {
+                GuardianEntity guardian = new GuardianEntity(EntityType.GUARDIAN, world);
+                guardian.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), 0.0F);
+                world.spawnEntity(guardian);
+            }
+        } else {
+            for (int i = 0; i < (2 + Math.random() * 4); i++) {
+                ElderSpike revengeSpike = new ElderSpike(world, entity, source.getAttacker(), entity.getFacing().getAxis());
+                world.spawnEntity(revengeSpike);
+            }
         }
     }
 
@@ -130,7 +146,7 @@ public class ElderGuardian {
             if (entity instanceof LivingEntity) {
                 LivingEntity livingEntity = (LivingEntity) entity;
                 livingEntity.removeStatusEffect(StatusEffects.LEVITATION);
-                livingEntity.addStatusEffect(new StatusEffectInstance(ModEffects.ANCHORED, 300, 0, false, true, true));
+                livingEntity.addStatusEffect(new StatusEffectInstance(ModEffects.ANCHORED, 600, 0, false, true, true));
             }
         }
     }

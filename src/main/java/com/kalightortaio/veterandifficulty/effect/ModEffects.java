@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 public class ModEffects {
     public static final StatusEffect SCALDING_EFFECT = registerEffect("scalding", StatusEffectCategory.HARMFUL, 0xcf1515);
     public static final RegistryEntry<StatusEffect> SCALDING = getRegistryEntry(SCALDING_EFFECT);
-    public static final StatusEffect ANCHORED_EFFECT = registerEffect("anchored", StatusEffectCategory.HARMFUL, 0x000080);
+    public static final StatusEffect ANCHORED_EFFECT = registerEffect("anchored", StatusEffectCategory.HARMFUL, 0x00095b);
     public static final RegistryEntry<StatusEffect> ANCHORED = getRegistryEntry(ANCHORED_EFFECT);
 
     private static StatusEffect registerEffect(String name, StatusEffectCategory category, int color) {

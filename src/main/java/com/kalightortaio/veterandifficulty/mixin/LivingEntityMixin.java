@@ -53,15 +53,16 @@ public abstract class LivingEntityMixin {
 
     // On Damage Triggers
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
-    private void elderEyeBeam(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (!(source.getAttacker() instanceof ElderGuardianEntity)) return;
+    private void guardianEyeBeam(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!(source.getAttacker() instanceof ElderGuardianEntity || source.getAttacker() instanceof GuardianEntity)) return;
         ElderGuardian.onAttack(asLivingEntity(), source);
     }
+    
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void elderRevenge(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!((asLivingEntity() instanceof GuardianEntity || asLivingEntity() instanceof ElderGuardianEntity) && source.getAttacker() instanceof LivingEntity)) return;
-        ElderGuardian.onDamage(asLivingEntity(), source, cir);
+        ElderGuardian.onDamage(asLivingEntity(), source, amount, cir);
     }
 
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)

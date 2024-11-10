@@ -20,6 +20,7 @@ import com.kalightortaio.veterandifficulty.mob.Husk;
 import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 import com.kalightortaio.veterandifficulty.mob.Spider;
 import com.kalightortaio.veterandifficulty.mob.Vex;
+import com.kalightortaio.veterandifficulty.mob.Vindicator;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -36,6 +37,8 @@ import net.minecraft.entity.mob.HuskEntity;
 import net.minecraft.entity.mob.MagmaCubeEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.VexEntity;
+import net.minecraft.entity.mob.VindicatorEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
@@ -53,11 +56,16 @@ public abstract class LivingEntityMixin {
 
     // On Damage Triggers
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
+    private void vindicatorChopChop(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!(source.getAttacker() instanceof VindicatorEntity && asLivingEntity() instanceof IronGolemEntity)) return;
+        Vindicator.onAttackGolem(world, asLivingEntity());
+    }
+
+    @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void guardianEyeBeam(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!(source.getAttacker() instanceof ElderGuardianEntity || source.getAttacker() instanceof GuardianEntity)) return;
         ElderGuardian.onAttack(asLivingEntity(), source);
     }
-    
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void elderRevenge(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {

@@ -7,6 +7,7 @@ import com.kalightortaio.veterandifficulty.systems.internal.EntityModifiers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -105,7 +106,16 @@ public class Bat {
             double smoothZ = MathHelper.lerp(0.15, currentVelocity.z, Math.signum(dz) * 0.35);
             Vec3d normalVelocity = new Vec3d(smoothX, smoothY, smoothZ);
 
-            ServerPlayerEntity closestPlayer = (ServerPlayerEntity) world.getClosestPlayer(bat, 32.0);
+            TargetPredicate.EntityPredicate entityPredicate = (LivingEntity entity, ServerWorld world2) -> {
+                return entity instanceof PlayerEntity player && !player.isSpectator() && !player.isCreative();
+            };
+
+            TargetPredicate validPlayerPredicate = TargetPredicate.createNonAttackable()
+                .ignoreVisibility()
+                .setBaseMaxDistance(32.0)
+                .setPredicate(entityPredicate);
+
+            ServerPlayerEntity closestPlayer = (ServerPlayerEntity) world.getClosestPlayer(validPlayerPredicate, bat.getX(), bat.getY(), bat.getZ());
             if (closestPlayer != null) {
                 boolean isHoldingGlowBerries = closestPlayer.getMainHandStack().isOf(Items.GLOW_BERRIES) || closestPlayer.getOffHandStack().isOf(Items.GLOW_BERRIES);
                 

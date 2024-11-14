@@ -105,7 +105,7 @@ public class EntityMixin implements IEntityState {
     }
 
     @Override
-    public float getLongState(String stateName) {
+    public long getLongState(String stateName) {
         return longStates.getOrDefault(stateName, 0L);
     }
 

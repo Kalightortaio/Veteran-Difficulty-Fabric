@@ -9,4 +9,7 @@ public interface IEntityState {
 
     float getFloatState(String stateName);
     void setFloatState(String stateName, float value);
+
+    float getLongState(String stateName);
+    void setLongState(String stateName, long value);
 }

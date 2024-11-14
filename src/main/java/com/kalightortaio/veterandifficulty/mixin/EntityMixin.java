@@ -23,6 +23,8 @@ public class EntityMixin implements IEntityState {
     private final Map<String, Integer> intStates = new HashMap<>();
     @Unique
     private final Map<String, Float> floatStates = new HashMap<>();
+    @Unique
+    private final Map<String, Long> longStates = new HashMap<>();
 
     @Inject(method = "writeNbt", at = @At("TAIL"))
     private void writeCustomDataToNbt(NbtCompound nbt, CallbackInfoReturnable<Boolean> cir) {
@@ -44,6 +46,9 @@ public class EntityMixin implements IEntityState {
         for (Map.Entry<String, Float> entry : floatStates.entrySet()) {
             nbt.putFloat(entry.getKey(), entry.getValue());
         }
+        for (Map.Entry<String, Long> entry : longStates.entrySet()) {
+            nbt.putLong(entry.getKey(), entry.getValue());
+        }
     }
 
     private void loadStatesFromNbt(NbtCompound nbt) {
@@ -60,6 +65,11 @@ public class EntityMixin implements IEntityState {
         for (String key : nbt.getKeys()) {
             if (nbt.contains(key, NbtCompound.FLOAT_TYPE)) {
                 floatStates.put(key, nbt.getFloat(key));
+            }
+        }
+        for (String key : nbt.getKeys()) {
+            if (nbt.contains(key, NbtCompound.LONG_TYPE)) {
+                longStates.put(key, nbt.getLong(key));
             }
         }
     }
@@ -92,5 +102,15 @@ public class EntityMixin implements IEntityState {
     @Override
     public void setFloatState(String stateName, float value) {
         floatStates.put(stateName, value);
+    }
+
+    @Override
+    public float getLongState(String stateName) {
+        return longStates.getOrDefault(stateName, 0L);
+    }
+
+    @Override
+    public void setLongState(String stateName, long value) {
+        longStates.put(stateName, value);
     }
 }

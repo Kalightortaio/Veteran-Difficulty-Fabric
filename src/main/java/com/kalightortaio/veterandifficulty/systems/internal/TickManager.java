@@ -10,6 +10,7 @@ import com.kalightortaio.veterandifficulty.mob.Phantom;
 import com.kalightortaio.veterandifficulty.mob.Skeleton;
 import com.kalightortaio.veterandifficulty.mob.Vex;
 import com.kalightortaio.veterandifficulty.mob.Wolf;
+import com.kalightortaio.veterandifficulty.systems.mechanics.TreeDecay;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
@@ -31,6 +32,8 @@ public class TickManager {
             if (time % 20 == 0) {
                 runEvery20Ticks(world, time);
             }
+            // running faster for debugging
+            runEvery600Ticks(world, time);
         }
     }
 
@@ -51,5 +54,9 @@ public class TickManager {
         Phantom.despawnPhantoms(world);
         ElderGuardian.breakBlocks(world);
         IronGolem.onTick(world);
+    }
+
+    private static void runEvery600Ticks(ServerWorld world, long time) {
+        TreeDecay.processTrees(world);
     }
 }

@@ -24,14 +24,14 @@ import java.util.function.BiConsumer;
 public abstract class TreeGenerationMixin {
 
     @Inject(method = "generate", at = @At("RETURN"))
-    private void replaceBaseLog(StructureWorldAccess world, Random random, BlockPos pos, BiConsumer<BlockPos, BlockState> rootPlacerReplacer, BiConsumer<BlockPos, BlockState> trunkPlacerReplacer, FoliagePlacer.BlockPlacer blockPlacer, TreeFeatureConfig config, CallbackInfoReturnable<Boolean> cir) {
+    private void createTreeEntity(StructureWorldAccess world, Random random, BlockPos pos, BiConsumer<BlockPos, BlockState> rootPlacerReplacer, BiConsumer<BlockPos, BlockState> trunkPlacerReplacer, FoliagePlacer.BlockPlacer blockPlacer, TreeFeatureConfig config, CallbackInfoReturnable<Boolean> cir) {
         if (cir.getReturnValue()) {
             BlockPos basePos = config.rootPlacer.map(rootPlacer -> rootPlacer.trunkOffset(pos, random)).orElse(pos);
             MarkerEntity marker = new MarkerEntity(EntityType.MARKER, world.toServerWorld());
             marker.setPosition(Vec3d.ofCenter(basePos));
             marker.setCustomName(Text.of("VDTree"));
-            long timeCreated = world.toServerWorld().getTime();
-            ((IEntityState) marker).setLongState("timeCreated", timeCreated);
+            long lastModified = world.toServerWorld().getTime();
+            ((IEntityState) marker).setLongState("lastModified", lastModified);
             world.spawnEntity(marker);
         }
     }

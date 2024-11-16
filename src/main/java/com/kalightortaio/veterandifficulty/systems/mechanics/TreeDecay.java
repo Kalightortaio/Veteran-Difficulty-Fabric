@@ -38,8 +38,19 @@ public class TreeDecay {
         List<? extends PlayerEntity> players = world.getPlayers();
         if (players.isEmpty()) return;
 
+        List<BlockPos> checkedAreas = new ArrayList<>();
+
         for (PlayerEntity player : players) {
             BlockPos playerPos = player.getBlockPos();
+
+            boolean isWithinCheckedArea = checkedAreas.stream()
+            .anyMatch(checkedPos -> playerPos.isWithinDistance(checkedPos, PLAYER_RADIUS));
+
+            if (isWithinCheckedArea) {
+                continue;
+            }
+
+            checkedAreas.add(playerPos);
 
             for (int i = 0; i < RANDOM_COORDS_COUNT; i++) {
                 int x = playerPos.getX() + (int)((Math.random() * 2 - 1) * PLAYER_RADIUS);

@@ -69,7 +69,7 @@ public class TreeDecay {
                     int treeAge = entityState.getIntState("TreeAge");
 
                     long currentTime = world.getTime();
-                    if (currentTime - lastModified >= 522) {
+                    if (currentTime - lastModified >= 3000) {
                         switch (treeAge) {
                             case 0:
                             case 1:

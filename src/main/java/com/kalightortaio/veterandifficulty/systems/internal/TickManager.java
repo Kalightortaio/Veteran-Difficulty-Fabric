@@ -32,8 +32,8 @@ public class TickManager {
             if (time % 20 == 0) {
                 runEvery20Ticks(world, time);
             }
-            if (time % 600 == 0) {
-                runEvery600Ticks(world, time);
+            if (time % 100 == 0) {
+                runEvery100Ticks(world, time);
             }
         }
     }
@@ -57,7 +57,7 @@ public class TickManager {
         IronGolem.onTick(world);
     }
 
-    private static void runEvery600Ticks(ServerWorld world, long time) {
+    private static void runEvery100Ticks(ServerWorld world, long time) {
         TreeDecay.processTrees(world);
     }
 }

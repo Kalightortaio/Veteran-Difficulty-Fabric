@@ -32,8 +32,9 @@ public class TickManager {
             if (time % 20 == 0) {
                 runEvery20Ticks(world, time);
             }
-            // running faster for debugging
-            runEvery600Ticks(world, time);
+            if (time % 600 == 0) {
+                runEvery600Ticks(world, time);
+            }
         }
     }
 

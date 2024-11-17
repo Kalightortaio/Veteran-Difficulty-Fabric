@@ -13,6 +13,7 @@ import com.kalightortaio.veterandifficulty.systems.mechanics.Regrowth;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
@@ -53,6 +54,7 @@ public abstract class ItemEntityMixin {
     private void regrowPlants(CallbackInfo ci) {
         if (!(asItemEntity().isOnGround())) return;
         if (!(asItemEntity().getItemAge() == 600)) return;
+        if (!(asItemEntity().getWorld() instanceof ServerWorld)) return;
         if (!(asItemEntity().getStack().isIn(ModTags.REGROWTH))) return;
         Regrowth.processItem(asItemEntity());
     }

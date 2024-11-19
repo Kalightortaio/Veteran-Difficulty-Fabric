@@ -177,6 +177,6 @@ public abstract class LivingEntityMixin {
         if (!(asLivingEntity().getType().isIn(ModTags.ALIVE))) return;
         if (!(asLivingEntity().getWorld().getTimeOfDay() % 80 == 0)) return;
         if ((asLivingEntity().hasStatusEffect(StatusEffects.REGENERATION))) return;
-        asLivingEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20, 2, false, true, false));
+        asLivingEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20, 2, false, false, false));
     }
 }

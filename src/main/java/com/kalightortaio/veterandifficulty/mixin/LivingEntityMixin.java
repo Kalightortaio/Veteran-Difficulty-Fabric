@@ -21,10 +21,13 @@ import com.kalightortaio.veterandifficulty.mob.MagmaCube;
 import com.kalightortaio.veterandifficulty.mob.Spider;
 import com.kalightortaio.veterandifficulty.mob.Vex;
 import com.kalightortaio.veterandifficulty.mob.Vindicator;
+import com.kalightortaio.veterandifficulty.systems.internal.ModTags;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.CaveSpiderEntity;
 import net.minecraft.entity.mob.DrownedEntity;
@@ -166,5 +169,14 @@ public abstract class LivingEntityMixin {
     private void sinkLikeRock(double gravity, boolean falling, Vec3d motion, CallbackInfoReturnable<Vec3d> cir) {
         if (!(asLivingEntity().hasStatusEffect(ModEffects.ANCHORED))) return;
         AnchoredEntity.onMoveInFluid(asLivingEntity(), motion, cir);
+    }
+
+    // Other Triggers
+    @Inject(method = "tick", at = @At("TAIL"), cancellable = true) 
+    private void naturalRegeneration(CallbackInfo ci) {
+        if (!(asLivingEntity().getType().isIn(ModTags.ALIVE))) return;
+        if (!(asLivingEntity().getWorld().getTimeOfDay() % 80 == 0)) return;
+        if ((asLivingEntity().hasStatusEffect(StatusEffects.REGENERATION))) return;
+        asLivingEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20, 2, false, true, false));
     }
 }

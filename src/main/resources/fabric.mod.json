@@ -18,6 +18,9 @@
 		"main": [
 			"com.kalightortaio.veterandifficulty.VeteranDifficulty"
 		],
+		"client": [
+			"com.kalightortaio.veterandifficulty.VeteranDifficultyClient"
+		],
 		"fabric-datagen": [
 			"com.kalightortaio.veterandifficulty.VeteranDifficultyDataGenerator"
 		]

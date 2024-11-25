@@ -57,5 +57,6 @@
     "block.veterandifficulty.void_block": "Block of Void",
     "block.veterandifficulty.void_gateway": "Void Gateway",
     "effect.veterandifficulty.scalding": "Scalding",
-    "effect.veterandifficulty.anchored": "Anchored"
+    "effect.veterandifficulty.anchored": "Anchored",
+    "entity.veterandifficulty.magic_projectile": "Magic Projectile"
 }

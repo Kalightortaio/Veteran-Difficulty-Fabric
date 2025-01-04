@@ -36,7 +36,7 @@ import net.minecraft.world.World;
 public class ElderGuardian {
 
     public static void onLoad(MinecraftServer server, Entity entity) {
-        if (entity instanceof ElderGuardianEntity elder && !((IEntityState) elder).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof ElderGuardianEntity elder && elder instanceof IEntityState elderStates && !elderStates.getBooleanState(EntityModifiers._KEY)) {
             elder.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(120.0f);
             elder.setHealth(120.0f);
 

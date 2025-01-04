@@ -19,7 +19,7 @@ import net.minecraft.util.math.Vec3d;
 public class Vex {
 
     public static void onLoad(ServerWorld world, MinecraftServer server, Entity entity) {
-        if (entity instanceof VexEntity vex && !((IEntityState) vex).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof VexEntity vex && vex instanceof IEntityState vexStates && !vexStates.getBooleanState(EntityModifiers._KEY)) {
             vex.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(1.5f);
             EntityModifiers.tagEntity(vex, server);
         }

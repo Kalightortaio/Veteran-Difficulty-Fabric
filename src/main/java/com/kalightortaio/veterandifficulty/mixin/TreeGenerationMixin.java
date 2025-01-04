@@ -31,8 +31,13 @@ public abstract class TreeGenerationMixin {
             marker.setPosition(Vec3d.ofCenter(basePos));
             marker.setCustomName(Text.of("VDTree"));
             long lastModified = world.toServerWorld().getTime();
-            ((IEntityState) marker).setLongState("lastModified", lastModified);
-            world.spawnEntity(marker);
+            if (marker instanceof IEntityState markerStates) {
+                markerStates.setLongState("lastModified", lastModified);
+                world.spawnEntity(marker);
+            } else {
+                System.err.println("Failed to apply IEntityState to: " + marker);
+                return;
+            }
         }
     }
 }

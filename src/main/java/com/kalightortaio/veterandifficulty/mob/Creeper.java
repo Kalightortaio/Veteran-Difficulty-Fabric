@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 public class Creeper {
 
     public static void onLoad(MinecraftServer server, Entity entity) {
-        if (entity instanceof CreeperEntity creeper && !((IEntityState) creeper).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof CreeperEntity creeper && creeper instanceof IEntityState creeperStates && !creeperStates.getBooleanState(EntityModifiers._KEY)) {
             creeper.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.35f);
 
             GoalSelector goalSelector = ((MobEntityAccessor) creeper).getGoalSelector();

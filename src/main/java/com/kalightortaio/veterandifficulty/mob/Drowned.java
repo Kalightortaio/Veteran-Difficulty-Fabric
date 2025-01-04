@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 public class Drowned {
 
     public static void onLoad(MinecraftServer server, Entity entity) {
-        if (entity instanceof DrownedEntity drowned && !((IEntityState) drowned).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof DrownedEntity drowned && drowned instanceof IEntityState drownedStates && !drownedStates.getBooleanState(EntityModifiers._KEY)) {
             if (Math.random() < 0.1 && !drowned.isBaby()) {
                 drowned.equipStack(EquipmentSlot.MAINHAND, Items.TRIDENT.getDefaultStack());
             } else if (drowned.getEquippedStack(EquipmentSlot.MAINHAND).getItem() == Items.TRIDENT) {

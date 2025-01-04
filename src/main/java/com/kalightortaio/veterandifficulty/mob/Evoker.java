@@ -25,7 +25,7 @@ import net.minecraft.world.event.GameEvent.Emitter;
 public class Evoker {
 
     public static void onLoad(ServerWorld world, MinecraftServer server, Entity entity) {
-        if (entity instanceof EvokerEntity evoker && !((IEntityState) evoker).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof EvokerEntity evoker && evoker instanceof IEntityState evokerStates && !evokerStates.getBooleanState(EntityModifiers._KEY)) {
             evoker.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(100.0f);
             evoker.setHealth(100.0f);
             EntityModifiers.tagEntity(evoker, server);

@@ -13,7 +13,7 @@ import net.minecraft.server.world.ServerWorld;
 public class IronGolem {
 
     public static void onLoad(MinecraftServer server, Entity entity) {
-        if (entity instanceof IronGolemEntity golem && !((IEntityState) golem).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof IronGolemEntity golem && golem instanceof IEntityState golemStates && !golemStates.getBooleanState(EntityModifiers._KEY)) {
             golem.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.3f);
             EntityModifiers.tagEntity(golem, server);
         }

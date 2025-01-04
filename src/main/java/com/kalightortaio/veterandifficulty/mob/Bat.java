@@ -32,7 +32,7 @@ public class Bat {
     private static float biteDistance = 1.9f;
 
     public static void onLoad(ServerWorld world, MinecraftServer server, Entity entity) {
-        if (entity instanceof BatEntity bat && !((IEntityState) bat).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof BatEntity bat && bat instanceof IEntityState batStates && !batStates.getBooleanState(EntityModifiers._KEY)) {
             for (int i = 0; i < (int) (1 + Math.random() * 2); i++) {
                 BatEntity extraBat = EntityType.BAT.create(world, null, bat.getBlockPos(), SpawnReason.TRIGGERED, false, false);
                 if (extraBat != null) {
@@ -190,11 +190,20 @@ public class Bat {
         }
 
         public int getBiteCooldown(BatEntity bat) {
-            return ((IEntityState) bat).getIntState(BITE_COOLDOWN_KEY);
+            if (bat instanceof IEntityState batStates) {
+                return batStates.getIntState(BITE_COOLDOWN_KEY);
+            } else {
+                System.err.println("Failed to apply IEntityState to: " + bat);
+                return 0;
+            }
         }
 
         public void setBiteCooldown(BatEntity bat, int cooldown) {
-            ((IEntityState) bat).setIntState(BITE_COOLDOWN_KEY, cooldown);
+            if (bat instanceof IEntityState batStates) {
+                batStates.setIntState(BITE_COOLDOWN_KEY, cooldown);
+            } else {
+                System.err.println("Failed to apply IEntityState to: " + bat);
+            }
         }
     }
 }

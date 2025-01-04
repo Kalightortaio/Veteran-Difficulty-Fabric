@@ -18,7 +18,7 @@ import net.minecraft.server.world.ServerWorld;
 public class Ghast {
 
     public static void onLoad(MinecraftServer server, Entity entity) {
-        if (entity instanceof GhastEntity ghast && !((IEntityState) ghast).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof GhastEntity ghast && ghast instanceof IEntityState ghastStates && !ghastStates.getBooleanState(EntityModifiers._KEY)) {
             ghast.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, Integer.MAX_VALUE, 9, false, false, false));
             EntityModifiers.tagEntity(ghast, server);
         }
@@ -34,7 +34,7 @@ public class Ghast {
     }
 
     public static void onAttack(MinecraftServer server, Entity entity) {
-        if (entity instanceof FireballEntity fireball && !((IEntityState) fireball).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof FireballEntity fireball && fireball instanceof IEntityState fireballStates && !fireballStates.getBooleanState(EntityModifiers._KEY)) {
             server.getCommandManager().executeWithPrefix(
                 server.getCommandSource().withSilent(), 
                 "data merge entity " + fireball.getUuidAsString() + " {ExplosionPower:3}"

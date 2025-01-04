@@ -48,10 +48,14 @@ public class EntityModifiers {
     }
 
     public static void tagEntity(Entity entity, MinecraftServer server, String key) {
-        ((IEntityState) entity).setBooleanState(key, true);
-        server.getCommandManager().executeWithPrefix(
-            server.getCommandSource().withSilent(),
-            "tag " + entity.getUuidAsString() + " add " + key
-        );
+        if (entity instanceof IEntityState entityStates) {
+            entityStates.setBooleanState(key, true);
+            server.getCommandManager().executeWithPrefix(
+                server.getCommandSource().withSilent(),
+                "tag " + entity.getUuidAsString() + " add " + key
+            );
+        } else {
+            System.err.println("Failed to apply IEntityState to: " + entity);
+        }
     }
 }

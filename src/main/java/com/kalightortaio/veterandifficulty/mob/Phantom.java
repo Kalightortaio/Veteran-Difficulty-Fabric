@@ -33,13 +33,18 @@ public class Phantom {
     }
 
     public static void canSpawn(ServerWorld world, MinecraftServer server, Entity entity) {
-        if (entity instanceof EndermanEntity enderman && world.getRegistryKey() == World.END && !((IEntityState) enderman).getBooleanState(EntityModifiers._KEY)) {
+        if (entity instanceof EndermanEntity enderman && world.getRegistryKey() == World.END && enderman instanceof IEntityState endermanStates && !endermanStates.getBooleanState(EntityModifiers._KEY)) {
             if (Math.random() < 0.15) {
                 BlockPos spawnPos = enderman.getBlockPos().up(32);
                 PhantomEntity phantom = new PhantomEntity(EntityType.PHANTOM, world);
                 phantom.refreshPositionAndAngles(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), 0.0F, 0.0F);
-                world.spawnEntity(phantom);
-                ((IEntityState) phantom).setIntState("Age", 0);
+                if (phantom instanceof IEntityState phantomStates) {
+                    world.spawnEntity(phantom);
+                    phantomStates.setIntState("Age", 0);
+                } else {
+                    System.err.println("Failed to apply IEntityState to: " + phantom);
+                    return;
+                }
             }
             EntityModifiers.tagEntity(enderman, server);
         }

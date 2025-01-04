@@ -16,7 +16,12 @@ public class Enderman {
 
     public static void onAttack(ServerWorld world, LivingEntity teleTarget) {
         int currentTime = (int) world.getTime();
-        int lastTeleportTime = ((IEntityState) teleTarget).getIntState("lastTeleportTime");
+        int lastTeleportTime = 0;
+        if (teleTarget instanceof IEntityState teleStates) {
+            lastTeleportTime = teleStates.getIntState("lastTeleportTime");
+        } else {
+            System.err.println("Failed to apply IEntityState to: " + teleTarget);
+        }
         
         if (currentTime - lastTeleportTime < 200) {
             return;
@@ -43,7 +48,11 @@ public class Enderman {
                 world.playSound(null, teleTarget.getX(), teleTarget.getY(), teleTarget.getZ(), soundEvent, soundCategory);
 
                 teleTarget.onLanding();
-                ((IEntityState) teleTarget).setIntState("lastTeleportTime", (currentTime));
+                if (teleTarget instanceof IEntityState teleStates) {
+                    teleStates.setIntState("lastTeleportTime", (currentTime));
+                } else {
+                    System.err.println("Failed to apply IEntityState to: " + teleTarget);
+                }
                 break;
             }
         }

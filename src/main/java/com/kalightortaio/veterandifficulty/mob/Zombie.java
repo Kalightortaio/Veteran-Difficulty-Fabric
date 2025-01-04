@@ -26,7 +26,8 @@ import net.minecraft.util.math.Box;
 public class Zombie {
 
     public static void onLoad(MinecraftServer server, Entity entity) {
-        if (entity instanceof ZombieEntity zombie && !((IEntityState) zombie).getBooleanState(EntityModifiers._KEY)) {
+        
+        if (entity instanceof ZombieEntity zombie && zombie instanceof IEntityState zombieStates && !zombieStates.getBooleanState(EntityModifiers._KEY)) {
             zombie.getAttributeInstance(EntityAttributes.SPAWN_REINFORCEMENTS).setBaseValue(0.4f);
             zombie.getAttributeInstance(EntityAttributes.FOLLOW_RANGE).setBaseValue(64.0f);
             zombie.getAttributeInstance(EntityAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.25f);

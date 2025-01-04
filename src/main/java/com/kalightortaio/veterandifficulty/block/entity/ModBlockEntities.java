@@ -12,7 +12,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlockEntities {
-    public static final BlockEntityType<VoidGatewayBlockEntity> VOID_GATEWAY_BLOCK_ENTITY = registerBlockEntity("void_gateway_be", VoidGatewayBlockEntity::new, ModBlocks.VOID_GATEWAY);
+    public static final BlockEntityType<EnderiumGatewayBlockEntity> ENDERIUM_GATEWAY_BLOCK_ENTITY = registerBlockEntity("enderium_gateway_be", EnderiumGatewayBlockEntity::new, ModBlocks.ENDERIUM_GATEWAY);
         
     private static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String path, FabricBlockEntityTypeBuilder.Factory<T> factory, Block block) {
         BlockEntityType<T> blockEntity = FabricBlockEntityTypeBuilder.create(factory, block).build();

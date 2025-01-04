@@ -1,7 +1,7 @@
 package com.kalightortaio.veterandifficulty.block;
 
 import com.kalightortaio.veterandifficulty.VeteranDifficulty;
-import com.kalightortaio.veterandifficulty.block.custom.VoidGatewayBlock;
+import com.kalightortaio.veterandifficulty.block.custom.EnderiumGatewayBlock;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
@@ -21,8 +21,8 @@ import net.minecraft.util.Rarity;
 
 import java.util.function.Function;
 public class ModBlocks {
-    public static final Block VOID_BLOCK = registerBlock("void_block", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK), Block::new, new Item.Settings().rarity(Rarity.COMMON));
-    public static final Block VOID_GATEWAY = registerBlock("void_gateway", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.END_GATEWAY), VoidGatewayBlock::new, new Item.Settings().rarity(Rarity.COMMON));
+    public static final Block ENDERIUM_BLOCK = registerBlock("enderium_block", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK), Block::new, new Item.Settings().rarity(Rarity.COMMON));
+    public static final Block ENDERIUM_GATEWAY = registerBlock("enderium_gateway", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.END_GATEWAY), EnderiumGatewayBlock::new, new Item.Settings().rarity(Rarity.COMMON));
 
     private static Block registerBlock(String path, RegistryKey<ItemGroup> group, Item location, AbstractBlock.Settings blockSettings, Function<AbstractBlock.Settings, Block> blockFactory, Item.Settings itemSettings) {
         final RegistryKey<Block> blockRegistryKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(VeteranDifficulty.MOD_ID, path));

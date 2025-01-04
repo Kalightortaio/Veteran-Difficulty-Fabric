@@ -1,6 +1,6 @@
 {
 	"parent": "minecraft:block/cube_all",
 	"textures": {
-		"all": "veterandifficulty:block/void_block"
+		"all": "veterandifficulty:block/enderium_block"
 	}
 }

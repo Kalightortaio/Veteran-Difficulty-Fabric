@@ -64,43 +64,40 @@ public class TreeDecay {
                         marker.discard();
                         return;
                     }
-                    if (marker instanceof IEntityState entityStates) {
-                        long lastModified = entityStates.getLongState("lastModified");
-                        int treeAge = entityStates.getIntState("TreeAge");
+                    IEntityState entityState = (IEntityState) marker;
+                    long lastModified = entityState.getLongState("lastModified");
+                    int treeAge = entityState.getIntState("TreeAge");
 
-                        long currentTime = world.getTime();
-                        if (currentTime - lastModified >= 3000) {
-                            switch (treeAge) {
-                                case 0:
-                                case 1:
-                                case 2:
-                                case 3:
-                                case 5:
-                                case 7:
-                                case 9:
-                                case 10:
-                                case 11:
-                                    updateMarker(entityStates, treeAge, currentTime);
-                                    break;
-                                case 4:
-                                    deadLeaves(world, marker);
-                                    updateMarker(entityStates, treeAge, currentTime);
-                                    break;
-                                case 6:
-                                    fellTree(world, marker);
-                                    updateMarker(entityStates, treeAge, currentTime);
-                                    break;
-                                case 8:
-                                    growAround(world, marker);
-                                    updateMarker(entityStates, treeAge, currentTime);
-                                    break;
-                                case 12:
-                                    layToRest(world, marker);
-                                    break;
-                            }
+                    long currentTime = world.getTime();
+                    if (currentTime - lastModified >= 3000) {
+                        switch (treeAge) {
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 5:
+                            case 7:
+                            case 9:
+                            case 10:
+                            case 11:
+                                updateMarker(entityState, treeAge, currentTime);
+                                break;
+                            case 4:
+                                deadLeaves(world, marker);
+                                updateMarker(entityState, treeAge, currentTime);
+                                break;
+                            case 6:
+                                fellTree(world, marker);
+                                updateMarker(entityState, treeAge, currentTime);
+                                break;
+                            case 8:
+                                growAround(world, marker);
+                                updateMarker(entityState, treeAge, currentTime);
+                                break;
+                            case 12:
+                                layToRest(world, marker);
+                                break;
                         }
-                    } else {
-                        System.err.println("Failed to apply IEntityState during tree tick! At: " + marker);
                     }
                 }
             }

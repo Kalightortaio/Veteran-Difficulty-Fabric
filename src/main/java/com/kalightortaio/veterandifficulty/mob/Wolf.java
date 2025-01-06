@@ -19,7 +19,7 @@ public class Wolf {
 
     public static void onLoad(ServerWorld world, MinecraftServer server, Entity entity) {
         if (entity instanceof WolfEntity wolf && world.getRegistryKey() == World.OVERWORLD) {
-            if (wolf instanceof IEntityState wolfStates && !wolfStates.getBooleanState(EntityModifiers._KEY)) {
+            if (!((IEntityState) wolf).getBooleanState(EntityModifiers._KEY)) {
                 wolf.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(40.0f);
                 wolf.setHealth(40.0f);
                 EntityModifiers.tagEntity(wolf, server);

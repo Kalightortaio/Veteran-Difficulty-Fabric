@@ -42,6 +42,12 @@ import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.mob.VindicatorEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.MaceItem;
+import net.minecraft.item.MiningToolItem;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.TridentItem;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
@@ -57,7 +63,25 @@ public abstract class LivingEntityMixin {
         return (ServerPlayerEntity) (Object) this;
     }
 
+    private boolean isValidWeaponOrTool(Item item) {
+        return item instanceof MiningToolItem || 
+            item instanceof SwordItem || 
+            item instanceof TridentItem || 
+            item instanceof MaceItem;
+    }
+
     // On Damage Triggers
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    private void reduceFistDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source.getAttacker() instanceof ServerPlayerEntity player && amount != 0.0f) {
+            ItemStack heldItem = player.getMainHandStack();
+            if (!isValidWeaponOrTool(heldItem.getItem())) {
+                asLivingEntity().damage(world, source, 0.0f);
+                cir.setReturnValue(false);
+            }
+        }
+    }
+    
     @Inject(method = "damage", at = @At("TAIL"), cancellable = true)
     private void vindicatorChopChop(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!(source.getAttacker() instanceof VindicatorEntity && asLivingEntity() instanceof IronGolemEntity)) return;

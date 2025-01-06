@@ -15,7 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 
 @Mixin(Entity.class)
-public class EntityMixin implements IEntityState {
+public abstract class EntityMixin implements IEntityState {
 
     @Unique
     private final Map<String, Boolean> booleanStates = new HashMap<>();

@@ -22,24 +22,36 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"veterandifficulty" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
-	}
+        "veterandifficulty" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
 }
 
 sourceSets {
     main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
     }
     client {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output
     }
 }
 
 fabricApi {
-	configureDataGeneration()
+    configureDataGeneration() {
+        client = true
+    }
 }
 
 dependencies {

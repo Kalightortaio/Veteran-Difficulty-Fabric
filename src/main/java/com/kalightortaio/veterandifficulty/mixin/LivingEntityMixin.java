@@ -73,7 +73,7 @@ public abstract class LivingEntityMixin {
     // On Damage Triggers
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void reduceFistDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (source.getAttacker() instanceof ServerPlayerEntity player && amount != 0.0f) {
+        if (source.getAttacker() instanceof ServerPlayerEntity player && !(amount == 0.0f)) {
             ItemStack heldItem = player.getMainHandStack();
             if (!isValidWeaponOrTool(heldItem.getItem())) {
                 asLivingEntity().damage(world, source, 0.0f);

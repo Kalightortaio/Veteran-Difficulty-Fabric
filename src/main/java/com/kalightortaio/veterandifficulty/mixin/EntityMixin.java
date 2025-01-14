@@ -37,38 +37,21 @@ public abstract class EntityMixin implements IEntityState {
     }
 
     private void saveStatesToNbt(NbtCompound nbt) {
-        for (Map.Entry<String, Boolean> entry : booleanStates.entrySet()) {
-            nbt.putBoolean(entry.getKey(), entry.getValue());
-        }
-        for (Map.Entry<String, Integer> entry : intStates.entrySet()) {
-            nbt.putInt(entry.getKey(), entry.getValue());
-        }
-        for (Map.Entry<String, Float> entry : floatStates.entrySet()) {
-            nbt.putFloat(entry.getKey(), entry.getValue());
-        }
-        for (Map.Entry<String, Long> entry : longStates.entrySet()) {
-            nbt.putLong(entry.getKey(), entry.getValue());
-        }
+        booleanStates.forEach(nbt::putBoolean);
+        intStates.forEach(nbt::putInt);
+        floatStates.forEach(nbt::putFloat);
+        longStates.forEach(nbt::putLong);
     }
 
     private void loadStatesFromNbt(NbtCompound nbt) {
         for (String key : nbt.getKeys()) {
             if (nbt.contains(key, NbtCompound.BYTE_TYPE)) {
                 booleanStates.put(key, nbt.getBoolean(key));
-            }
-        }
-        for (String key : nbt.getKeys()) {
-            if (nbt.contains(key, NbtCompound.INT_TYPE)) {
+            } else if (nbt.contains(key, NbtCompound.INT_TYPE)) {
                 intStates.put(key, nbt.getInt(key));
-            }
-        }
-        for (String key : nbt.getKeys()) {
-            if (nbt.contains(key, NbtCompound.FLOAT_TYPE)) {
+            } else if (nbt.contains(key, NbtCompound.FLOAT_TYPE)) {
                 floatStates.put(key, nbt.getFloat(key));
-            }
-        }
-        for (String key : nbt.getKeys()) {
-            if (nbt.contains(key, NbtCompound.LONG_TYPE)) {
+            } else if (nbt.contains(key, NbtCompound.LONG_TYPE)) {
                 longStates.put(key, nbt.getLong(key));
             }
         }

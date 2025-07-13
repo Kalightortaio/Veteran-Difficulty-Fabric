@@ -40,3 +40,8 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+# datagen
+
+src/client/resources/.cache/
+src/main/generated/

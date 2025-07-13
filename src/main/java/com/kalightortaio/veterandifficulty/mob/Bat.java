@@ -45,7 +45,7 @@ public class Bat {
     }
 
     public static ActionResult handleGlowBerryInteraction(BatEntity bat, ServerPlayerEntity player, ItemStack itemStack, Hand hand, BiteHandler biteHandler) {
-            ServerWorld world = player.getServerWorld();
+            ServerWorld world = player.getWorld();
             itemStack.decrement(1);
             world.spawnParticles(ParticleTypes.HEART, bat.getX(), bat.getY() + 0.5, bat.getZ(), 5, 0.2, 0.2, 0.2, 0.0);
             
@@ -169,7 +169,7 @@ public class Bat {
             int biteCooldown = batState.getIntState(BITE_COOLDOWN_KEY);
             if (biteCooldown <= 0) {
                 biteCooldown = 20;
-                player.damage(player.getServerWorld(), player.getDamageSources().mobAttack(bat), 1.0f);
+                player.damage(player.getWorld(), player.getDamageSources().mobAttack(bat), 1.0f);
                 if (Math.random() < 0.33) {
                     player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 80, 0, false, true, true));
                 }

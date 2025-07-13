@@ -17,19 +17,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(ModTags.FLINT_TOOL_MATERIALS)
-            .add(Items.FLINT);
-        getOrCreateTagBuilder(ModTags.COPPER_TOOL_MATERIALS)
-            .add(Items.COPPER_INGOT);
-        getOrCreateTagBuilder(ModTags.SILVER_TOOL_MATERIALS)
-            .add(ModItems.SILVER_INGOT);
-        getOrCreateTagBuilder(ModTags.MITHRIL_TOOL_MATERIALS)
-            .add(ModItems.MITHRIL_INGOT);
-        getOrCreateTagBuilder(ModTags.ENDERIUM_TOOL_MATERIALS)
-            .add(ModItems.ENDERIUM_GEM);
-        getOrCreateTagBuilder(ModTags.TENEBRIS_TOOL_MATERIALS)
-            .add(ModItems.TENEBRIS_INGOT);
-        getOrCreateTagBuilder(ModTags.ZENITH_TOOL_MATERIALS)
-            .add(ModItems.ZENITH_INGOT);
+        valueLookupBuilder(ModTags.FLINT_TOOL_MATERIALS).add(Items.FLINT);
+        valueLookupBuilder(ModTags.COPPER_TOOL_MATERIALS).add(Items.COPPER_INGOT);
+        valueLookupBuilder(ModTags.SILVER_TOOL_MATERIALS).add(ModItems.SILVER_INGOT);
+        valueLookupBuilder(ModTags.MITHRIL_TOOL_MATERIALS).add(ModItems.MITHRIL_INGOT);
+        valueLookupBuilder(ModTags.ENDERIUM_TOOL_MATERIALS).add(ModItems.ENDERIUM_GEM);
+        valueLookupBuilder(ModTags.TENEBRIS_TOOL_MATERIALS).add(ModItems.TENEBRIS_INGOT);
+        valueLookupBuilder(ModTags.ZENITH_TOOL_MATERIALS).add(ModItems.ZENITH_INGOT);
     }
 }

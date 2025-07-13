@@ -42,12 +42,14 @@ import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.mob.VindicatorEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MaceItem;
-import net.minecraft.item.MiningToolItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.item.TridentItem;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
@@ -64,10 +66,11 @@ public abstract class LivingEntityMixin {
     }
 
     private boolean isValidWeaponOrTool(Item item) {
-        return item instanceof MiningToolItem || 
-            item instanceof SwordItem || 
-            item instanceof TridentItem || 
-            item instanceof MaceItem;
+        if (item instanceof AxeItem || item instanceof ShovelItem || item instanceof HoeItem || item instanceof TridentItem || item instanceof MaceItem) {
+            return true;
+        }
+        ItemStack stack = item.getDefaultStack();
+        return stack.isIn(ItemTags.SWORDS) || stack.isIn(ItemTags.PICKAXES);
     }
 
     // On Damage Triggers

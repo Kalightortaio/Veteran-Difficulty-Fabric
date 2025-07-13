@@ -1,8 +1,9 @@
 package com.kalightortaio.veterandifficulty.mixin;
 
 import net.minecraft.item.Item;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,31 +20,29 @@ public abstract class ServerPlayerEntityMixin {
         return (ServerPlayerEntity) (Object) this;
     }
 
-    @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
-    private void onWriteCustomDataToNbt(NbtCompound nbt, CallbackInfo info) {
+    @Inject(method = "writeCustomData", at = @At("TAIL"))
+    private void onWriteCustomData(WriteView view, CallbackInfo ci) {
         NutritionStats stats = PlayerNutrition.getStats(asPlayer());
-        NbtCompound nutritionData = new NbtCompound();
+        WriteView nutritionData = view.get("PlayerNutrition");
         nutritionData.putInt("VDFruit", stats.VDFruit);
         nutritionData.putInt("VDProtein", stats.VDProtein);
         nutritionData.putInt("VDVegetables", stats.VDVegetables);
         nutritionData.putInt("VDSweets", stats.VDSweets);
         nutritionData.putInt("VDGrains", stats.VDGrains);
         nutritionData.putInt("VDWater", stats.VDWater);
-        nbt.put("PlayerNutrition", nutritionData);
     }
 
-    @Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
-    private void onReadCustomDataFromNbt(NbtCompound nbt, CallbackInfo info) {
-        if (nbt.contains("PlayerNutrition", 10)) {
-            NbtCompound nutritionData = nbt.getCompound("PlayerNutrition");
+    @Inject(method = "readCustomData", at = @At("TAIL"))
+    private void onReadCustomData(ReadView view, CallbackInfo ci) {
+        view.getOptionalReadView("PlayerNutrition").ifPresent(child -> {
             NutritionStats stats = PlayerNutrition.getStats(asPlayer());
-            stats.VDFruit = nutritionData.getInt("VDFruit");
-            stats.VDProtein = nutritionData.getInt("VDProtein");
-            stats.VDVegetables = nutritionData.getInt("VDVegetables");
-            stats.VDSweets = nutritionData.getInt("VDSweets");
-            stats.VDGrains = nutritionData.getInt("VDGrains");
-            stats.VDWater = nutritionData.getInt("VDWater");
-        }
+            stats.VDFruit  = child.getInt("VDFruit", stats.VDFruit);
+            stats.VDProtein = child.getInt("VDProtein", stats.VDProtein);
+            stats.VDVegetables = child.getInt("VDVegetables", stats.VDVegetables);
+            stats.VDSweets  = child.getInt("VDSweets", stats.VDSweets);
+            stats.VDGrains = child.getInt("VDGrains", stats.VDGrains);
+            stats.VDWater = child.getInt("VDWater", stats.VDWater);
+        });
     }
 
     @Inject(method = "consumeItem", at = @At("HEAD"))

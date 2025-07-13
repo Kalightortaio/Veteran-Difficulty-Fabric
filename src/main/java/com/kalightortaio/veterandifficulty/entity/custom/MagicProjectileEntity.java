@@ -56,10 +56,9 @@ public class MagicProjectileEntity extends PersistentProjectileEntity {
                 double offsetY = (velocity.y + (random.nextDouble() - 0.5));
                 double offsetZ = (velocity.z + (random.nextDouble() - 0.5));
 
-                getWorld().addParticle(ParticleTypes.OMINOUS_SPAWNING, getX(), getY(), getZ(), -0.2 * offsetX, -0.2 * offsetY, -0.2 * offsetZ);
+                world.addParticleClient(ParticleTypes.OMINOUS_SPAWNING, getX(), getY(), getZ(), -0.2 * offsetX, -0.2 * offsetY, -0.2 * offsetZ);
             }
-            getWorld().addParticle(ParticleTypes.END_ROD, getX(), getY(), getZ(), 0, 0, 0);
-
+            world.addParticleClient(ParticleTypes.END_ROD, getX(), getY(), getZ(), 0, 0, 0);
             // todo: implement better texture and particles
         }
         if (this.age > 200) {

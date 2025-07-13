@@ -122,7 +122,7 @@ public class Spider {
                     biteCooldown--;
                 } else {
                     biteCooldown = 20;
-                    target.damage(target.getServerWorld(), target.getDamageSources().magic(), 3.0f);
+                    target.damage(target.getWorld(), target.getDamageSources().magic(), 3.0f);
                     spider.heal(8.0f);
                 }
             } else {

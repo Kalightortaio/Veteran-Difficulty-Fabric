@@ -8,11 +8,11 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.kalightortaio.veterandifficulty.interfaces.IEntityState;
 import net.minecraft.entity.Entity;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin implements IEntityState {
@@ -26,35 +26,23 @@ public abstract class EntityMixin implements IEntityState {
     @Unique
     private final Map<String, Long> longStates = new HashMap<>();
 
-    @Inject(method = "writeNbt", at = @At("TAIL"))
-    private void writeCustomDataToNbt(NbtCompound nbt, CallbackInfoReturnable<Boolean> cir) {
-        saveStatesToNbt(nbt);
+    @Inject(method = "writeData", at = @At("TAIL"))
+    private void onWriteData(WriteView view, CallbackInfo ci) {
+        WriteView child = view.get("vd_states");
+        booleanStates.forEach(child::putBoolean);
+        intStates.forEach(child::putInt);
+        floatStates.forEach(child::putFloat);
+        longStates.forEach(child::putLong);
     }
 
-    @Inject(method = "readNbt", at = @At("TAIL"))
-    private void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        loadStatesFromNbt(nbt);
-    }
-
-    private void saveStatesToNbt(NbtCompound nbt) {
-        booleanStates.forEach(nbt::putBoolean);
-        intStates.forEach(nbt::putInt);
-        floatStates.forEach(nbt::putFloat);
-        longStates.forEach(nbt::putLong);
-    }
-
-    private void loadStatesFromNbt(NbtCompound nbt) {
-        for (String key : nbt.getKeys()) {
-            if (nbt.contains(key, NbtCompound.BYTE_TYPE)) {
-                booleanStates.put(key, nbt.getBoolean(key));
-            } else if (nbt.contains(key, NbtCompound.INT_TYPE)) {
-                intStates.put(key, nbt.getInt(key));
-            } else if (nbt.contains(key, NbtCompound.FLOAT_TYPE)) {
-                floatStates.put(key, nbt.getFloat(key));
-            } else if (nbt.contains(key, NbtCompound.LONG_TYPE)) {
-                longStates.put(key, nbt.getLong(key));
-            }
-        }
+    @Inject(method = "readData", at = @At("TAIL"))
+    private void onReadData(ReadView view, CallbackInfo ci) {
+        view.getOptionalReadView("vd_states").ifPresent(child -> {
+            booleanStates.replaceAll((k, v) -> child.getBoolean(k, v));
+            intStates.replaceAll    ((k, v) -> child.getInt   (k, v));
+            floatStates.replaceAll  ((k, v) -> child.getFloat (k, v));
+            longStates.replaceAll   ((k, v) -> child.getLong  (k, v));
+        });
     }
 
     @Override

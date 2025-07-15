@@ -21,8 +21,12 @@ import net.minecraft.util.Rarity;
 
 import java.util.function.Function;
 public class ModBlocks {
+    public static final Block SILVER_ORE = registerBlock("silver_ore", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.IRON_ORE), Block::new, new Item.Settings().rarity(Rarity.COMMON));
+    public static final Block MITHRIL_ORE = registerBlock("mithril_ore", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.IRON_ORE), Block::new, new Item.Settings().rarity(Rarity.COMMON));
+    public static final Block ENDERIUM_ORE = registerBlock("enderium_ore", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.ANCIENT_DEBRIS), Block::new, new Item.Settings().rarity(Rarity.COMMON));
     public static final Block ENDERIUM_BLOCK = registerBlock("enderium_block", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK), Block::new, new Item.Settings().rarity(Rarity.COMMON));
     public static final Block ENDERIUM_GATEWAY = registerBlock("enderium_gateway", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.END_GATEWAY), EnderiumGatewayBlock::new, new Item.Settings().rarity(Rarity.COMMON));
+    public static final Block TENEBRIS_ORE = registerBlock("tenebris_ore", ItemGroups.INGREDIENTS, Items.CHARCOAL, AbstractBlock.Settings.copy(Blocks.BEDROCK), Block::new, new Item.Settings().rarity(Rarity.COMMON));
 
     private static Block registerBlock(String path, RegistryKey<ItemGroup> group, Item location, AbstractBlock.Settings blockSettings, Function<AbstractBlock.Settings, Block> blockFactory, Item.Settings itemSettings) {
         final RegistryKey<Block> blockRegistryKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(VeteranDifficulty.MOD_ID, path));

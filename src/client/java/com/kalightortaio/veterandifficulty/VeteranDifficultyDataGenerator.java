@@ -1,5 +1,6 @@
 package com.kalightortaio.veterandifficulty;
 
+import com.kalightortaio.veterandifficulty.datagen.ModBlockTagProvider;
 import com.kalightortaio.veterandifficulty.datagen.ModItemTagProvider;
 import com.kalightortaio.veterandifficulty.datagen.ModModelProvider;
 
@@ -12,6 +13,7 @@ public class VeteranDifficultyDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(ModItemTagProvider::new);
+		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModModelProvider::new);
 	}
 }

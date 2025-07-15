@@ -7,7 +7,6 @@
 * Phantoms no longer spawn in the overworld. Instead, they spawn naturally in the End, less commonly along with Endermen. They have been retextured to fit the End color palette.
 * Endermen have a 20% chance to teleport their target a short distance away. This forced teleportation has a cooldown of 10 seconds, before the effect can trigger again.
 * Magma Cubes spawn temporary flowing lava when they are killed. Magma Cream no longer burns in lava or fire.
-* Going to probably finish out the mobs, before moving onto other aspects of the pack like nutrition, armor, ore progression, etc.
 * Blazes now inflict a new Status Effect called Scalding, which prevents health regeneration, for 15 seconds.
 * Skeletons will switch to an iron sword when a player gets within 8 blocks of them, and back to a bow otherwise. Enchantments are preserved on weapon switch.
 * Cave Spiders spawn cobwebs and split into baby Cave Spiders when they are killed.
@@ -21,3 +20,5 @@
 * Bats are now aggressive mobs. When a player is within their follow range, they will chase the player with bites that have a 20% chance to blind for 4 seconds. However, bats can also be temporarily tamed in the presence of glow berries. Any player holding the item will not be attacked, with the bats opting to follow you instead. If you feed a bat, it will become peaceful for 5 minutes. Continuing to feed bats also has a 20% chance to reward the player with a random seed drop.
 * Husks' hunger draining attacks have been greatly strengthened. Husks also exude a slowing aura around them, that disables sprinting.
 * Elder Guardians have 60 hearts of health, and several new attack patterns. When attacked, the Elder Guardian will release several homing spikes that inflict a new effect called Anchored for 15 seconds. Anchored prevents swimming, and greatly increases gravity while in water. The Elder Guardian can also inflict Anchored with its beam attack, for 15 seconds. For every quarter of health lost, it will release several normal Guardians to help it in battle, and shrink 10%. And lastly, the Elder Guardian can destroy any blocks trapping it and fill their space with water source blocks.
+
+## Also working on a bunch of systems too! Like new tool tiers and mechanics and man, I love programming!

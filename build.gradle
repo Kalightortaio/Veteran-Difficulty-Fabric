@@ -32,16 +32,13 @@ loom {
 sourceSets {
     main {
 		resources {
-			srcDirs += [
-					'src/main/generated'
-			]
+			srcDir 'src/main/resources'
+			srcDir 'src/main/generated'
 		}
     }
     client {
 		resources {
-			srcDirs += [
-					'src/main/generated'
-			]
+			setSrcDirs([])
 		}
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output

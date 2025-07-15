@@ -20,6 +20,7 @@ public class ModTags {
     public static final TagKey<Block> MONUMENT = createTag(BLOCK, "monument");
     public static final TagKey<Block> SEA_FAUNA = createTag(BLOCK, "sea_fauna");
     public static final TagKey<Block> SAPLING_SURFACE = createTag(BLOCK, "sapling_surface");
+    public static final TagKey<Block> NEEDS_NO_TOOL = createTag(BLOCK, "needs_no_tool");
     public static final TagKey<Block> INCORRECT_FOR_FLINT_TOOL = createTag(BLOCK, "incorrect_for_flint_tool");
     public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = createTag(BLOCK, "incorrect_for_copper_tool");
     public static final TagKey<Block> INCORRECT_FOR_SILVER_TOOL = createTag(BLOCK, "incorrect_for_silver_tool");

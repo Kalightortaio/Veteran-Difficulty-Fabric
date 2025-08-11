@@ -22,6 +22,7 @@ import com.kalightortaio.veterandifficulty.mob.Spider;
 import com.kalightortaio.veterandifficulty.mob.Vex;
 import com.kalightortaio.veterandifficulty.mob.Vindicator;
 import com.kalightortaio.veterandifficulty.systems.internal.ModTags;
+import com.kalightortaio.veterandifficulty.util.ToolUtil;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -42,14 +43,7 @@ import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.mob.VindicatorEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.MaceItem;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.TridentItem;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
@@ -65,20 +59,12 @@ public abstract class LivingEntityMixin {
         return (ServerPlayerEntity) (Object) this;
     }
 
-    private boolean isValidWeaponOrTool(Item item) {
-        if (item instanceof AxeItem || item instanceof ShovelItem || item instanceof HoeItem || item instanceof TridentItem || item instanceof MaceItem) {
-            return true;
-        }
-        ItemStack stack = item.getDefaultStack();
-        return stack.isIn(ItemTags.SWORDS) || stack.isIn(ItemTags.PICKAXES);
-    }
-
     // On Damage Triggers
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void reduceFistDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.getAttacker() instanceof ServerPlayerEntity player && !(amount == 0.0f)) {
             ItemStack heldItem = player.getMainHandStack();
-            if (!isValidWeaponOrTool(heldItem.getItem())) {
+            if (!ToolUtil.isValidWeaponOrTool(heldItem)) {
                 asLivingEntity().damage(world, source, 0.0f);
                 cir.setReturnValue(false);
             }

@@ -13,7 +13,9 @@
 		"ChunkGeneratorMixin",
 		"ServerPlayNetworkHandlerMixin",
 		"ServerPlayerEntityMixin",
+		"PlayerEntityMixin",
 		"ToolMaterialMixin",
+		"AxeItemMixin",
 		"accessor.MobEntityAccessor",
 		"accessor.ItemEntityAccessor"
 	],

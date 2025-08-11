@@ -20,7 +20,7 @@ public class ToolMaterialMixin {
     @Redirect(method = "<clinit>", at = @At(value = "NEW", target = "Lnet/minecraft/item/ToolMaterial;"))
     private static ToolMaterial redirectToolMaterial(TagKey<Block> blockTag, int durability, float speed, float attackDamage, int enchantmentValue, TagKey<Item> itemTag) {
         if (blockTag.equals(BlockTags.INCORRECT_FOR_WOODEN_TOOL)) {
-            return new ToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, ToolStats.durability(ToolTier.WOOD), ToolStats.miningSpeed(ToolTier.WOOD), ToolStats.attackDamage(ToolTier.WOOD), ToolStats.enchantability(ToolTier.WOOD), ItemTags.WOODEN_TOOL_MATERIALS);
+            return new ToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, ToolStats.durability(ToolTier.WOODEN), ToolStats.miningSpeed(ToolTier.WOODEN), ToolStats.attackDamage(ToolTier.WOODEN), ToolStats.enchantability(ToolTier.WOODEN), ItemTags.WOODEN_TOOL_MATERIALS);
         } else if (blockTag.equals(BlockTags.INCORRECT_FOR_STONE_TOOL)) {
             return new ToolMaterial(BlockTags.INCORRECT_FOR_STONE_TOOL, ToolStats.durability(ToolTier.STONE), ToolStats.miningSpeed(ToolTier.STONE), ToolStats.attackDamage(ToolTier.STONE), ToolStats.enchantability(ToolTier.STONE), ItemTags.STONE_TOOL_MATERIALS);
         } else if (blockTag.equals(BlockTags.INCORRECT_FOR_GOLD_TOOL)) {

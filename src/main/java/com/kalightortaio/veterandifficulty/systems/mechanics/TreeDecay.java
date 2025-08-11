@@ -62,7 +62,7 @@ public class TreeDecay {
                 if (marker != null) {
                     if (!(world.getBlockState(marker.getBlockPos()).isIn(BlockTags.LOGS))) {
                         marker.discard();
-                        return;
+                        continue;
                     }
                     IEntityState entityState = (IEntityState) marker;
                     long lastModified = entityState.getLongState("lastModified");

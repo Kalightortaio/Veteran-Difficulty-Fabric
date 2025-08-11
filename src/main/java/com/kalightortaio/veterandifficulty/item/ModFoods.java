@@ -4,7 +4,7 @@ import net.minecraft.component.type.FoodComponent;
 public class ModFoods {
     public static final FoodComponent ACACIA_POD = new FoodComponent.Builder().nutrition(1).saturationModifier(0.6f).build();
     public static final FoodComponent BAMBOO_SHOOT = new FoodComponent.Builder().nutrition(1).saturationModifier(0.6f).build();
-    public static final FoodComponent BIRCH_BARK = new FoodComponent.Builder().nutrition(1).saturationModifier(0.6f).build();
+    public static final FoodComponent BARK = new FoodComponent.Builder().nutrition(1).saturationModifier(0.6f).build();
     public static final FoodComponent CACTUS_FRUIT = new FoodComponent.Builder().nutrition(3).saturationModifier(1.8f).build();
     public static final FoodComponent CALAMARI = new FoodComponent.Builder().nutrition(2).saturationModifier(1.2f).build();
     public static final FoodComponent CHERRY = new FoodComponent.Builder().nutrition(1).saturationModifier(0.6f).build();

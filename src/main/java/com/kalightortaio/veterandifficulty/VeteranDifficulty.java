@@ -23,6 +23,7 @@ public class VeteranDifficulty implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
+		ModItems.registerItemGroup();
 		ModEffects.registerModEffects();
 		ModEntities.registerModEntities();
 		//

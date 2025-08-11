@@ -8,7 +8,7 @@ public final class ToolStats {
 
     private static final Map<ToolTier, Row> CORE = Map.ofEntries(
         Map.entry(ToolTier.FLINT,     new Row(59,    0.5F,  0.0F, 6)),
-        Map.entry(ToolTier.WOOD,      new Row(106,   1.0F,  0.5F, 8)),
+        Map.entry(ToolTier.WOODEN,    new Row(106,   1.0F,  0.5F, 8)),
         Map.entry(ToolTier.STONE,     new Row(176,   2.0F,  1.0F, 10)),
         Map.entry(ToolTier.COPPER,    new Row(260,   3.0F,  1.5F, 12)),
         Map.entry(ToolTier.SILVER,    new Row(400,   4.0F,  2.0F, 14)),
@@ -40,9 +40,7 @@ public final class ToolStats {
     public static int durability(ToolTier tier)     { return CORE.get(tier).durability(); }
     public static float miningSpeed(ToolTier tier)  { return CORE.get(tier).miningSpeed(); }
     public static float attackDamage(ToolTier tier) { return CORE.get(tier).attackBonus(); }
-    public static float attackDamage(ToolTier tier, ToolType kind) { 
-        return CORE.get(tier).attackBonus() + TOOL_DAMAGE.get(kind); 
-    };
+    public static float baseDamage(ToolType kind)   { return TOOL_DAMAGE.get(kind); }
     public static int enchantability(ToolTier tier) { return CORE.get(tier).enchantValue(); }
     public static float attackSpeed(ToolType kind)  { return TOOL_SPEED.get(kind); }
 

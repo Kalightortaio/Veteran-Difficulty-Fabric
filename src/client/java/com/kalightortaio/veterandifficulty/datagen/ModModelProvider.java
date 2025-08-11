@@ -21,11 +21,20 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator gen) {
+        gen.registerSimpleCubeAll(ModBlocks.FLINT_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.SILVER_ORE);
-        gen.registerSimpleCubeAll(ModBlocks.MITHRIL_ORE);
+        gen.registerSimpleCubeAll(ModBlocks.SILVER_BLOCK);
+        gen.registerSimpleCubeAll(ModBlocks.RAW_SILVER_BLOCK);
+        gen.registerSimpleCubeAll(ModBlocks.DEEPSLATE_MITHRIL_ORE);
+        gen.registerSimpleCubeAll(ModBlocks.RAW_MITHRIL_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.ENDERIUM_ORE);
         gen.registerSimpleCubeAll(ModBlocks.ENDERIUM_BLOCK);
+        gen.registerSimpleCubeAll(ModBlocks.RAW_ENDERIUM_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.TENEBRIS_ORE);
+        gen.registerSimpleCubeAll(ModBlocks.TENEBRIS_BLOCK);
+        gen.registerSimpleCubeAll(ModBlocks.RAW_TENEBRIS_BLOCK);
+        gen.registerSimpleCubeAll(ModBlocks.ZENITH_BLOCK);
+        gen.registerSimpleCubeAll(ModBlocks.RAW_ZENITH_BLOCK);
         registerEnderiumGateway(gen);
     }
 
@@ -38,7 +47,6 @@ public class ModModelProvider extends FabricModelProvider {
         // Food
         gen.register(ModItems.ACACIA_POD, Models.GENERATED);
         gen.register(ModItems.BAMBOO_SHOOT, Models.GENERATED);
-        gen.register(ModItems.BIRCH_BARK, Models.GENERATED);
         gen.register(ModItems.CACTUS_FRUIT, Models.GENERATED);
         gen.register(ModItems.CALAMARI, Models.GENERATED);
         gen.register(ModItems.CHERRY, Models.GENERATED);
@@ -61,7 +69,22 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.WILD_RICE, Models.GENERATED);
         gen.register(ModItems.WILD_ROOT, Models.GENERATED);
         gen.register(ModItems.WORM, Models.GENERATED);
+        // Bark
+        gen.register(ModItems.OAK_BARK, Models.GENERATED);
+        gen.register(ModItems.SPRUCE_BARK, Models.GENERATED);
+        gen.register(ModItems.BIRCH_BARK, Models.GENERATED);
+        gen.register(ModItems.ACACIA_BARK, Models.GENERATED);
+        gen.register(ModItems.CHERRY_BARK, Models.GENERATED);
+        gen.register(ModItems.CRIMSON_BARK, Models.GENERATED);
+        gen.register(ModItems.DARK_OAK_BARK, Models.GENERATED);
+        gen.register(ModItems.JUNGLE_BARK, Models.GENERATED);
+        gen.register(ModItems.MANGROVE_BARK, Models.GENERATED);
+        gen.register(ModItems.WARPED_BARK, Models.GENERATED);
+        gen.register(ModItems.PALE_OAK_BARK, Models.GENERATED);
         // ToolTiers / Ores
+        gen.register(ModItems.FLINT_AXE, Models.GENERATED);
+        gen.register(ModItems.FLINT_KNIFE, Models.GENERATED);
+        gen.register(ModItems.FLINT_PICKAXE, Models.GENERATED);
         gen.register(ModItems.COPPER_AXE, Models.GENERATED);
         gen.register(ModItems.COPPER_BOOTS, Models.GENERATED);
         gen.register(ModItems.COPPER_CHESTPLATE, Models.GENERATED);
@@ -71,11 +94,66 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.COPPER_PICKAXE, Models.GENERATED);
         gen.register(ModItems.COPPER_SWORD, Models.GENERATED);
         gen.register(ModItems.COPPER_SHOVEL, Models.GENERATED);
+        gen.register(ModItems.SILVER_AXE, Models.GENERATED);
+        gen.register(ModItems.SILVER_BOOTS, Models.GENERATED);
+        gen.register(ModItems.SILVER_CHESTPLATE, Models.GENERATED);
+        gen.register(ModItems.SILVER_HELMET, Models.GENERATED);
+        gen.register(ModItems.SILVER_HOE, Models.GENERATED);
+        gen.register(ModItems.SILVER_LEGGINGS, Models.GENERATED);
+        gen.register(ModItems.SILVER_PICKAXE, Models.GENERATED);
+        gen.register(ModItems.SILVER_SWORD, Models.GENERATED);
+        gen.register(ModItems.SILVER_SHOVEL, Models.GENERATED);
         gen.register(ModItems.RAW_SILVER, Models.GENERATED);
         gen.register(ModItems.SILVER_INGOT, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_AXE, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_BOOTS, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_CHESTPLATE, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_HELMET, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_HOE, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_LEGGINGS, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_PICKAXE, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_SWORD, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_SHOVEL, Models.GENERATED);
+        gen.register(ModItems.RAW_MITHRIL, Models.GENERATED);
+        gen.register(ModItems.MITHRIL_INGOT, Models.GENERATED);
         gen.register(ModItems.RAW_DIAMOND, Models.GENERATED);
+        gen.register(ModItems.DIAMOND_ELYTRA, Models.GENERATED);
+        gen.register(ModItems.NETHERITE_ELYTRA, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_AXE, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_BOOTS, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_CHESTPLATE, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_HELMET, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_HOE, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_LEGGINGS, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_PICKAXE, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_SWORD, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_SHOVEL, Models.GENERATED);
         gen.register(ModItems.RAW_ENDERIUM, Models.GENERATED);
         gen.register(ModItems.ENDERIUM_GEM, Models.GENERATED);
+        gen.register(ModItems.ENDERIUM_ELYTRA, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_AXE, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_BOOTS, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_CHESTPLATE, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_HELMET, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_HOE, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_LEGGINGS, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_PICKAXE, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_SWORD, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_SHOVEL, Models.GENERATED);
+        gen.register(ModItems.RAW_TENEBRIS, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_INGOT, Models.GENERATED);
+        gen.register(ModItems.TENEBRIS_ELYTRA, Models.GENERATED);
+        gen.register(ModItems.ZENITH_AXE, Models.GENERATED);
+        gen.register(ModItems.ZENITH_BOOTS, Models.GENERATED);
+        gen.register(ModItems.ZENITH_CHESTPLATE, Models.GENERATED);
+        gen.register(ModItems.ZENITH_HELMET, Models.GENERATED);
+        gen.register(ModItems.ZENITH_HOE, Models.GENERATED);
+        gen.register(ModItems.ZENITH_LEGGINGS, Models.GENERATED);
+        gen.register(ModItems.ZENITH_PICKAXE, Models.GENERATED);
+        gen.register(ModItems.ZENITH_SWORD, Models.GENERATED);
+        gen.register(ModItems.ZENITH_SHOVEL, Models.GENERATED);
+        gen.register(ModItems.ZENITH_INGOT, Models.GENERATED);
+        gen.register(ModItems.ZENITH_ELYTRA, Models.GENERATED);
     }
 
     private void registerEnderiumGateway(BlockStateModelGenerator gen) {

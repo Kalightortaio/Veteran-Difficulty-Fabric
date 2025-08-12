@@ -1,9 +1,7 @@
 package com.kalightortaio.veterandifficulty.item;
 
 import com.kalightortaio.veterandifficulty.VeteranDifficulty;
-import com.kalightortaio.veterandifficulty.util.ToolStats;
-import com.kalightortaio.veterandifficulty.util.ToolType;
-
+import com.kalightortaio.veterandifficulty.util.Tools;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
@@ -183,18 +181,18 @@ public class ModItems {
     public static final Item FLINT_AND_TINDER = registerItem("flint_and_tinder", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "flint_and_tinder")))));
 
-    public static final Item FLINT_AXE = registerItem("flint_axe", new AxeItem(ModToolMaterials.FLINT, ToolStats.baseDamage(ToolType.AXE), ToolStats.attackSpeed(ToolType.AXE), new Item.Settings()
+    public static final Item FLINT_AXE = registerItem("flint_axe", new AxeItem(ModToolMaterials.FLINT, Tools.Stats.baseDamage(Tools.Type.AXE), Tools.Stats.attackSpeed(Tools.Type.AXE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "flint_axe")))));
 
-    public static final Item FLINT_KNIFE = registerItem("flint_knife", new Item.Settings().sword(ModToolMaterials.FLINT, ToolStats.baseDamage(ToolType.SWORD), ToolStats.attackSpeed(ToolType.SWORD))
+    public static final Item FLINT_KNIFE = registerItem("flint_knife", new Item.Settings().sword(ModToolMaterials.FLINT, Tools.Stats.baseDamage(Tools.Type.SWORD), Tools.Stats.attackSpeed(Tools.Type.SWORD))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "flint_knife"))));
 
-    public static final Item FLINT_PICKAXE = registerItem("flint_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.FLINT, ToolStats.baseDamage(ToolType.PICKAXE), ToolStats.attackSpeed(ToolType.PICKAXE))
+    public static final Item FLINT_PICKAXE = registerItem("flint_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.FLINT, Tools.Stats.baseDamage(Tools.Type.PICKAXE), Tools.Stats.attackSpeed(Tools.Type.PICKAXE))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "flint_pickaxe"))));
     //
     // Tier 3 (Copper)
     //
-    public static final Item COPPER_AXE = registerItem("copper_axe", new AxeItem(ModToolMaterials.COPPER, ToolStats.baseDamage(ToolType.AXE), ToolStats.attackSpeed(ToolType.AXE), new Item.Settings()
+    public static final Item COPPER_AXE = registerItem("copper_axe", new AxeItem(ModToolMaterials.COPPER, Tools.Stats.baseDamage(Tools.Type.AXE), Tools.Stats.attackSpeed(Tools.Type.AXE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "copper_axe")))));
 
     public static final Item COPPER_BOOTS = registerItem("copper_boots", new Item(new Item.Settings()
@@ -206,7 +204,7 @@ public class ModItems {
     public static final Item COPPER_HELMET = registerItem("copper_helmet", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "copper_helmet")))));
 
-    public static final Item COPPER_HOE = registerItem("copper_hoe", new HoeItem(ModToolMaterials.COPPER, ToolStats.baseDamage(ToolType.HOE), ToolStats.attackSpeed(ToolType.HOE), new Item.Settings()
+    public static final Item COPPER_HOE = registerItem("copper_hoe", new HoeItem(ModToolMaterials.COPPER, Tools.Stats.baseDamage(Tools.Type.HOE), Tools.Stats.attackSpeed(Tools.Type.HOE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "copper_hoe")))));
 
     public static final Item COPPER_LEGGINGS = registerItem("copper_leggings", new Item(new Item.Settings()
@@ -215,18 +213,18 @@ public class ModItems {
     public static final Item COPPER_PAN = registerItem("copper_pan", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "copper_pan")))));
 
-    public static final Item COPPER_PICKAXE = registerItem("copper_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.COPPER, ToolStats.baseDamage(ToolType.PICKAXE), ToolStats.attackSpeed(ToolType.PICKAXE))
+    public static final Item COPPER_PICKAXE = registerItem("copper_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.COPPER, Tools.Stats.baseDamage(Tools.Type.PICKAXE), Tools.Stats.attackSpeed(Tools.Type.PICKAXE))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "copper_pickaxe"))));
 
-    public static final Item COPPER_SHOVEL = registerItem("copper_shovel", new ShovelItem(ModToolMaterials.COPPER, ToolStats.baseDamage(ToolType.SHOVEL), ToolStats.attackSpeed(ToolType.SHOVEL), new Item.Settings()
+    public static final Item COPPER_SHOVEL = registerItem("copper_shovel", new ShovelItem(ModToolMaterials.COPPER, Tools.Stats.baseDamage(Tools.Type.SHOVEL), Tools.Stats.attackSpeed(Tools.Type.SHOVEL), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "copper_shovel")))));
 
-    public static final Item COPPER_SWORD = registerItem("copper_sword", new Item.Settings().sword(ModToolMaterials.COPPER, ToolStats.baseDamage(ToolType.SWORD), ToolStats.attackSpeed(ToolType.SWORD))
+    public static final Item COPPER_SWORD = registerItem("copper_sword", new Item.Settings().sword(ModToolMaterials.COPPER, Tools.Stats.baseDamage(Tools.Type.SWORD), Tools.Stats.attackSpeed(Tools.Type.SWORD))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "copper_sword"))));
     //
     // Tier 4 (Silver)
     //
-    public static final Item SILVER_AXE = registerItem("silver_axe", new AxeItem(ModToolMaterials.SILVER, ToolStats.baseDamage(ToolType.AXE), ToolStats.attackSpeed(ToolType.AXE), new Item.Settings()
+    public static final Item SILVER_AXE = registerItem("silver_axe", new AxeItem(ModToolMaterials.SILVER, Tools.Stats.baseDamage(Tools.Type.AXE), Tools.Stats.attackSpeed(Tools.Type.AXE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "silver_axe")))));
 
     public static final Item SILVER_BOOTS = registerItem("silver_boots", new Item(new Item.Settings()
@@ -238,7 +236,7 @@ public class ModItems {
     public static final Item SILVER_HELMET = registerItem("silver_helmet", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "silver_helmet")))));
 
-    public static final Item SILVER_HOE = registerItem("silver_hoe", new HoeItem(ModToolMaterials.SILVER, ToolStats.baseDamage(ToolType.HOE), ToolStats.attackSpeed(ToolType.HOE), new Item.Settings()
+    public static final Item SILVER_HOE = registerItem("silver_hoe", new HoeItem(ModToolMaterials.SILVER, Tools.Stats.baseDamage(Tools.Type.HOE), Tools.Stats.attackSpeed(Tools.Type.HOE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "silver_hoe")))));
 
     public static final Item RAW_SILVER = registerItem("raw_silver", new Item(new Item.Settings()
@@ -250,18 +248,18 @@ public class ModItems {
     public static final Item SILVER_LEGGINGS = registerItem("silver_leggings", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "silver_leggings")))));
 
-    public static final Item SILVER_PICKAXE = registerItem("silver_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.SILVER, ToolStats.baseDamage(ToolType.PICKAXE), ToolStats.attackSpeed(ToolType.PICKAXE))
+    public static final Item SILVER_PICKAXE = registerItem("silver_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.SILVER, Tools.Stats.baseDamage(Tools.Type.PICKAXE), Tools.Stats.attackSpeed(Tools.Type.PICKAXE))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "silver_pickaxe"))));
 
-    public static final Item SILVER_SHOVEL = registerItem("silver_shovel", new ShovelItem(ModToolMaterials.SILVER, ToolStats.baseDamage(ToolType.SHOVEL), ToolStats.attackSpeed(ToolType.SHOVEL), new Item.Settings()
+    public static final Item SILVER_SHOVEL = registerItem("silver_shovel", new ShovelItem(ModToolMaterials.SILVER, Tools.Stats.baseDamage(Tools.Type.SHOVEL), Tools.Stats.attackSpeed(Tools.Type.SHOVEL), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "silver_shovel")))));
 
-    public static final Item SILVER_SWORD = registerItem("silver_sword", new Item.Settings().sword(ModToolMaterials.SILVER, ToolStats.baseDamage(ToolType.SWORD), ToolStats.attackSpeed(ToolType.SWORD))
+    public static final Item SILVER_SWORD = registerItem("silver_sword", new Item.Settings().sword(ModToolMaterials.SILVER, Tools.Stats.baseDamage(Tools.Type.SWORD), Tools.Stats.attackSpeed(Tools.Type.SWORD))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "silver_sword"))));
     //
     // Tier 7 (Mithril)
     //
-    public static final Item MITHRIL_AXE = registerItem("mithril_axe", new AxeItem(ModToolMaterials.MITHRIL, ToolStats.baseDamage(ToolType.AXE), ToolStats.attackSpeed(ToolType.AXE), new Item.Settings()
+    public static final Item MITHRIL_AXE = registerItem("mithril_axe", new AxeItem(ModToolMaterials.MITHRIL, Tools.Stats.baseDamage(Tools.Type.AXE), Tools.Stats.attackSpeed(Tools.Type.AXE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "mithril_axe")))));
 
     public static final Item MITHRIL_BOOTS = registerItem("mithril_boots", new Item(new Item.Settings()
@@ -273,7 +271,7 @@ public class ModItems {
     public static final Item MITHRIL_HELMET = registerItem("mithril_helmet", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "mithril_helmet")))));
 
-    public static final Item MITHRIL_HOE = registerItem("mithril_hoe", new HoeItem(ModToolMaterials.MITHRIL, ToolStats.baseDamage(ToolType.HOE), ToolStats.attackSpeed(ToolType.HOE), new Item.Settings()
+    public static final Item MITHRIL_HOE = registerItem("mithril_hoe", new HoeItem(ModToolMaterials.MITHRIL, Tools.Stats.baseDamage(Tools.Type.HOE), Tools.Stats.attackSpeed(Tools.Type.HOE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "mithril_hoe")))));
 
     public static final Item RAW_MITHRIL = registerItem("raw_mithril", new Item(new Item.Settings()
@@ -285,13 +283,13 @@ public class ModItems {
     public static final Item MITHRIL_LEGGINGS = registerItem("mithril_leggings", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "mithril_leggings")))));
 
-    public static final Item MITHRIL_PICKAXE = registerItem("mithril_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.MITHRIL, ToolStats.baseDamage(ToolType.PICKAXE), ToolStats.attackSpeed(ToolType.PICKAXE))
+    public static final Item MITHRIL_PICKAXE = registerItem("mithril_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.MITHRIL, Tools.Stats.baseDamage(Tools.Type.PICKAXE), Tools.Stats.attackSpeed(Tools.Type.PICKAXE))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "mithril_pickaxe"))));
 
-    public static final Item MITHRIL_SHOVEL = registerItem("mithril_shovel", new ShovelItem(ModToolMaterials.MITHRIL, ToolStats.baseDamage(ToolType.SHOVEL), ToolStats.attackSpeed(ToolType.SHOVEL), new Item.Settings()
+    public static final Item MITHRIL_SHOVEL = registerItem("mithril_shovel", new ShovelItem(ModToolMaterials.MITHRIL, Tools.Stats.baseDamage(Tools.Type.SHOVEL), Tools.Stats.attackSpeed(Tools.Type.SHOVEL), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "mithril_shovel")))));
 
-    public static final Item MITHRIL_SWORD = registerItem("mithril_sword", new Item.Settings().sword(ModToolMaterials.MITHRIL, ToolStats.baseDamage(ToolType.SWORD), ToolStats.attackSpeed(ToolType.SWORD))
+    public static final Item MITHRIL_SWORD = registerItem("mithril_sword", new Item.Settings().sword(ModToolMaterials.MITHRIL, Tools.Stats.baseDamage(Tools.Type.SWORD), Tools.Stats.attackSpeed(Tools.Type.SWORD))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "mithril_sword"))));
     //
     // Tier 8 (Diamond)
@@ -309,7 +307,7 @@ public class ModItems {
     //
     // Tier 10 (Enderium)
     //
-    public static final Item ENDERIUM_AXE = registerItem("enderium_axe", new AxeItem(ModToolMaterials.ENDERIUM, ToolStats.baseDamage(ToolType.AXE), ToolStats.attackSpeed(ToolType.AXE), new Item.Settings()
+    public static final Item ENDERIUM_AXE = registerItem("enderium_axe", new AxeItem(ModToolMaterials.ENDERIUM, Tools.Stats.baseDamage(Tools.Type.AXE), Tools.Stats.attackSpeed(Tools.Type.AXE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "enderium_axe")))));
 
     public static final Item ENDERIUM_BOOTS = registerItem("enderium_boots", new Item(new Item.Settings()
@@ -330,24 +328,24 @@ public class ModItems {
     public static final Item ENDERIUM_HELMET = registerItem("enderium_helmet", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "enderium_helmet")))));
 
-    public static final Item ENDERIUM_HOE = registerItem("enderium_hoe", new HoeItem(ModToolMaterials.ENDERIUM, ToolStats.baseDamage(ToolType.HOE), ToolStats.attackSpeed(ToolType.HOE), new Item.Settings()
+    public static final Item ENDERIUM_HOE = registerItem("enderium_hoe", new HoeItem(ModToolMaterials.ENDERIUM, Tools.Stats.baseDamage(Tools.Type.HOE), Tools.Stats.attackSpeed(Tools.Type.HOE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "enderium_hoe")))));
 
     public static final Item ENDERIUM_LEGGINGS = registerItem("enderium_leggings", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "enderium_leggings")))));
 
-    public static final Item ENDERIUM_PICKAXE = registerItem("enderium_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.ENDERIUM, ToolStats.baseDamage(ToolType.PICKAXE), ToolStats.attackSpeed(ToolType.PICKAXE))
+    public static final Item ENDERIUM_PICKAXE = registerItem("enderium_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.ENDERIUM, Tools.Stats.baseDamage(Tools.Type.PICKAXE), Tools.Stats.attackSpeed(Tools.Type.PICKAXE))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "enderium_pickaxe"))));
 
-    public static final Item ENDERIUM_SHOVEL = registerItem("enderium_shovel", new ShovelItem(ModToolMaterials.ENDERIUM, ToolStats.baseDamage(ToolType.SHOVEL), ToolStats.attackSpeed(ToolType.SHOVEL), new Item.Settings()
+    public static final Item ENDERIUM_SHOVEL = registerItem("enderium_shovel", new ShovelItem(ModToolMaterials.ENDERIUM, Tools.Stats.baseDamage(Tools.Type.SHOVEL), Tools.Stats.attackSpeed(Tools.Type.SHOVEL), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "enderium_shovel")))));
 
-    public static final Item ENDERIUM_SWORD = registerItem("enderium_sword", new Item.Settings().sword(ModToolMaterials.ENDERIUM, ToolStats.baseDamage(ToolType.SWORD), ToolStats.attackSpeed(ToolType.SWORD))
+    public static final Item ENDERIUM_SWORD = registerItem("enderium_sword", new Item.Settings().sword(ModToolMaterials.ENDERIUM, Tools.Stats.baseDamage(Tools.Type.SWORD), Tools.Stats.attackSpeed(Tools.Type.SWORD))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "enderium_sword"))));
     //
     // Tier 11 (Tenebris)
     //
-    public static final Item TENEBRIS_AXE = registerItem("tenebris_axe", new AxeItem(ModToolMaterials.TENEBRIS, ToolStats.baseDamage(ToolType.AXE), ToolStats.attackSpeed(ToolType.AXE), new Item.Settings()
+    public static final Item TENEBRIS_AXE = registerItem("tenebris_axe", new AxeItem(ModToolMaterials.TENEBRIS, Tools.Stats.baseDamage(Tools.Type.AXE), Tools.Stats.attackSpeed(Tools.Type.AXE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "tenebris_axe")))));
 
     public static final Item TENEBRIS_BOOTS = registerItem("tenebris_boots", new Item(new Item.Settings()
@@ -365,7 +363,7 @@ public class ModItems {
     public static final Item TENEBRIS_HELMET = registerItem("tenebris_helmet", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "tenebris_helmet")))));
 
-    public static final Item TENEBRIS_HOE = registerItem("tenebris_hoe", new HoeItem(ModToolMaterials.TENEBRIS, ToolStats.baseDamage(ToolType.HOE), ToolStats.attackSpeed(ToolType.HOE), new Item.Settings()
+    public static final Item TENEBRIS_HOE = registerItem("tenebris_hoe", new HoeItem(ModToolMaterials.TENEBRIS, Tools.Stats.baseDamage(Tools.Type.HOE), Tools.Stats.attackSpeed(Tools.Type.HOE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "tenebris_hoe")))));
 
     public static final Item TENEBRIS_INGOT = registerItem("tenebris_ingot", new Item(new Item.Settings()
@@ -374,13 +372,13 @@ public class ModItems {
     public static final Item TENEBRIS_LEGGINGS = registerItem("tenebris_leggings", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "tenebris_leggings")))));
 
-    public static final Item TENEBRIS_PICKAXE = registerItem("tenebris_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.TENEBRIS, ToolStats.baseDamage(ToolType.PICKAXE), ToolStats.attackSpeed(ToolType.PICKAXE))
+    public static final Item TENEBRIS_PICKAXE = registerItem("tenebris_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.TENEBRIS, Tools.Stats.baseDamage(Tools.Type.PICKAXE), Tools.Stats.attackSpeed(Tools.Type.PICKAXE))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "tenebris_pickaxe"))));
 
-    public static final Item TENEBRIS_SHOVEL = registerItem("tenebris_shovel", new ShovelItem(ModToolMaterials.TENEBRIS, ToolStats.baseDamage(ToolType.SHOVEL), ToolStats.attackSpeed(ToolType.SHOVEL), new Item.Settings()
+    public static final Item TENEBRIS_SHOVEL = registerItem("tenebris_shovel", new ShovelItem(ModToolMaterials.TENEBRIS, Tools.Stats.baseDamage(Tools.Type.SHOVEL), Tools.Stats.attackSpeed(Tools.Type.SHOVEL), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "tenebris_shovel")))));
 
-    public static final Item TENEBRIS_SWORD = registerItem("tenebris_sword", new Item.Settings().sword(ModToolMaterials.TENEBRIS, ToolStats.baseDamage(ToolType.SWORD), ToolStats.attackSpeed(ToolType.SWORD))
+    public static final Item TENEBRIS_SWORD = registerItem("tenebris_sword", new Item.Settings().sword(ModToolMaterials.TENEBRIS, Tools.Stats.baseDamage(Tools.Type.SWORD), Tools.Stats.attackSpeed(Tools.Type.SWORD))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "tenebris_sword"))));
 
     public static final Item TENEBRIS_VOID = registerItem("tenebris_void", new Item(new Item.Settings()
@@ -388,7 +386,7 @@ public class ModItems {
     //
     // Tier 12 (Zenith)
     //
-    public static final Item ZENITH_AXE = registerItem("zenith_axe", new AxeItem(ModToolMaterials.ZENITH, ToolStats.baseDamage(ToolType.AXE), ToolStats.attackSpeed(ToolType.AXE), new Item.Settings()
+    public static final Item ZENITH_AXE = registerItem("zenith_axe", new AxeItem(ModToolMaterials.ZENITH, Tools.Stats.baseDamage(Tools.Type.AXE), Tools.Stats.attackSpeed(Tools.Type.AXE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "zenith_axe")))));
 
     public static final Item ZENITH_BOOTS = registerItem("zenith_boots", new Item(new Item.Settings()
@@ -403,7 +401,7 @@ public class ModItems {
     public static final Item ZENITH_HELMET = registerItem("zenith_helmet", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "zenith_helmet")))));
 
-    public static final Item ZENITH_HOE = registerItem("zenith_hoe", new HoeItem(ModToolMaterials.ZENITH, ToolStats.baseDamage(ToolType.HOE), ToolStats.attackSpeed(ToolType.HOE), new Item.Settings()
+    public static final Item ZENITH_HOE = registerItem("zenith_hoe", new HoeItem(ModToolMaterials.ZENITH, Tools.Stats.baseDamage(Tools.Type.HOE), Tools.Stats.attackSpeed(Tools.Type.HOE), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "zenith_hoe")))));
 
     public static final Item ZENITH_INGOT = registerItem("zenith_ingot", new Item(new Item.Settings()
@@ -412,13 +410,13 @@ public class ModItems {
     public static final Item ZENITH_LEGGINGS = registerItem("zenith_leggings", new Item(new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "zenith_leggings")))));
 
-    public static final Item ZENITH_PICKAXE = registerItem("zenith_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.ZENITH, ToolStats.baseDamage(ToolType.PICKAXE), ToolStats.attackSpeed(ToolType.PICKAXE))
+    public static final Item ZENITH_PICKAXE = registerItem("zenith_pickaxe", new Item.Settings().pickaxe(ModToolMaterials.ZENITH, Tools.Stats.baseDamage(Tools.Type.PICKAXE), Tools.Stats.attackSpeed(Tools.Type.PICKAXE))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "zenith_pickaxe"))));
 
-    public static final Item ZENITH_SHOVEL = registerItem("zenith_shovel", new ShovelItem(ModToolMaterials.ZENITH, ToolStats.baseDamage(ToolType.SHOVEL), ToolStats.attackSpeed(ToolType.SHOVEL), new Item.Settings()
+    public static final Item ZENITH_SHOVEL = registerItem("zenith_shovel", new ShovelItem(ModToolMaterials.ZENITH, Tools.Stats.baseDamage(Tools.Type.SHOVEL), Tools.Stats.attackSpeed(Tools.Type.SHOVEL), new Item.Settings()
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "zenith_shovel")))));
 
-    public static final Item ZENITH_SWORD = registerItem("zenith_sword", new Item.Settings().sword(ModToolMaterials.ZENITH, ToolStats.baseDamage(ToolType.SWORD), ToolStats.attackSpeed(ToolType.SWORD))
+    public static final Item ZENITH_SWORD = registerItem("zenith_sword", new Item.Settings().sword(ModToolMaterials.ZENITH, Tools.Stats.baseDamage(Tools.Type.SWORD), Tools.Stats.attackSpeed(Tools.Type.SWORD))
             .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(VeteranDifficulty.MOD_ID, "zenith_sword"))));
 
     private static Item registerItem(String path, Item item) {

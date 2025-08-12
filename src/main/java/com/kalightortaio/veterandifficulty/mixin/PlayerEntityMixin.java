@@ -6,8 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.kalightortaio.veterandifficulty.systems.internal.ModTags;
-import com.kalightortaio.veterandifficulty.util.ToolTier;
-import com.kalightortaio.veterandifficulty.util.ToolUtil;
+import com.kalightortaio.veterandifficulty.util.Tools;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,13 +22,13 @@ public class PlayerEntityMixin {
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
     private void onBlockBreak(BlockState state, CallbackInfoReturnable<Float> cir) {
         ItemStack heldItem = asPlayer().getMainHandStack();
-        if (!ToolUtil.isValidWeaponOrTool(heldItem)) {
+        if (!Tools.Util.isValidWeaponOrTool(heldItem)) {
             if (state.isIn(ModTags.INCORRECT_FOR_NO_TOOL)) {
                 cir.setReturnValue(0.0F);
                 return;
             }
         }
-        for (ToolTier t : ToolTier.values()) {
+        for (Tools.Tier t : Tools.Tier.values()) {
             if (heldItem.isIn(t.itemTier) && state.isIn(t.incorrectBlockTag)) {
                 cir.setReturnValue(0.0F);
                 return;

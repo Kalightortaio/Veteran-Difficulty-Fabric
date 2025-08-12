@@ -22,7 +22,7 @@ import com.kalightortaio.veterandifficulty.mob.Spider;
 import com.kalightortaio.veterandifficulty.mob.Vex;
 import com.kalightortaio.veterandifficulty.mob.Vindicator;
 import com.kalightortaio.veterandifficulty.systems.internal.ModTags;
-import com.kalightortaio.veterandifficulty.util.ToolUtil;
+import com.kalightortaio.veterandifficulty.util.Tools;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -64,7 +64,7 @@ public abstract class LivingEntityMixin {
     private void reduceFistDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.getAttacker() instanceof ServerPlayerEntity player && !(amount == 0.0f)) {
             ItemStack heldItem = player.getMainHandStack();
-            if (!ToolUtil.isValidWeaponOrTool(heldItem)) {
+            if (!Tools.Util.isValidWeaponOrTool(heldItem)) {
                 asLivingEntity().damage(world, source, 0.0f);
                 cir.setReturnValue(false);
             }

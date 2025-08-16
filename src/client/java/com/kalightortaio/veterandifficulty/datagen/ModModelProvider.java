@@ -3,6 +3,7 @@ package com.kalightortaio.veterandifficulty.datagen;
 import com.kalightortaio.veterandifficulty.block.ModBlocks;
 import com.kalightortaio.veterandifficulty.block.custom.EnderiumGatewayBlock;
 import com.kalightortaio.veterandifficulty.item.ModItems;
+import com.kalightortaio.veterandifficulty.util.Armors;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -21,12 +22,25 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator gen) {
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_OAK_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_SPRUCE_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_BIRCH_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_ACACIA_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_CHERRY_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_CRIMSON_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_WARPED_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_DARK_OAK_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_JUNGLE_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_MANGROVE_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.REFINED_PALE_OAK_PLANKS);
+        gen.registerSimpleCubeAll(ModBlocks.RAW_FLINT_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.FLINT_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.SILVER_ORE);
         gen.registerSimpleCubeAll(ModBlocks.SILVER_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.RAW_SILVER_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.DEEPSLATE_MITHRIL_ORE);
         gen.registerSimpleCubeAll(ModBlocks.RAW_MITHRIL_BLOCK);
+        gen.registerSimpleCubeAll(ModBlocks.MITHRIL_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.ENDERIUM_ORE);
         gen.registerSimpleCubeAll(ModBlocks.ENDERIUM_BLOCK);
         gen.registerSimpleCubeAll(ModBlocks.RAW_ENDERIUM_BLOCK);
@@ -44,6 +58,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.AIR_BLADDER, Models.GENERATED);
         gen.register(ModItems.PAST_ECHOES, Models.GENERATED);
         gen.register(ModItems.TOTEM_SHARD, Models.GENERATED);
+        gen.register(ModItems.TWINE, Models.GENERATED);
         // Food
         gen.register(ModItems.ACACIA_POD, Models.GENERATED);
         gen.register(ModItems.BAMBOO_SHOOT, Models.GENERATED);
@@ -86,31 +101,19 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.FLINT_KNIFE, Models.GENERATED);
         gen.register(ModItems.FLINT_PICKAXE, Models.GENERATED);
         gen.register(ModItems.COPPER_AXE, Models.GENERATED);
-        gen.register(ModItems.COPPER_BOOTS, Models.GENERATED);
-        gen.register(ModItems.COPPER_CHESTPLATE, Models.GENERATED);
-        gen.register(ModItems.COPPER_HELMET, Models.GENERATED);
         gen.register(ModItems.COPPER_HOE, Models.GENERATED);
-        gen.register(ModItems.COPPER_LEGGINGS, Models.GENERATED);
         gen.register(ModItems.COPPER_PICKAXE, Models.GENERATED);
         gen.register(ModItems.COPPER_SWORD, Models.GENERATED);
         gen.register(ModItems.COPPER_SHOVEL, Models.GENERATED);
         gen.register(ModItems.SILVER_AXE, Models.GENERATED);
-        gen.register(ModItems.SILVER_BOOTS, Models.GENERATED);
-        gen.register(ModItems.SILVER_CHESTPLATE, Models.GENERATED);
-        gen.register(ModItems.SILVER_HELMET, Models.GENERATED);
         gen.register(ModItems.SILVER_HOE, Models.GENERATED);
-        gen.register(ModItems.SILVER_LEGGINGS, Models.GENERATED);
         gen.register(ModItems.SILVER_PICKAXE, Models.GENERATED);
         gen.register(ModItems.SILVER_SWORD, Models.GENERATED);
         gen.register(ModItems.SILVER_SHOVEL, Models.GENERATED);
         gen.register(ModItems.RAW_SILVER, Models.GENERATED);
         gen.register(ModItems.SILVER_INGOT, Models.GENERATED);
         gen.register(ModItems.MITHRIL_AXE, Models.GENERATED);
-        gen.register(ModItems.MITHRIL_BOOTS, Models.GENERATED);
-        gen.register(ModItems.MITHRIL_CHESTPLATE, Models.GENERATED);
-        gen.register(ModItems.MITHRIL_HELMET, Models.GENERATED);
         gen.register(ModItems.MITHRIL_HOE, Models.GENERATED);
-        gen.register(ModItems.MITHRIL_LEGGINGS, Models.GENERATED);
         gen.register(ModItems.MITHRIL_PICKAXE, Models.GENERATED);
         gen.register(ModItems.MITHRIL_SWORD, Models.GENERATED);
         gen.register(ModItems.MITHRIL_SHOVEL, Models.GENERATED);
@@ -120,11 +123,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.DIAMOND_ELYTRA, Models.GENERATED);
         gen.register(ModItems.NETHERITE_ELYTRA, Models.GENERATED);
         gen.register(ModItems.ENDERIUM_AXE, Models.GENERATED);
-        gen.register(ModItems.ENDERIUM_BOOTS, Models.GENERATED);
-        gen.register(ModItems.ENDERIUM_CHESTPLATE, Models.GENERATED);
-        gen.register(ModItems.ENDERIUM_HELMET, Models.GENERATED);
         gen.register(ModItems.ENDERIUM_HOE, Models.GENERATED);
-        gen.register(ModItems.ENDERIUM_LEGGINGS, Models.GENERATED);
         gen.register(ModItems.ENDERIUM_PICKAXE, Models.GENERATED);
         gen.register(ModItems.ENDERIUM_SWORD, Models.GENERATED);
         gen.register(ModItems.ENDERIUM_SHOVEL, Models.GENERATED);
@@ -132,11 +131,7 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.ENDERIUM_GEM, Models.GENERATED);
         gen.register(ModItems.ENDERIUM_ELYTRA, Models.GENERATED);
         gen.register(ModItems.TENEBRIS_AXE, Models.GENERATED);
-        gen.register(ModItems.TENEBRIS_BOOTS, Models.GENERATED);
-        gen.register(ModItems.TENEBRIS_CHESTPLATE, Models.GENERATED);
-        gen.register(ModItems.TENEBRIS_HELMET, Models.GENERATED);
         gen.register(ModItems.TENEBRIS_HOE, Models.GENERATED);
-        gen.register(ModItems.TENEBRIS_LEGGINGS, Models.GENERATED);
         gen.register(ModItems.TENEBRIS_PICKAXE, Models.GENERATED);
         gen.register(ModItems.TENEBRIS_SWORD, Models.GENERATED);
         gen.register(ModItems.TENEBRIS_SHOVEL, Models.GENERATED);
@@ -144,16 +139,41 @@ public class ModModelProvider extends FabricModelProvider {
         gen.register(ModItems.TENEBRIS_INGOT, Models.GENERATED);
         gen.register(ModItems.TENEBRIS_ELYTRA, Models.GENERATED);
         gen.register(ModItems.ZENITH_AXE, Models.GENERATED);
-        gen.register(ModItems.ZENITH_BOOTS, Models.GENERATED);
-        gen.register(ModItems.ZENITH_CHESTPLATE, Models.GENERATED);
-        gen.register(ModItems.ZENITH_HELMET, Models.GENERATED);
         gen.register(ModItems.ZENITH_HOE, Models.GENERATED);
-        gen.register(ModItems.ZENITH_LEGGINGS, Models.GENERATED);
         gen.register(ModItems.ZENITH_PICKAXE, Models.GENERATED);
         gen.register(ModItems.ZENITH_SWORD, Models.GENERATED);
         gen.register(ModItems.ZENITH_SHOVEL, Models.GENERATED);
         gen.register(ModItems.ZENITH_INGOT, Models.GENERATED);
         gen.register(ModItems.ZENITH_ELYTRA, Models.GENERATED);
+        // Armors
+        gen.registerArmor(ModItems.FLINT_BOOTS, Armors.Stats.id(Armors.Tier.FLINT), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.FLINT_LEGGINGS, Armors.Stats.id(Armors.Tier.FLINT), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.FLINT_CHESTPLATE, Armors.Stats.id(Armors.Tier.FLINT), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.FLINT_HELMET, Armors.Stats.id(Armors.Tier.FLINT), ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.COPPER_BOOTS, Armors.Stats.id(Armors.Tier.COPPER), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.COPPER_LEGGINGS, Armors.Stats.id(Armors.Tier.COPPER), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.COPPER_CHESTPLATE, Armors.Stats.id(Armors.Tier.COPPER), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.COPPER_HELMET, Armors.Stats.id(Armors.Tier.COPPER), ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.SILVER_BOOTS, Armors.Stats.id(Armors.Tier.SILVER), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.SILVER_LEGGINGS, Armors.Stats.id(Armors.Tier.SILVER), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.SILVER_CHESTPLATE, Armors.Stats.id(Armors.Tier.SILVER), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.SILVER_HELMET, Armors.Stats.id(Armors.Tier.SILVER), ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.MITHRIL_BOOTS, Armors.Stats.id(Armors.Tier.MITHRIL), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.MITHRIL_LEGGINGS, Armors.Stats.id(Armors.Tier.MITHRIL), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.MITHRIL_CHESTPLATE, Armors.Stats.id(Armors.Tier.MITHRIL), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.MITHRIL_HELMET, Armors.Stats.id(Armors.Tier.MITHRIL), ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ENDERIUM_BOOTS, Armors.Stats.id(Armors.Tier.ENDERIUM), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ENDERIUM_LEGGINGS, Armors.Stats.id(Armors.Tier.ENDERIUM), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ENDERIUM_CHESTPLATE, Armors.Stats.id(Armors.Tier.ENDERIUM), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ENDERIUM_HELMET, Armors.Stats.id(Armors.Tier.ENDERIUM), ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.TENEBRIS_BOOTS, Armors.Stats.id(Armors.Tier.TENEBRIS), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.TENEBRIS_LEGGINGS, Armors.Stats.id(Armors.Tier.TENEBRIS), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.TENEBRIS_CHESTPLATE, Armors.Stats.id(Armors.Tier.TENEBRIS), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.TENEBRIS_HELMET, Armors.Stats.id(Armors.Tier.TENEBRIS), ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ZENITH_BOOTS, Armors.Stats.id(Armors.Tier.ZENITH), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ZENITH_LEGGINGS, Armors.Stats.id(Armors.Tier.ZENITH), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ZENITH_CHESTPLATE, Armors.Stats.id(Armors.Tier.ZENITH), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        gen.registerArmor(ModItems.ZENITH_HELMET, Armors.Stats.id(Armors.Tier.ZENITH), ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
     }
 
     private void registerEnderiumGateway(BlockStateModelGenerator gen) {

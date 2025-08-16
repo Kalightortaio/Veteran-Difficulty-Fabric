@@ -103,8 +103,8 @@ public class Spider {
                 if (spider.hasNoGravity()) spider.setNoGravity(false);
                 if (spider.noClip) spider.noClip = false;
                 ((IEntityState) spider).setBooleanState("SpiderRider", false);
-                ((IEntityState) target).setBooleanState("hasSpiderRider", false);
-                this.target = null;
+                if (target != null) ((IEntityState) target).setBooleanState("hasSpiderRider", false);
+                target = null;
                 this.shouldStop = false;
                 this.shouldTick = false;
             }
@@ -115,6 +115,10 @@ public class Spider {
         }
 
         public void tick() {
+            if (target == null || !target.isAlive() || target.isRemoved() || target.getWorld() != spider.getWorld()) {
+                this.shouldStop = true;
+                this.stop();
+            }
             if (((IEntityState) spider).getBooleanState("SpiderRider")) {
                 spider.refreshPositionAndAngles(target.getX(), target.getY() + target.getStandingEyeHeight(), target.getZ(), target.getYaw(), target.getPitch());
                 target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 30, 2, false, false, true));
@@ -122,7 +126,7 @@ public class Spider {
                     biteCooldown--;
                 } else {
                     biteCooldown = 20;
-                    target.damage(target.getWorld(), target.getDamageSources().magic(), 3.0f);
+                    target.damage(target.getWorld(), target.getDamageSources().mobAttack(spider), 3.0f);
                     spider.heal(8.0f);
                 }
             } else {

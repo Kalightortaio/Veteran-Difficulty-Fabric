@@ -15,6 +15,7 @@
 		"ServerPlayerEntityMixin",
 		"PlayerEntityMixin",
 		"ToolMaterialMixin",
+		"ArmorMaterialsMixin",
 		"AxeItemMixin",
 		"accessor.MobEntityAccessor",
 		"accessor.ItemEntityAccessor"

@@ -59,6 +59,13 @@ public class ModTags {
     public static final TagKey<Item> ENDERIUM_TOOL_MATERIALS = createTag(ITEM, "enderium_tool_materials");
     public static final TagKey<Item> TENEBRIS_TOOL_MATERIALS = createTag(ITEM, "tenebris_tool_materials");
     public static final TagKey<Item> ZENITH_TOOL_MATERIALS = createTag(ITEM, "zenith_tool_materials");
+    public static final TagKey<Item> REPAIRS_FLINT_ARMOR = createTag(ITEM, "repairs_flint_armor");
+    public static final TagKey<Item> REPAIRS_COPPER_ARMOR = createTag(ITEM, "repairs_copper_armor");
+    public static final TagKey<Item> REPAIRS_SILVER_ARMOR = createTag(ITEM, "repairs_silver_armor");
+    public static final TagKey<Item> REPAIRS_MITHRIL_ARMOR = createTag(ITEM, "repairs_mithril_armor");
+    public static final TagKey<Item> REPAIRS_ENDERIUM_ARMOR = createTag(ITEM, "repairs_enderium_armor");
+    public static final TagKey<Item> REPAIRS_TENEBRIS_ARMOR = createTag(ITEM, "repairs_tenebris_armor");
+    public static final TagKey<Item> REPAIRS_ZENITH_ARMOR = createTag(ITEM, "repairs_zenith_armor");
     public static final TagKey<Item> REGROWTH = createTag(ITEM, "regrowth");
     public static final TagKey<EntityType<?>> ALIVE = createTag(ENTITY_TYPE, "alivemobs");
 

@@ -22,6 +22,135 @@ import net.minecraft.util.math.intprovider.ConstantIntProvider;
 
 import java.util.function.Function;
 public class ModBlocks {
+    public static final Block REFINED_OAK_PLANKS = registerBlock(
+		"refined_oak_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+            .mapColor(MapColor.OAK_TAN)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sounds(BlockSoundGroup.WOOD)
+            .burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_SPRUCE_PLANKS = registerBlock(
+		"refined_spruce_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+			.mapColor(MapColor.SPRUCE_BROWN)
+			.instrument(NoteBlockInstrument.BASS)
+			.strength(2.0F, 3.0F)
+			.sounds(BlockSoundGroup.WOOD)
+			.burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_BIRCH_PLANKS = registerBlock(
+		"refined_birch_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+			.mapColor(MapColor.PALE_YELLOW)
+			.instrument(NoteBlockInstrument.BASS)
+			.strength(2.0F, 3.0F)
+			.sounds(BlockSoundGroup.WOOD)
+			.burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_JUNGLE_PLANKS = registerBlock(
+		"refined_jungle_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+			.mapColor(MapColor.DIRT_BROWN)
+			.instrument(NoteBlockInstrument.BASS)
+			.strength(2.0F, 3.0F)
+			.sounds(BlockSoundGroup.WOOD)
+			.burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_ACACIA_PLANKS = registerBlock(
+		"refined_acacia_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+            .mapColor(MapColor.ORANGE)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sounds(BlockSoundGroup.WOOD)
+            .burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_CHERRY_PLANKS = registerBlock(
+		"refined_cherry_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+			.mapColor(MapColor.TERRACOTTA_WHITE)
+			.instrument(NoteBlockInstrument.BASS)
+			.strength(2.0F, 3.0F)
+			.sounds(BlockSoundGroup.CHERRY_WOOD)
+			.burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_DARK_OAK_PLANKS = registerBlock(
+		"refined_dark_oak_planks",
+        Block::new, 
+		AbstractBlock.Settings.create()
+            .mapColor(MapColor.BROWN)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sounds(BlockSoundGroup.WOOD)
+            .burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+    public static final Block REFINED_MANGROVE_PLANKS = registerBlock(
+		"refined_mangrove_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+            .mapColor(MapColor.RED)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sounds(BlockSoundGroup.WOOD)
+            .burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+    public static final Block REFINED_CRIMSON_PLANKS = registerBlock(
+		"refined_crimson_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+            .mapColor(MapColor.DULL_PINK)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sounds(BlockSoundGroup.NETHER_WOOD),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_WARPED_PLANKS = registerBlock(
+		"refined_warped_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+            .mapColor(MapColor.DARK_AQUA)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F, 3.0F)
+            .sounds(BlockSoundGroup.NETHER_WOOD),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+	public static final Block REFINED_PALE_OAK_PLANKS = registerBlock(
+		"refined_pale_oak_planks",
+        Block::new,
+		AbstractBlock.Settings.create()
+			.mapColor(MapColor.OFF_WHITE)
+			.instrument(NoteBlockInstrument.BASS)
+			.strength(2.0F, 3.0F)
+			.sounds(BlockSoundGroup.WOOD)
+			.burnable(),
+        new Item.Settings().rarity(Rarity.COMMON)
+	);
+    public static final Block RAW_FLINT_BLOCK = registerBlock(
+        "raw_flint_block", 
+        Block::new, 
+		AbstractBlock.Settings.create()
+            .mapColor(MapColor.STONE_GRAY)
+            .instrument(NoteBlockInstrument.SNARE)
+            .strength(0.6F)
+            .sounds(BlockSoundGroup.GRAVEL),
+        new Item.Settings().rarity(Rarity.COMMON)
+    );
     public static final Block FLINT_BLOCK = registerBlock(
         "flint_block", 
         Block::new, 

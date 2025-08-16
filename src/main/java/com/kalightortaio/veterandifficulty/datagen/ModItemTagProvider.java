@@ -113,5 +113,65 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         valueLookupBuilder(ModTags.ZENITH_TIER).add(
             ModItems.ZENITH_AXE, ModItems.ZENITH_HOE, ModItems.ZENITH_PICKAXE, ModItems.ZENITH_SHOVEL, ModItems.ZENITH_SWORD
         );
+        valueLookupBuilder(ModTags.REPAIRS_FLINT_ARMOR).add(
+            Items.FLINT
+        );
+        valueLookupBuilder(ModTags.REPAIRS_COPPER_ARMOR).add(
+            Items.COPPER_INGOT
+        );
+        valueLookupBuilder(ModTags.REPAIRS_SILVER_ARMOR).add(
+            ModItems.SILVER_INGOT
+        );
+        valueLookupBuilder(ModTags.REPAIRS_MITHRIL_ARMOR).add(
+            ModItems.MITHRIL_INGOT
+        );
+        valueLookupBuilder(ModTags.REPAIRS_ENDERIUM_ARMOR).add(
+            ModItems.ENDERIUM_GEM
+        );
+        valueLookupBuilder(ModTags.REPAIRS_TENEBRIS_ARMOR).add(
+            ModItems.TENEBRIS_INGOT
+        );
+        valueLookupBuilder(ModTags.REPAIRS_ZENITH_ARMOR).add(
+            ModItems.ZENITH_INGOT
+        );
+        valueLookupBuilder(ItemTags.HEAD_ARMOR).add(
+            ModItems.FLINT_HELMET,
+            ModItems.COPPER_HELMET,
+            ModItems.SILVER_HELMET,
+            ModItems.MITHRIL_HELMET,
+            ModItems.ENDERIUM_HELMET,
+            ModItems.TENEBRIS_HELMET,
+            ModItems.ZENITH_HELMET
+        );
+
+        valueLookupBuilder(ItemTags.CHEST_ARMOR).add(
+            ModItems.FLINT_CHESTPLATE,
+            ModItems.COPPER_CHESTPLATE,
+            ModItems.SILVER_CHESTPLATE,
+            ModItems.MITHRIL_CHESTPLATE,
+            ModItems.ENDERIUM_CHESTPLATE,
+            ModItems.TENEBRIS_CHESTPLATE,
+            ModItems.ZENITH_CHESTPLATE
+        );
+
+        valueLookupBuilder(ItemTags.LEG_ARMOR).add(
+            ModItems.FLINT_LEGGINGS,
+            ModItems.COPPER_LEGGINGS,
+            ModItems.SILVER_LEGGINGS,
+            ModItems.MITHRIL_LEGGINGS,
+            ModItems.ENDERIUM_LEGGINGS,
+            ModItems.TENEBRIS_LEGGINGS,
+            ModItems.ZENITH_LEGGINGS
+        );
+
+        valueLookupBuilder(ItemTags.FOOT_ARMOR).add(
+            ModItems.FLINT_BOOTS,
+            ModItems.COPPER_BOOTS,
+            ModItems.SILVER_BOOTS,
+            ModItems.MITHRIL_BOOTS,
+            ModItems.ENDERIUM_BOOTS,
+            ModItems.TENEBRIS_BOOTS,
+            ModItems.ZENITH_BOOTS
+        );
     }
 }

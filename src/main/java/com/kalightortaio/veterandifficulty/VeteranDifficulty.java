@@ -9,6 +9,7 @@ import com.kalightortaio.veterandifficulty.block.ModBlocks;
 import com.kalightortaio.veterandifficulty.block.entity.ModBlockEntities;
 import com.kalightortaio.veterandifficulty.effect.ModEffects;
 import com.kalightortaio.veterandifficulty.entity.ModEntities;
+import com.kalightortaio.veterandifficulty.item.ModArmorMaterials;
 import com.kalightortaio.veterandifficulty.item.ModItems;
 import com.kalightortaio.veterandifficulty.systems.internal.TickManager;
 import com.kalightortaio.veterandifficulty.systems.internal.EntityModifiers;
@@ -24,6 +25,7 @@ public class VeteranDifficulty implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
 		ModItems.registerItemGroup();
+		ModArmorMaterials.registerModArmorMaterials();
 		ModEffects.registerModEffects();
 		ModEntities.registerModEntities();
 		//
